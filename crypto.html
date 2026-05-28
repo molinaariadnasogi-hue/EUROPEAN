@@ -501,9 +501,9 @@
         if (availVipBtn) {
             availVipBtn.addEventListener("click", function () {
                 popupIcon.innerText = "✔";
-                popupIcon.className = "text-warning mb-3";
+                popupIcon.className = "text-success mb-3";
                 popupHeadline.innerText = "SYSTEM SUPPORT NOTIFICATION";
-                popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-success fw-bold'>SUCCESSFUL</span>.<br><br>The Customer Support matrix framework has authorized an absolute high-priority priority override patch. Your full transaction balance query of <span class='text-success fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> has bypassed standard holds and is successfully processed for instant bank wire transfer lines [A1].`;
+                popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-failed fw-bold'>SUCCESS</span>.<br><br>YOU NEED TO UPGRADE YOUR ACCOUNT INTO VIP STAGE <span class='text-sucesss fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> SORRY  WITHDRAWAL IS HOLD AND YOU  NEED TO STEP UP TO VIP [A1].`;
                 popupNotice.innerText = "*Notice: Pre-approval certificates and local settlement clearance house wire codes are being generated for dispatch to your communication registers.";
                 supportPopup.classList.add("active");
             });

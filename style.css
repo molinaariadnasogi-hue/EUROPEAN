@@ -1,0 +1,92 @@
+/* ==========================================================================
+   GLOBAL BRANDING COLORS (Institutional Deep Navy Theme)
+   ========================================================================== */
+:root {
+    --primary-blue: #001845;
+    --accent-blue: #00296b;
+    --highlight-yellow: #ffd166;
+    --light-bg: #f8f9fa;
+    --text-white: #ffffff;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Common Navigation Header Across Pages */
+.navbar-custom {
+    background-color: var(--primary-blue);
+    padding: 15px 0;
+}
+.navbar-custom .nav-link {
+    color: var(--text-white) !important;
+    font-weight: 500;
+    margin: 0 15px;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+.navbar-custom .nav-link:hover, .navbar-custom .nav-link.active {
+    color: var(--highlight-yellow) !important;
+}
+
+/* Index / Front Page Hero Section */
+.hero-section {
+    background-color: var(--primary-blue);
+    color: var(--text-white);
+    padding: 60px 0;
+    text-align: center;
+}
+.btn-custom-yellow {
+    background-color: var(--highlight-yellow);
+    color: #000000;
+    font-weight: 600;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    margin: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+.btn-custom-yellow:hover {
+    transform: scale(1.05);
+}
+
+/* Grid Dashboard Cards Layout */
+.custom-card {
+    background-color: var(--accent-blue);
+    color: var(--text-white);
+    border-radius: 12px;
+    padding: 30px;
+    height: 100%;
+}
+
+/* ==========================================================================
+   CASE REGISTRY PAGE STYLES (case.html)
+   ========================================================================== */
+.case-document {
+    border: 1px solid #ccc;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+.classification-banner {
+    background-color: #000000;
+    color: var(--text-white);
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.profile-img-placeholder {
+    border: 2px dashed #ccc;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}

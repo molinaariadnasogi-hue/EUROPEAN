@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional Oversight Portal - Home</title>
+    <!-- Core Bootstrap 5 CDN Link -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        :root { 
+            --primary-blue: #001845; 
+            --accent-blue: #00296b; 
+            --highlight-yellow: #ffd166; 
+        }
+        body { 
+            background-color: #ffffff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+        }
+        /* Top Navigation Menu Bar */
+        .navbar-custom { 
+            background-color: var(--primary-blue); 
+            padding: 15px 0; 
+        }
+        .navbar-custom .nav-link { 
+            color: #ffffff !important; 
+            font-weight: 500; 
+            margin: 0 15px; 
+            text-decoration: none; 
+        }
+        .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active { 
+            color: var(--highlight-yellow) !important; 
+        }
+        /* Premium Hero Section Branding */
+        .hero-section { 
+            background-color: var(--primary-blue); 
+            color: #ffffff; 
+            padding: 60px 0; 
+            text-align: center; 
+        }
+        .btn-custom-yellow { 
+            background-color: var(--highlight-yellow); 
+            color: #000000; 
+            font-weight: 600; 
+            border-radius: 20px; 
+            padding: 10px 24px; 
+            text-decoration: none; 
+            display: inline-block; 
+            transition: transform 0.2s;
+        }
+        .btn-custom-yellow:hover {
+            transform: scale(1.05);
+        }
+        /* Dashboard Container Cards Grid layout */
+        .custom-card { 
+            background-color: var(--accent-blue); 
+            color: #ffffff; 
+            border-radius: 12px; 
+            padding: 30px; 
+            height: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Navigation Toolbar -->
+    <nav class="navbar navbar-expand navbar-custom">
+        <div class="container justify-content-between">
+            <a class="navbar-brand text-white fw-bold" href="index.html">PORTAL SYSTEM</a>
+            <div class="navbar-nav">
+                <a class="nav-link active" href="index.html">ABOUT</a>
+                <a class="nav-link" href="case.html">CASES</a>
+                <a class="nav-link" href="crypto.html">CRYPTO CASES</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Hero Banner Component -->
+    <header class="hero-section">
+        <div class="container">
+            <h1>Publications & Events</h1>
+            <p>Framework data tracking for regional threats, cross-border analytical assessments, and cryptographic assets.</p>
+            <div class="mt-4">
+                <a href="case.html" class="btn-custom-yellow me-2">Launch Master Database Search</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mid-Section Options Component Grid -->
+    <main class="container my-5">
+        <div class="row g-4 justify-content-center">
+            <!-- Box 1: Central Database Entry Point -->
+            <div class="col-md-6 col-lg-5">
+                <div class="custom-card d-flex flex-column justify-content-between">
+                    <div>
+                        <h3>Central Intelligence Query Hub</h3>
+                        <p>Access active subject registries, criminal directories, and institutional blockchain network nodes using master reference validation validation keys.</p>
+                    </div>
+                    <a href="case.html" class="btn btn-light w-100 mt-4 fw-bold text-decoration-none" style="color: var(--accent-blue); border-radius:20px;">Open Query Terminal</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
     <!-- Core Bootstrap 5 CDN Link -->
     <link href="https://jsdelivr.net" rel="stylesheet">
     <style>
-        /* Europol Dark Node System Style Guidelines */
+        /* Europol Dark/Light Interface Guidelines Theme Blueprint */
         :root {
             --europol-dark-blue: #081225;
             --europol-navy: #0f2142;
@@ -40,16 +40,13 @@
             font-size: 0.85rem;
             text-decoration: none;
         }
-        .navbar-custom .nav-link:hover {
-            color: var(--europol-gold) !important;
-        }
-        .navbar-custom .nav-link.active {
+        .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active {
             color: var(--europol-gold) !important;
         }
 
         /* DEAD CENTER GRID SEARCH BLOCK TERMINAL */
         .search-hero-wrapper {
-            min-height: 45vh;
+            min-height: 40vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -95,7 +92,7 @@
             background-color: #e5b842 !important;
         }
 
-        /* GRID MATRIX OVERLAY CARDS DISPLAY AREA */
+        /* DIRECTORY MOCK INDEX FILES STYLES */
         .directory-grid-title {
             color: var(--europol-gold);
             text-transform: uppercase;
@@ -104,7 +101,6 @@
             font-size: 1.1rem;
             margin-bottom: 25px;
         }
-
         .directory-card {
             background-color: var(--europol-navy);
             border: 1px solid var(--europol-border);
@@ -138,35 +134,74 @@
             margin-bottom: 0;
         }
 
-        /* INAYOS NA PROFILE MATRIX */
-        .case-document {
-            background-color: var(--europol-navy) !important;
-            color: #ffffff !important;
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid var(--europol-border);
-        }
-        .classification-banner {
-            background-color: #f6465d;
-            color: #ffffff;
-            padding: 12px;
-            text-align: center;
-            font-weight: bold;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
+        /* 📄 ACCURATE REPLICATED DOCUMENT PAPERSCAN LOOKUP */
+        .case-document-paper {
+            background-color: #ffffff !important;
+            color: #000000 !important;
             border-radius: 4px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.6);
+            border: 1px solid #ffffff;
         }
-        .profile-img-placeholder {
-            border: 2px dashed var(--europol-border);
-            background-color: #040914;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 260px;
-            border-radius: 6px;
-            color: #8fa3bf;
+        
+        .paper-header-table {
+            width: 100%;
+            border-bottom: 2px solid #000000;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #000000 !important;
         }
+
+        .paper-main-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000000;
+            padding: 8px 0;
+            margin-bottom: 25px;
+            color: #000000 !important;
+        }
+
+        .paper-label {
+            color: #333333;
+            font-size: 0.82rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 1px;
+        }
+        .paper-value {
+            color: #000000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .paper-section-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 4px;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            color: #000000 !important;
+        }
+
+        .paper-text-block {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: justify;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .paper-list-item {
+            font-size: 0.92rem;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
         .d-none {
             display: none !important;
         }
@@ -174,10 +209,10 @@
 </head>
 <body class="binance-matrix">
 
-    <!-- 🌐 INSTATIONAL HEADER: BACK NAVIGATION AND TOP MENU TOOLBAR -->
+    <!-- 🌐 QUICK NAVBAR HEADER FOR BACK NAVIGATION LINKS -->
     <nav class="navbar navbar-expand navbar-custom shadow-sm">
         <div class="container justify-content-between">
-            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="index.html" style="letter-spacing: 1px;">
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="index.html" style="letter-spacing: 1px; text-decoration: none;">
                 <span style="color: var(--europol-gold); margin-right: 5px;">◀ BACK TO</span> HOME
             </a>
             <div class="navbar-nav">
@@ -202,83 +237,117 @@
             </div>
         </div>
 
-        <!-- 2️⃣ TRANSITION PROFILE: ORIGINAL EUROPOL ARCHITECTURE SIMULATION FOR BRANKO MILOS -->
+        <!-- 2️⃣ TRANSITION PROFILE: OUTPUT PREVIEW (100% KOPYA NG OFFICIAL DOCUMENT NA BINIGAY MO) -->
         <div id="dynamicProfileSection" class="row justify-content-center d-none mb-5">
-            <div class="col-lg-11">
-                <div class="case-document shadow-lg">
-                    <!-- Top Original File Identifiers -->
-                    <div class="row text-white mb-3 small fw-bold">
-                        <div class="col-6">CASE NUMBER: <span class="text-warning">EC3-AML-2026-784291-EU</span></div>
-                        <div class="col-6 text-end">CLASSIFICATION: <span class="text-danger">CONFIDENTIAL</span></div>
-                    </div>
+            <div class="col-lg-10 col-xl-9">
+                <div class="case-document-paper">
                     
-                    <div class="classification-banner mb-4">
-                        EUROPOL CASE FILE CONTENT
-                    </div>
+                    <!-- Top Paper Meta Headers (Europol Format) -->
+                    <table class="paper-header-table">
+                        <tr>
+                            <td style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; width: 50%; color: #000000; letter-spacing: 1px;">EUROPOL</td>
+                            <td style="width: 50%; padding-left: 15px; border-left: 2px solid #000000; color: #000000;">
+                                <strong>CASE NUMBER:</strong> EC3-AML-2026-784291-EU<br>
+                                <strong>DATE OPENED:</strong> 27 MAY 2026<br>
+                                <strong>CLASSIFICATION:</strong> CONFIDENTIAL
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <div class="paper-main-title">EUROPOL CASE FILE CONTENT</div>
 
                     
-                    <div class="row align-items-center mb-4">
-                        <div class="col-md-5">
-                            <!-- Direct embed injection ng orihinal na larawan ng subject mula sa link mo -->
-                            <div class="text-center bg-dark p-2 rounded border border-secondary">
-                                <img src="https://i.ibb.co/3y4vbNtP/1000094715.png" class="img-fluid rounded" alt="Subject Profile" style="max-height: 290px; object-fit: cover; width: 100%;">
-                            </div>
+                    <div class="row align-items-start mb-4">
+                        <div class="col-md-5 text-center mb-3 mb-md-0">
+                            <!-- AUTOMATIC IMAGE EMBED INJECTION MULA SA LINK MO -->
+                            <img src="https://ibb.co" class="img-fluid border border-dark p-1 bg-white" alt="Branko Milos Investigation Record" style="max-height: 290px; width: 100%; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.15);">
                         </div>
-                        <div class="col-md-7 ps-md-4 mt-3 mt-md-0">
-                            <h4 style="color: var(--europol-gold);" class="fw-bold mb-3">SUBJECT IDENTITY PROFILE</h4>
-                            <table class="table table-sm table-borderless text-white" style="font-size: 1.05rem; line-height: 1.6;">
-                                <tr><td class="text-white-50" style="width: 35%;">SUBJECT:</td><td class="fw-bold text-white text-uppercase">Branko Milos</td></tr>
-                                <tr><td class="text-white-50">COUNTRY:</td><td class="text-white">CROATIA</td></tr>
-                                <tr><td class="text-white-50">PHONE NUMBER:</td><td class="text-white font-monospace">+385998598878</td></tr>
-                                <tr><td class="text-white-50">DATE OF BIRTH:</td><td class="text-white">16.08.1997</td></tr>
-                                <tr><td class="text-white-50">NATIONALITY:</td><td class="text-white">CROATIAN</td></tr>
-                                <tr><td class="text-white-50">GENDER:</td><td class="text-white text-uppercase">Male</td></tr>
-                            </table>
+                        <div class="col-md-7 ps-md-4 text-dark">
+                            <span class="paper-label">SUBJECT:</span>
+                            <span class="paper-value">BRANKO MILOS</span>
+                            
+                            <span class="paper-label">COUNTRY:</span>
+                            <span class="paper-value">CROATIA</span>
+                            
+                            <span class="paper-label">PHONE NUMBER:</span>
+                            <span class="paper-value" style="font-family: monospace;">+385998598878</span>
+                            
+                            <span class="paper-label">DATE OF BIRTH:</span>
+                            <span class="paper-value">16.08.1997</span>
+                            
+                            <span class="paper-label">NATIONALITY:</span>
+                            <span class="paper-value">CROATIAN</span>
+                            
+                            <span class="paper-label">GENDER:</span>
+                            <span class="paper-value">MALE</span>
                         </div>
                     </div>
 
-                    <!-- Inkorporasyon ng Opisyal na Case Summary Context Documentation -->
-                    <div class="p-4 rounded border border-secondary mb-4" style="background-color: #040914; line-height: 1.7; font-size: 0.95rem;">
-                        <h5 style="color: var(--europol-gold);" class="fw-bold mb-2">CASE SUMMARY</h5>
-                        <p class="text-white-50 mb-3">Following multiple reports connected to alleged fraud and cyber-related activities, authorities initiated a review concerning possible financial facilitation, communication support, and coordination linked to suspected scam operations.</p>
-                        <p class="text-white-50 mb-3">According to gathered intelligence and submitted materials, the subject allegedly maintained communication with individuals connected to organized online fraud networks and may have assisted activities involving movement of funds, concealment of digital assets, and online coordination.</p>
-                        <p class="text-white-50 mb-0">According to submitted statements and communications, the subject allegedly expressed support toward individuals connected to fraud-related activities in the Philippines instead of cooperating with AML-related concerns. These statements were included as part of the reported communications and remain subject to verification and investigative review.</p>
+                    <!-- Case Summary Context Text Block Section -->
+                    <div class="paper-section-title">CASE SUMMARY</div>
+                    <div class="paper-text-block">
+                        Following multiple reports connected to alleged fraud and cyber-related activities, authorities initiated a review concerning possible financial facilitation, communication support, and coordination linked to suspected scam operations.
+                    </div>
+                    <div class="paper-text-block">
+                        According to gathered intelligence and submitted materials, the subject allegedly maintained communication with individuals connected to organized online fraud networks and may have assisted activities involving movement of funds, concealment of digital assets, and online coordination.
+                    </div>
+                    <div class="paper-text-block">
+                        According to submitted statements and communications, the subject allegedly expressed support toward individuals connected to fraud-related activities in the Philippines instead of cooperating with AML-related concerns. These statements were included as part of the reported communications and remain subject to verification and investigative review.
                     </div>
 
-                    <!-- Investigative Targets Information Node Fields Matrix -->
-                    <div class="row g-4 text-white-50 mb-4" style="font-size: 0.9rem; line-height: 1.6;">
-                        <div class="col-md-6">
-                            <h5 class="text-white fw-bold border-bottom border-secondary pb-1 mb-2">INVESTIGATIVE REVIEW</h5>
+                    <!-- Investigative Columns Area (3 Columns / Section Match) -->
+                    <div class="paper-section-title">INVESTIGATIVE REVIEW</div>
+                    <div class="row g-3 mb-2">
+                        <div class="col-12">
                             <ul class="ps-3 mb-0">
-                                <li>Financial transaction activity tracking summaries</li>
-                                <li>Communication records and encrypted messages logs</li>
-                                <li>Linked online accounts and cryptocurrency wallets parameters</li>
-                                <li>Cross-border digital network monitoring index paths</li>
-                                <li>Screenshots database and registered electronic evidence</li>
+                                <li class="paper-list-item">Financial transaction activity</li>
+                                <li class="paper-list-item">Communication records and encrypted messages</li>
+                                <li class="paper-list-item">Linked online accounts and cryptocurrency wallets</li>
+                                <li class="paper-list-item">Cross-border digital activity</li>
+                                <li class="paper-list-item">Screenshots and electronic evidence</li>
                             </ul>
                         </div>
-                        <div class="col-md-6">
-                            <h5 class="text-white fw-bold border-bottom border-secondary pb-1 mb-2">POTENTIAL OFFENSES UNDER REVIEW</h5>
-                            <ul class="ps-3 mb-0">
-                                <li>Fraud & Cybercrime matrix violations</li>
-                                <li>Money Laundering / AML Node Violations</li>
-                                <li>Conspiracy / Criminal Facilitation protocols</li>
-                                <li>Organized Scam Operations deployment</li>
-                                <li>Communication Support to Fraud Networks</li>
+                    </div>
+
+                    <div class="row mt-3">
+                        <!-- Associated Locations Links Column -->
+                        <div class="col-md-6 border-end border-dark pe-3">
+                            <div class="fw-bold text-uppercase mb-2" style="font-size: 0.88rem; color: #333333; letter-spacing: 0.5px;">ASSOCIATED LOCATIONS / LINKS</div>
+                            <ul class="ps-3">
+                                <li class="paper-list-item">Philippines (reported connections)</li>
+                                <li class="paper-list-item">Croatia</li>
+                                <li class="paper-list-item">Online platforms and messaging applications</li>
+                                <li class="paper-list-item">Cryptocurrency networks and wallets</li>
+                            </ul>
+                        </div>
+                        <!-- Potential Offenses Column -->
+                        <div class="col-md-6 ps-md-3">
+                            <div class="fw-bold text-uppercase mb-2" style="font-size: 0.88rem; color: #333333; letter-spacing: 0.5px;">POTENTIAL OFFENSES UNDER REVIEW</div>
+                            <ul class="ps-3">
+                                <li class="paper-list-item">Fraud</li>
+                                <li class="paper-list-item">Cybercrime</li>
+                                <li class="paper-list-item">Money Laundering / AML Violations</li>
+                                <li class="paper-list-item">Conspiracy / Criminal Facilitation</li>
+                                <li class="paper-list-item">Organized Scam Operations</li>
+                                <li class="paper-list-item">Financial Facilitation</li>
+                                <li class="paper-list-item">Communication Support to Fraud Networks</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="p-3 rounded border-start border-danger border-4 small mb-4" style="background-color: rgba(246, 70, 93, 0.05); color: #a2b4cd;">
-                        <strong>NOTES:</strong> The case materials were documented for investigative assessment and verification through the appropriate cybercrime and AML review procedures. Further action remains subject to evidence validation and investigative findings.
+                    <!-- Notes Section Area -->
+                    <div class="fw-bold text-uppercase mt-4 mb-1" style="font-size: 0.88rem; color: #333333;">NOTES</div>
+                    <div class="paper-text-block" style="font-size: 0.9rem; font-style: italic; line-height: 1.5;">
+                        The case materials were documented for investigative assessment and verification through the appropriate cybercrime and AML review procedures. Further action remains subject to evidence validation and investigative findings.
                     </div>
 
-                    <!-- 🚨 THE CENTRAL SECURITY APPEAL ACTION BUTTON INTERFACE -->
-                    <div class="text-center mt-4">
-                        <button class="btn btn-outline-warning w-100 py-3 fw-bold text-uppercase" style="border-radius: 8px; font-size: 1rem; letter-spacing: 1px;" onclick="alert('System notification: Opening secure legal verification line to AML Compliance Registry.')">
+                    <!-- 🚨 THE CENTRAL SYSTEM APPEAL ACTION BUTTON LINK -->
+                    <div class="mt-4 pt-3 text-center" style="border-top: 2px solid #000000;">
+                        <button class="btn btn-danger w-100 py-3 fw-bold text-uppercase" style="border-radius: 4px; font-size: 1rem; letter-spacing: 1px;" onclick="alert('System secure protocol initialized: Dispatched report payload data logs to AML Enforcement Office.')">
                             ⚠️ CONTACT AML AUDIT SUPPORT
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -286,19 +355,21 @@
         <!-- 3️⃣ LOWER MATRIX SECTION -->
         <div class="mt-4">
             <div class="directory-grid-title">📂 Active Operational Threat Logs Index</div>
-            <div class="row g-4">
+                <!-- Card 1: Case Ref: #784291 -->
                 <div class="col-md-4">
                     <div class="directory-card active-node">
                         <h5>Case Ref: #784291</h5>
                         <p>Cross-border asset movement analysis. Trajectory tracking records inside Croatian jurisdiction grid sectors.</p>
                     </div>
                 </div>
+                <!-- Card 2: Node Ref: #120352 -->
                 <div class="col-md-4">
                     <div class="directory-card">
                         <h5>Node Ref: #120352</h5>
                         <p>Decentralized cryptographic ledger validation node. Blockchain wallet interconnect sync stream tracker state.</p>
                     </div>
                 </div>
+                <!-- Card 3: Operation Delta-9 -->
                 <div class="col-md-4">
                     <div class="directory-card">
                         <h5>Operation Delta-9</h5>
@@ -309,6 +380,7 @@
         </div>
     </div>
 
+    <!-- Script Connect Linked correctly -->
     <script src="script.js"></script>
 </body>
 </html>

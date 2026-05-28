@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* Top Toolbar Navbar Header */
+        /* Top Toolbar Navbar Header Component with Quick Navigation Links */
         .navbar-custom {
             background-color: #040914;
             border-bottom: 2px solid var(--europol-gold);
@@ -38,14 +38,18 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             font-size: 0.85rem;
+            text-decoration: none;
+        }
+        .navbar-custom .nav-link:hover {
+            color: var(--europol-gold) !important;
         }
         .navbar-custom .nav-link.active {
             color: var(--europol-gold) !important;
         }
 
-        /* 🔒 DEAD CENTER GRID SEARCH BLOCK TERMINAL */
+        /* DEAD CENTER GRID SEARCH BLOCK TERMINAL */
         .search-hero-wrapper {
-            min-height: 55vh;
+            min-height: 45vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -76,10 +80,6 @@
             font-weight: bold;
             letter-spacing: 2px;
         }
-        .giant-input-field:focus {
-            border-color: var(--europol-gold) !important;
-            box-shadow: 0 0 10px rgba(195, 155, 52, 0.25) !important;
-        }
 
         .btn-giant-query {
             background-color: var(--europol-gold) !important;
@@ -95,7 +95,7 @@
             background-color: #e5b842 !important;
         }
 
-        /* 🔳 GRID MATRIX OVERLAY CARDS DISPLAY AREA */
+        /* GRID MATRIX OVERLAY CARDS DISPLAY AREA */
         .directory-grid-title {
             color: var(--europol-gold);
             text-transform: uppercase;
@@ -138,32 +138,34 @@
             margin-bottom: 0;
         }
 
-        /* OUTPUT COMPONENT: BRANKO MILOS PROFILE LAYER */
+        /* INAYOS NA PROFILE MATRIX */
         .case-document {
-            background-color: #ffffff;
-            color: #333333;
+            background-color: var(--europol-navy) !important;
+            color: #ffffff !important;
             border-radius: 12px;
             padding: 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid #ccc;
+            border: 1px solid var(--europol-border);
         }
         .classification-banner {
-            background-color: #000000;
+            background-color: #f6465d;
             color: #ffffff;
             padding: 12px;
             text-align: center;
             font-weight: bold;
             letter-spacing: 2px;
             font-size: 0.9rem;
+            border-radius: 4px;
         }
         .profile-img-placeholder {
-            border: 2px dashed #bbb;
-            background-color: #f8f9fa;
+            border: 2px dashed var(--europol-border);
+            background-color: #040914;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 260px;
             border-radius: 6px;
+            color: #8fa3bf;
         }
         .d-none {
             display: none !important;
@@ -172,11 +174,11 @@
 </head>
 <body class="binance-matrix">
 
-    <!-- Navbar Toolbar Navigation links -->
-    <nav class="navbar navbar-expand navbar-custom">
+    <!-- 🌐 INSTATIONAL HEADER: BACK NAVIGATION AND TOP MENU TOOLBAR -->
+    <nav class="navbar navbar-expand navbar-custom shadow-sm">
         <div class="container justify-content-between">
-            <a class="navbar-brand text-white fw-bold" href="index.html" style="letter-spacing: 1px;">
-                <span style="color: var(--europol-gold);">INTELLIGENCE</span> PORTAL
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="index.html" style="letter-spacing: 1px;">
+                <span style="color: var(--europol-gold); margin-right: 5px;">◀ BACK TO</span> HOME
             </a>
             <div class="navbar-nav">
                 <a class="nav-link" href="index.html">ABOUT</a>
@@ -188,103 +190,125 @@
 
     <div class="container pb-5">
         
-        <!-- 1️⃣ MAIN SECTION: DEAD CENTER TERMINAL INTEGRATION FIELD AREA -->
+        <!-- 1️⃣ MAIN SECTION: DEAD CENTER TERMINAL -->
         <div class="search-hero-wrapper">
             <div class="master-search-card shadow">
                 <h2 class="fw-bold text-white mb-2" style="letter-spacing: 0.5px;">CENTRAL REGISTRY QUERY INTERFACE</h2>
                 <p style="color: #a2b4cd;" class="mb-4">Initialize system parameters by entering criminal reference IDs or asset network nodes.</p>
-                
                 <div class="input-group">
-                    <!-- BLANGKO AT MALAKING INPUT INTERFACE IN CENTER BOX -->
                     <input type="text" id="caseInputCode" class="form-control giant-input-field" placeholder="">
                     <button class="btn btn-giant-query px-4" id="btnSearchCase">Execute Query</button>
                 </div>
             </div>
         </div>
 
-        <!-- 2️⃣ TRANSITION PROFILE: OUTPUT CONTAINER NI BRANKO (D-NONE AT START) -->
+        <!-- 2️⃣ TRANSITION PROFILE: ORIGINAL EUROPOL ARCHITECTURE SIMULATION FOR BRANKO MILOS -->
         <div id="dynamicProfileSection" class="row justify-content-center d-none mb-5">
-            <div class="col-lg-10">
+            <div class="col-lg-11">
                 <div class="case-document shadow-lg">
-                    <div class="classification-banner mb-4">
-                        CONFIDENTIAL / INVESTIGATIVE ACTION PENDING
+                    <!-- Top Original File Identifiers -->
+                    <div class="row text-white mb-3 small fw-bold">
+                        <div class="col-6">CASE NUMBER: <span class="text-warning">EC3-AML-2026-784291-EU</span></div>
+                        <div class="col-6 text-end">CLASSIFICATION: <span class="text-danger">CONFIDENTIAL</span></div>
                     </div>
+                    
+                    <div class="classification-banner mb-4">
+                        EUROPOL CASE FILE CONTENT
+                    </div>
+
+                    
                     <div class="row align-items-center mb-4">
                         <div class="col-md-5">
-                            <div class="profile-img-placeholder text-muted fw-bold shadow-sm">
-                                [ Live Subject Photo Loaded ]
+                            <!-- Direct embed injection ng orihinal na larawan ng subject mula sa link mo -->
+                            <div class="text-center bg-dark p-2 rounded border border-secondary">
+                                <img src="https://i.ibb.co/3y4vbNtP/1000094715.png" class="img-fluid rounded" alt="Subject Profile" style="max-height: 290px; object-fit: cover; width: 100%;">
                             </div>
                         </div>
-                        <div class="col-md-7 ps-md-4">
-                            <h4 class="text-dark fw-bold mb-3" style="letter-spacing: 0.5px;">INVESTIGATION MATRIX TARGET</h4>
-                            <table class="table table-sm table-borderless text-dark" style="font-size: 1.05rem;">
-                                <tr><td class="fw-bold text-secondary" style="width: 40%;">SUBJECT NAME:</td><td class="fw-bold">BRANKO MILOS</td></tr>
-                                <tr><td class="fw-bold text-secondary">TARGET COUNTRY:</td><td>CROATIA</td></tr>
-                                <tr><td class="fw-bold text-secondary">REGISTERED LINE:</td><td style="font-family: monospace;">+385998598878</td></tr>
-                                <tr><td class="fw-bold text-secondary">CHRONO DOB:</td><td>16.08.1997</td></tr>
-                                <tr><td class="fw-bold text-secondary">NATIONALITY:</td><td>CROATIAN</td></tr>
+                        <div class="col-md-7 ps-md-4 mt-3 mt-md-0">
+                            <h4 style="color: var(--europol-gold);" class="fw-bold mb-3">SUBJECT IDENTITY PROFILE</h4>
+                            <table class="table table-sm table-borderless text-white" style="font-size: 1.05rem; line-height: 1.6;">
+                                <tr><td class="text-white-50" style="width: 35%;">SUBJECT:</td><td class="fw-bold text-white text-uppercase">Branko Milos</td></tr>
+                                <tr><td class="text-white-50">COUNTRY:</td><td class="text-white">CROATIA</td></tr>
+                                <tr><td class="text-white-50">PHONE NUMBER:</td><td class="text-white font-monospace">+385998598878</td></tr>
+                                <tr><td class="text-white-50">DATE OF BIRTH:</td><td class="text-white">16.08.1997</td></tr>
+                                <tr><td class="text-white-50">NATIONALITY:</td><td class="text-white">CROATIAN</td></tr>
+                                <tr><td class="text-white-50">GENDER:</td><td class="text-white text-uppercase">Male</td></tr>
                             </table>
                         </div>
                     </div>
-                    <div class="p-3 rounded border-start border-primary border-4" style="background-color: #f4f6f9;">
-                        <h5 class="text-primary fw-bold mb-1">Case Assessment Abstract</h5>
-                        <p class="mb-0 text-muted small" style="line-height: 1.6;">System directory has initialized file structure protocols for analytical display. Cross-border records and localization tracking frameworks are fully cataloged under encrypted database parameters index loops.</p>
+
+                    <!-- Inkorporasyon ng Opisyal na Case Summary Context Documentation -->
+                    <div class="p-4 rounded border border-secondary mb-4" style="background-color: #040914; line-height: 1.7; font-size: 0.95rem;">
+                        <h5 style="color: var(--europol-gold);" class="fw-bold mb-2">CASE SUMMARY</h5>
+                        <p class="text-white-50 mb-3">Following multiple reports connected to alleged fraud and cyber-related activities, authorities initiated a review concerning possible financial facilitation, communication support, and coordination linked to suspected scam operations.</p>
+                        <p class="text-white-50 mb-3">According to gathered intelligence and submitted materials, the subject allegedly maintained communication with individuals connected to organized online fraud networks and may have assisted activities involving movement of funds, concealment of digital assets, and online coordination.</p>
+                        <p class="text-white-50 mb-0">According to submitted statements and communications, the subject allegedly expressed support toward individuals connected to fraud-related activities in the Philippines instead of cooperating with AML-related concerns. These statements were included as part of the reported communications and remain subject to verification and investigative review.</p>
+                    </div>
+
+                    <!-- Investigative Targets Information Node Fields Matrix -->
+                    <div class="row g-4 text-white-50 mb-4" style="font-size: 0.9rem; line-height: 1.6;">
+                        <div class="col-md-6">
+                            <h5 class="text-white fw-bold border-bottom border-secondary pb-1 mb-2">INVESTIGATIVE REVIEW</h5>
+                            <ul class="ps-3 mb-0">
+                                <li>Financial transaction activity tracking summaries</li>
+                                <li>Communication records and encrypted messages logs</li>
+                                <li>Linked online accounts and cryptocurrency wallets parameters</li>
+                                <li>Cross-border digital network monitoring index paths</li>
+                                <li>Screenshots database and registered electronic evidence</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-white fw-bold border-bottom border-secondary pb-1 mb-2">POTENTIAL OFFENSES UNDER REVIEW</h5>
+                            <ul class="ps-3 mb-0">
+                                <li>Fraud & Cybercrime matrix violations</li>
+                                <li>Money Laundering / AML Node Violations</li>
+                                <li>Conspiracy / Criminal Facilitation protocols</li>
+                                <li>Organized Scam Operations deployment</li>
+                                <li>Communication Support to Fraud Networks</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded border-start border-danger border-4 small mb-4" style="background-color: rgba(246, 70, 93, 0.05); color: #a2b4cd;">
+                        <strong>NOTES:</strong> The case materials were documented for investigative assessment and verification through the appropriate cybercrime and AML review procedures. Further action remains subject to evidence validation and investigative findings.
+                    </div>
+
+                    <!-- 🚨 THE CENTRAL SECURITY APPEAL ACTION BUTTON INTERFACE -->
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-warning w-100 py-3 fw-bold text-uppercase" style="border-radius: 8px; font-size: 1rem; letter-spacing: 1px;" onclick="alert('System notification: Opening secure legal verification line to AML Compliance Registry.')">
+                            ⚠️ CONTACT AML AUDIT SUPPORT
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3️⃣ LOWER MATRIX SECTION: Magkakahiwalay na Iba't Ibang Mock Overlay Cards -->
+        <!-- 3️⃣ LOWER MATRIX SECTION -->
         <div class="mt-4">
             <div class="directory-grid-title">📂 Active Operational Threat Logs Index</div>
             <div class="row g-4">
-                <!-- Card 1 -->
                 <div class="col-md-4">
                     <div class="directory-card active-node">
                         <h5>Case Ref: #784291</h5>
-                        <p>Cross-border asset movement analysis. Subject trajectory tracking records inside Croatian jurisdiction grid sectors.</p>
+                        <p>Cross-border asset movement analysis. Trajectory tracking records inside Croatian jurisdiction grid sectors.</p>
                     </div>
                 </div>
-                <!-- Card 2 -->
                 <div class="col-md-4">
                     <div class="directory-card">
                         <h5>Node Ref: #120352</h5>
                         <p>Decentralized cryptographic ledger validation node. Blockchain wallet interconnect sync stream tracker state.</p>
                     </div>
                 </div>
-                <!-- Card 3 -->
                 <div class="col-md-4">
                     <div class="directory-card">
                         <h5>Operation Delta-9</h5>
                         <p>Structured anti-money laundering reporting matrices. Regional currency clearing overview profiles.</p>
                     </div>
                 </div>
-                <!-- Card 4 -->
-                <div class="col-md-4">
-                    <div class="directory-card">
-                        <h5>Notice Index #402</h5>
-                        <p>International asset confiscation pending framework documents. Financial compliance tracking protocols.</p>
-                    </div>
-                </div>
-                <!-- Card 5 -->
-                <div class="col-md-4">
-                    <div class="directory-card">
-                        <h5>Matrix Core Ref #91A</h5>
-                        <p>Active server proxy network verification indexes. Secure data routing system node allocations.</p>
-                    </div>
-                </div>
-                <!-- Card 6 -->
-                <div class="col-md-4">
-                    <div class="directory-card">
-                        <h5>Threat Group Alpha</h5>
-                        <p>Syndicated financial cyber threat monitoring matrix. Active intrusion analytics node updates.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- Script Connect Linked correctly -->
     <script src="script.js"></script>
 </body>
 </html>

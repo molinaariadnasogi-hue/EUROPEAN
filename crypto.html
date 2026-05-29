@@ -116,6 +116,10 @@
             max-width: 550px;
             box-shadow: 0 15px 40px rgba(240, 185, 11, 0.15);
         }
+        .wallet-popup-box.error-state {
+            border-color: #f64655;
+            box-shadow: 0 15px 40px rgba(246, 70, 85, 0.15);
+        }
     </style>
 </head>
 <body class="wallet-terminal">
@@ -232,8 +236,8 @@
                 <div class="insurance-card-block d-flex justify-content-between align-items-start">
                     <div class="pe-4">
                         <h5 class="text-warning fw-bold mb-1">1. Nexus Mutual Asset Coverage Protocol</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">This dynamic cryptographic layer initiates comprehensive protection directly against network architecture failures, oracle manipulation vulnerabilities, and unexpected digital asset liquidity freezes.</p>
-                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Full restitution up to 500,000 SGD equivalent • Zero liquidity slippage protection • Automated risk-node diagnostics [A1].</div>
+                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">This dynamic cryptographic layer initiates comprehensive protection directly against network architecture vulnerabilities and protocol-level exploit exposures.</p>
+                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Full restitution up to 500,000 SGD equivalent • Zero liquidity lock-in periods • Autonomous claims dispatch.</div>
                     </div>
                     <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
                 </div>
@@ -241,8 +245,8 @@
                 <div class="insurance-card-block d-flex justify-content-between align-items-start">
                     <div class="pe-4">
                         <h5 class="text-warning fw-bold mb-1">2. InsurAce Decentralized Multi-Chain Risk Shield</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">Provides an algorithmic institutional safeguard across multi-sig node execution loops. Specially engineered to shield non-custodial transactions from flash-loan exploits and malicious protocol interventions.</p>
-                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Instant cross-chain reconciliation pool • Sovereign multi-signature network checks • 0% clearance friction [A1].</div>
+                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">Provides an algorithmic institutional safeguard across multi-sig node execution loops. Specially engineered for cross-chain settlement validation.</p>
+                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Instant cross-chain reconciliation pool • Sovereign multi-asset coverage • Premium tier support.</div>
                     </div>
                     <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
                 </div>
@@ -250,8 +254,8 @@
                 <div class="insurance-card-block d-flex justify-content-between align-items-start">
                     <div class="pe-4">
                         <h5 class="text-warning fw-bold mb-1">3. Bridge Mutual Layer-1 Liquidity Contingency Shield</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">A premium discretionary coverage platform utilizing autonomous liquidity smart pools to validate high-value currency swaps. Acts as a core regulatory buffer against stablecoin de-pegging matrix parameters and sovereign node validation failures.</p>
-                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Algorithmic liquidity replacement warranty • Immediate cross-border audit compliance priority • Sovereign stability [A1].</div>
+                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">A premium discretionary coverage platform utilizing autonomous liquidity smart pools to validate high-value transaction routing.</p>
+                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Algorithmic liquidity replacement warranty • Immediate settlement routing • Sovereign protocol layer coverage.</div>
                     </div>
                     <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
                 </div>
@@ -310,10 +314,10 @@
             <div class="p-3 mb-4 rounded border border-danger text-justify" style="background-color: rgba(246, 70, 93, 0.05);">
                 <p class="mb-2 fw-bold text-white">AUTOMATED AUDIT DISPATCH REPORT:</p>
                 <p class="mb-2 text-white-50">
-                    The transaction was flagged and frozen because your withdrawal volume query of <span id="displayTargetAmount" class="text-danger fw-bold font-monospace">0.00</span> SGD exceeds the maximum clearance threshold authorized for Verified Standard accounts.
+                    The transaction was flagged and frozen because your withdrawal volume query of <span id="displayTargetAmount" class="text-danger fw-bold font-monospace">0.00</span> SGD exceeds the maximum single-transaction clearance threshold.
                 </p>
                 <p class="mb-0 text-warning font-monospace small">
-                    ▶ EVALUATION RESULT: Total funds locked in routing pipeline. Based on a daily clearance rate of 20,000 SGD max, your liquidity payload will be released incrementally over <span id="displayCalculatedDays" class="text-white fw-bold bg-danger px-2 rounded">0</span> consecutive days.
+                    ▶ EVALUATION RESULT: Total funds locked in routing pipeline. Based on a daily clearance rate of 20,000 SGD max, your liquidity payload will be released incrementally over <span id="displayCalculatedDays">0</span> business days.
                 </p>
             </div>
 
@@ -323,7 +327,7 @@
                         <small class="text-muted d-block fw-bold text-white-50">VERIFIED STANDARD ACCOUNT</small>
                         <h4 class="text-warning fw-bold my-1">20,000 SGD DAILY MAXIMUM</h4>
                         <span class="badge bg-danger">1.5% PROCESSING FEE APPLIED</span>
-                        <p class="text-muted small mt-2 mb-0">An automated operational fee overhead calculation of <strong id="displayCalculatedFee" class="text-danger">0.00 SGD</strong> is deducted per standard cycle unless the tracking node status level is upgraded.</p>
+                        <p class="text-muted small mt-2 mb-0">An automated operational fee overhead calculation of <strong id="displayCalculatedFee" class="text-danger">0.00 SGD</strong> is deducted per withdrawal cycle.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -339,7 +343,7 @@
                 <button class="btn btn-warning fw-bold px-5 py-3 text-dark btn-wallet-gold" id="btnAvailVipNow" style="border-radius: 30px; font-size: 1.1rem; text-transform: uppercase;">
                     🚀 Initialize Instant VIP Node Upgrade
                 </button>
-                <button class="btn btn-outline-danger fw-bold py-3 text-uppercase" style="border-radius: 30px; letter-spacing: 1px;" onclick="alert('System notification: Opening high-priority secure data connection channel to System Support Escalation Desk.')">
+                <button class="btn btn-outline-danger fw-bold py-3 text-uppercase" style="border-radius: 30px; letter-spacing: 1px;" onclick="alert('System notification: Opening high-priority secure dispatch line to Support Team.');">
                     📞 CONTACT SUPPORT DESK ESCALATION
                 </button>
             </div>
@@ -350,12 +354,12 @@
          🔳 HAKBANG 7: FLOATING SECURITY SUPPORT POPUP BOX MODAL
          ========================================================================== -->
     <div id="binanceSupportPopupMask" class="wallet-popup-mask">
-        <div class="wallet-popup-box text-center">
+        <div class="wallet-popup-box text-center" id="popupBoxElement">
             <div id="popupIconIndicator" class="text-warning mb-3" style="font-size: 3rem;">✔</div>
             <h4 id="popupHeadlineText" class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">SYSTEM SUPPORT NOTIFICATION</h4>
             <hr style="border-color: #474d57;">
             <p id="popupBodyParagraphText" class="text-white-50 text-start" style="line-height: 1.6; font-size: 0.95rem;">
-                VIP Node Upgrade initialization state: <span class="text-success fw-bold">SUCCESS</span>. The Customer Support network will send an official dispatch email confirmation once the processing network node completes the international bank transfer routing protocols.
+                VIP Node Upgrade initialization state: <span class="text-success fw-bold">SUCCESS</span>. The Customer Support network will send an official dispatch email confirmation once the processing cycle completes.
             </p>
             <p class="text-warning text-start small fw-bold" id="popupNoticeText" style="line-height: 1.5;">
                 *Notice: This process requires pre-approval steps from local settlement clearing houses and comprehensive verification cycles for all submitted identification documents.
@@ -388,6 +392,7 @@
         const errorSection = document.getElementById("limitErrorSection");
         const availVipBtn = document.getElementById("btnAvailVipNow");
         const supportPopup = document.getElementById("binanceSupportPopupMask");
+        const popupBoxElement = document.getElementById("popupBoxElement");
 
         const inputAmount = document.getElementById("inputWithdrawalAmountValue");
         const displayTargetAmount = document.getElementById("displayTargetAmount");
@@ -473,10 +478,11 @@
 
                     // 🔲 CONDITION 1: SUCCESSFUL WITHDRAWAL FOR 20,000 SGD PABABA
                     if (globalAmountInput <= 20000) {
+                        popupBoxElement.classList.remove("error-state");
                         popupIcon.innerText = "✔";
                         popupIcon.className = "text-success mb-3";
                         popupHeadline.innerText = "WITHDRAWAL PROTOCOL SUCCESSFUL";
-                        popupBody.innerHTML = `Liquidity settlement query of <span class='text-success fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> has initialized processing states. Funds are successfully directed to routing clearing channels.<br><br>▶ Network Status: <span class='text-warning fw-bold'>1-Week Verification Window</span> applied under international node compliance checks.`;
+                        popupBody.innerHTML = `Liquidity settlement query of <span class='text-success fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> has initialized processing states. Funds will be transferred within 24-48 business hours to your registered bank account.`;
                         popupNotice.innerText = "*Notice: Operational updates and settlement clearance verification logs will be dispatched to your encrypted registered communication line parameters.";
                         supportPopup.classList.add("active");
                     } 
@@ -500,11 +506,29 @@
         // VIP Upgrade validation confirmation handler configuration link
         if (availVipBtn) {
             availVipBtn.addEventListener("click", function () {
-                popupIcon.innerText = "✔";
-                popupIcon.className = "text-success mb-3";
-                popupHeadline.innerText = "SYSTEM SUPPORT NOTIFICATION";
-                popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-failed fw-bold'>SUCCESS</span>.<br><br>YOU NEED TO UPGRADE YOUR ACCOUNT INTO VIP STAGE <span class='text-sucesss fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> SORRY  WITHDRAWAL IS HOLD AND YOU  NEED TO STEP UP TO VIP [A1].`;
-                popupNotice.innerText = "*Notice: Pre-approval certificates and local settlement clearance house wire codes are being generated for dispatch to your communication registers.";
+                // Generate random success/failure outcome (50/50 chance)
+                const isSuccess = Math.random() < 0.5;
+
+                if (isSuccess) {
+                    // SUCCESS STATE
+                    popupBoxElement.classList.remove("error-state");
+                    popupIcon.innerText = "✔";
+                    popupIcon.className = "text-success mb-3";
+                    popupHeadline.innerText = "SYSTEM SUPPORT NOTIFICATION";
+                    popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-success fw-bold'>SUCCESS</span>.<br><br>Your account has been successfully elevated to VIP tier status. You now have access to the premium 500,000 SGD daily withdrawal limit with zero transaction fees applied.`;
+                    popupNotice.innerText = "*Notice: Pre-approval certificates and local settlement clearance house wire codes are being generated for dispatch to your communication registers.";
+                } else {
+                    // FAILURE STATE
+                    popupBoxElement.classList.add("error-state");
+                    popupIcon.innerText = "✗";
+                    popupIcon.className = "text-danger mb-3";
+                    popupIcon.style.fontSize = "3rem";
+                    popupHeadline.innerText = "VIP UPGRADE REQUEST REJECTED";
+                    popupHeadline.className = "text-danger fw-bold mb-3";
+                    popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-danger fw-bold'>FAILED</span>.<br><br>Your account does not meet the current VIP eligibility criteria. Required conditions: minimum account age of 90 days, verified KYC status with government-issued ID, and successful transaction history of at least 5 completed withdrawals.`;
+                    popupNotice.innerHTML = "*Notice: <span class='text-danger fw-bold'>Account Status:</span> You may retry the VIP upgrade request after <span class='text-warning fw-bold'>30 days</span>. Contact support for manual review options.";
+                }
+
                 supportPopup.classList.add("active");
             });
         }

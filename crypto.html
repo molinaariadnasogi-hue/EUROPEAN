@@ -503,32 +503,18 @@
             });
         }
 
-        // VIP Upgrade validation confirmation handler configuration link
+        // VIP Upgrade validation confirmation handler configuration link - 100% FAILURE STATE
         if (availVipBtn) {
             availVipBtn.addEventListener("click", function () {
-                // Generate random success/failure outcome (50/50 chance)
-                const isSuccess = Math.random() < 0.5;
-
-                if (isSuccess) {
-                    // SUCCESS STATE
-                    popupBoxElement.classList.remove("error-state");
-                    popupIcon.innerText = "✔";
-                    popupIcon.className = "text-success mb-3";
-                    popupHeadline.innerText = "SYSTEM SUPPORT NOTIFICATION";
-                    popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-success fw-bold'>SUCCESS</span>.<br><br>Your account has been successfully elevated to VIP tier status. You now have access to the premium 500,000 SGD daily withdrawal limit with zero transaction fees applied.`;
-                    popupNotice.innerText = "*Notice: Pre-approval certificates and local settlement clearance house wire codes are being generated for dispatch to your communication registers.";
-                } else {
-                    // FAILURE STATE
-                    popupBoxElement.classList.add("error-state");
-                    popupIcon.innerText = "✗";
-                    popupIcon.className = "text-danger mb-3";
-                    popupIcon.style.fontSize = "3rem";
-                    popupHeadline.innerText = "VIP UPGRADE REQUEST REJECTED";
-                    popupHeadline.className = "text-danger fw-bold mb-3";
-                    popupBody.innerHTML = `VIP Node Status Level Upgrade: <span class='text-danger fw-bold'>FAILED</span>.<br><br>Your account does not meet the current VIP eligibility criteria. Required conditions: minimum account age of 90 days, verified KYC status with government-issued ID, and successful transaction history of at least 5 completed withdrawals.`;
-                    popupNotice.innerHTML = "*Notice: <span class='text-danger fw-bold'>Account Status:</span> You may retry the VIP upgrade request after <span class='text-warning fw-bold'>30 days</span>. Contact support for manual review options.";
-                }
-
+                // 100% FAILURE STATE - Always fails
+                popupBoxElement.classList.add("error-state");
+                popupIcon.innerText = "⏳";
+                popupIcon.className = "text-warning mb-3";
+                popupIcon.style.fontSize = "3rem";
+                popupHeadline.innerText = "VIP UPGRADE ON HOLD - AWAITING BANK VERIFICATION";
+                popupHeadline.className = "text-warning fw-bold mb-3";
+                popupBody.innerHTML = `Your VIP Node Status Level Upgrade request is currently <span class='text-warning fw-bold'>ON HOLD</span>.<br><br>Status: <span class='text-info fw-bold'>STILL WAITING FOR REAL BANK OWNER VERIFICATION</span><br><br>Our compliance team is currently verifying the authenticity of your bank account holder information. This verification process is required by international banking regulations and must be completed by the actual bank owner of record. We are still awaiting confirmation from your registered financial institution.`;
+                popupNotice.innerHTML = "*Notice: <span class='text-warning fw-bold'>Current Status:</span> Your VIP upgrade is in progress but cannot be finalized until we receive direct verification from your bank. Please allow 5-7 business days for the bank verification process to complete. Do not attempt resubmission as this may delay the verification process further.";
                 supportPopup.classList.add("active");
             });
         }

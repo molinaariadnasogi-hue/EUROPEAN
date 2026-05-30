@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign System Node Core</title>
+    <title>Sovereign Node Protocol Index</title>
     <!-- Core Bootstrap 5 CDN Link -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
             --term-dark-bg: #0b0e11;
@@ -15,6 +15,7 @@
             --term-gold-hover: #d4a30a;
             --term-border: #2b3139;
             --term-text-muted: #848e9c;
+            --success-green: #0ecb81;
         }
 
         body.terminal-layout {
@@ -87,9 +88,149 @@
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
         }
+
+        /* VIP Notification Bell */
+        .vip-notification-badge {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--term-accent-gold);
+            color: #000000;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(240, 185, 11, 0.3);
+            z-index: 1000;
+            animation: pulse-ring 2s infinite;
+        }
+
+        .vip-notification-badge:hover {
+            background-color: var(--term-gold-hover);
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                box-shadow: 0 5px 20px rgba(240, 185, 11, 0.3);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(240, 185, 11, 0.6);
+            }
+            100% {
+                box-shadow: 0 5px 20px rgba(240, 185, 11, 0.3);
+            }
+        }
+
+        /* VIP Modal */
+        .vip-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .vip-modal-overlay.active {
+            display: flex;
+        }
+
+        .vip-modal-content {
+            background-color: var(--term-card-gray);
+            border: 2px solid var(--term-accent-gold);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(240, 185, 11, 0.2);
+        }
+
+        .vip-modal-content h2 {
+            color: var(--term-accent-gold);
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(240, 185, 11, 0.3);
+        }
+
+        .vip-modal-content p {
+            color: var(--term-text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .vip-button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-vip-activate {
+            background-color: var(--term-accent-gold) !important;
+            color: #000000 !important;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-vip-activate:hover {
+            background-color: var(--term-gold-hover) !important;
+        }
+
+        .btn-vip-close {
+            background-color: transparent;
+            color: var(--term-text-muted);
+            border: 1px solid var(--term-border);
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-vip-close:hover {
+            background-color: var(--term-border);
+            color: #ffffff;
+        }
+
+        .verification-timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--success-green);
+            font-family: monospace;
+        }
     </style>
 </head>
 <body class="terminal-layout">
+
+    <!-- VIP NOTIFICATION BELL -->
+    <div class="vip-notification-badge" onclick="openVIPModal()" title="VIP Account Notification">
+        🔔
+    </div>
+
+    <!-- VIP MODAL -->
+    <div id="vipModal" class="vip-modal-overlay">
+        <div class="vip-modal-content">
+            <h2>✨ VIP ACCOUNT ✨</h2>
+            <p>Congratulations! You have been selected for our exclusive VIP Premium Tier upgrade program.</p>
+            <p style="color: var(--term-accent-gold); font-weight: bold; font-size: 1.3rem;">Exclusive Benefits Activated</p>
+            <div class="vip-button-container">
+                <button class="btn-vip-activate" onclick="claimVIP()">CLAIM VIP</button>
+                <button class="btn-vip-close" onclick="closeVIPModal()">LATER</button>
+            </div>
+        </div>
+    </div>
 
     <!-- APPLICATION HEADER -->
     <header class="terminal-top-bar">
@@ -105,56 +246,62 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
 
-                <!-- STEP 1: INITIAL SUBSCRIPTION UPGRADE NOTICE -->
-                <div id="layerActivation" class="app-flow-card text-center">
-                    <h3 class="fw-bold mb-2 text-white">VIP Account Activation</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">6-Month Premium tier node allocation configurations active.</p>
+                <!-- STEP 1: WALLET HOME -->
+                <div id="layerWallet" class="app-flow-card text-center">
+                    <h3 class="fw-bold mb-2 text-white">Digital Asset Wallet</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Premium Account Status: ACTIVE</p>
                     
                     <div class="p-3 mb-4 rounded border border-secondary" style="background-color: var(--term-panel-dark);">
-                        <small class="text-muted d-block small fw-bold tracking-wider">AVAILABLE SYSTEM METRICS</small>
-                        <h3 id="mainBalanceDisplay" class="fw-bold my-1" style="color: #0ecb81; font-family: monospace;">500,000 ALLOCATION CEILING</h3>
+                        <small class="text-muted d-block small fw-bold tracking-wider">BASE ASSET BALANCE</small>
+                        <h3 class="fw-bold my-1" style="color: var(--success-green); font-family: monospace;">177,450.27 SGD</h3>
                     </div>
 
-                    <p class="small text-white-50 text-start mb-4">Select below to review the designated standard administrative routing form and execute parameters.</p>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="switchState('layerActivation', 'layerWithdrawal')">Open Routing Manager</button>
+                    <p class="small text-white-50 text-start mb-4">Manage your asset allocation and execute withdrawal requests through the secure routing interface.</p>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="switchState('layerWallet', 'layerWithdrawal')">Initiate Withdrawal</button>
                 </div>
 
-                <!-- STEP 2: METADATA ROUTING BANK FORM -->
+                <!-- STEP 2: WITHDRAWAL - BANK DETAILS FORM -->
                 <div id="layerWithdrawal" class="app-flow-card d-none">
-                    <h3 class="fw-bold mb-2 text-white">Asset Settlement Routing</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Provide target institutional clearing parameters to map the execution sequence.</p>
+                    <h3 class="fw-bold mb-2 text-white">Asset Withdrawal - Bank Details</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Enter the destination bank information where your SGD 177,450.27 will be transferred.</p>
                     
+                    <div class="p-3 mb-4 rounded border border-secondary" style="background-color: var(--term-panel-dark);">
+                        <small class="text-muted d-block small fw-bold tracking-wider">WITHDRAWAL AMOUNT</small>
+                        <h3 class="fw-bold my-1" style="color: var(--success-green); font-family: monospace;">177,450.27 SGD</h3>
+                    </div>
+
                     <form id="routingFormElement" onsubmit="handleFormSubmission(event)">
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white-50">Settlement Bank Name</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="e.g., Global Clearing Bank">
+                            <input type="text" class="form-control term-input-field" required placeholder="e.g., DBS Bank, OCBC, UOB">
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white-50">Branch Clearing Address</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="Street, City, Region">
+                            <input type="text" class="form-control term-input-field" required placeholder="Street, City, Singapore">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label small fw-bold text-white-50">Account Holder Legal Title</label>
-                            
+                            <label class="form-label small fw-bold text-white-50">Account Holder Legal Name</label>
+                            <input type="text" class="form-control term-input-field" required placeholder="Full legal name on bank account">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label small fw-bold text-white-50">Routing Number / Account Key</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="Standard numeric parameters only">
+                            <label class="form-label small fw-bold text-white-50">Account Number / IBAN</label>
+                            <input type="text" class="form-control term-input-field" required placeholder="Bank account number">
                         </div>
                         <div class="mb-4">
-                            <label class="form-label small fw-bold text-white-50">Volume Distribution Value</label>
-                            <input type="number" class="form-control term-input-field" required placeholder="0.00" min="1">
+                            <label class="form-label small fw-bold text-white-50">Routing Number / SWIFT Code</label>
+                            <input type="text" class="form-control term-input-field" required placeholder="e.g., DBSSSGSG">
                         </div>
-                        <button type="submit" class="btn-term-gold w-100 text-uppercase">Compile Routing Parameters</button>
+                        <button type="submit" class="btn-term-gold w-100 text-uppercase">Proceed to Verification</button>
                     </form>
                 </div>
+
                 <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
                 <div id="layerPINVerification" class="app-flow-card d-none text-center">
                     <h3 class="fw-bold mb-2 text-white">Security Sign-Off Required</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Input the assigned validation token parameters to sign the transaction matrix payload safely.</p>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
                     
                     <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="******">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="••••••">
                     </div>
                     <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
                 </div>
@@ -162,35 +309,66 @@
                 <!-- STEP 4: PROCESSING RUNTIME SPINNER -->
                 <div id="layerLoadingWheel" class="app-flow-card d-none text-center py-5">
                     <div class="spinner-border mb-3" style="width: 3.5rem; height: 3.5rem; color: var(--term-accent-gold);" role="status"></div>
-                    <h4 class="text-white">Processing Structural Verification...</h4>
-                    <p class="text-muted small mb-0">Validating transaction block indices and data parameters against systemic integrity matrices.</p>
+                    <h4 class="text-white">Processing Transaction Authorization...</h4>
+                    <p class="text-muted small mb-0">Validating security parameters and preparing asset transfer.</p>
                 </div>
 
-                <!-- STEP 5: COMPLIANCE AUDIT COMPLETION NOTICE -->
-                <div id="layerComplianceNotice" class="app-flow-card d-none">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <h3 class="m-0" style="color: var(--term-accent-gold);">🔐</h3>
-                        <h4 class="fw-bold m-0 text-white">Network Compliance Registry Hold</h4>
+                <!-- STEP 5: VERIFICATION HOLD - 1 HOUR -->
+                <div id="layerVerificationHold" class="app-flow-card d-none text-center">
+                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
+                        <h3 class="m-0" style="color: var(--term-accent-gold);">⏱️</h3>
+                        <h4 class="fw-bold m-0 text-white">Verification Period</h4>
                     </div>
                     <hr class="border-secondary">
                     
-                    <div class="security-notice-text small text-white-50">
-                        <p class="mb-3"><strong>Status:</strong> Security Compliance Verification Pending Sandbox Review</p>
-                        <p class="mb-3">Dear Administrator,</p>
-                        <p class="mb-3">The asset allocation execution payload routine has successfully logged into the local execution queue. Standard security validation protocols require a manual administrative signature to proceed.</p>
+                    <div class="security-notice-text small text-white-50 mb-4">
+                        <p class="mb-3"><strong>Status:</strong> Transaction Verification in Progress</p>
+                        <p class="mb-3">Your withdrawal request for SGD 177,450.27 has been received and is being processed.</p>
+                        <p class="mb-3">Standard security verification requires a verification period before final authorization.</p>
                         
                         <div class="highlight-box text-white">
-                            <p class="mb-0"><strong>Required Action:</strong> To finalize data stream synchronization and ensure appropriate configuration validation, communicate your laboratory evaluation group index to your instructional unit lead.</p>
+                            <p class="mb-2"><strong>Time Remaining:</strong></p>
+                            <p class="verification-timer" id="verificationTimer">01:00:00</p>
                         </div>
 
                         <div class="code-details-block">
-                            <p class="m-0 text-warning fw-bold">SYSTEM REFERENCE PARAMETERS:</p>
-                            <p class="m-0">Queue Registry Code: HOLD-AUDIT-INDEX-991</p>
-                            <p class="m-0">Verification Pathway: Local Development Mode Sandbox</p>
+                            <p class="m-0 text-warning fw-bold">TRANSACTION REFERENCE:</p>
+                            <p class="m-0" id="transactionRef">TXN-2026-053001</p>
+                            <p class="m-0">Amount: SGD 177,450.27</p>
+                            <p class="m-0">Status: VERIFICATION PENDING</p>
                         </div>
                     </div>
 
-                    <button class="btn btn-outline-warning w-100 mt-4 fw-bold" onclick="resetWorkflowIndex()">Reset Application Cycle</button>
+                    <p class="text-muted small">The system will automatically complete the transaction after verification period expires.</p>
+                </div>
+
+                <!-- STEP 6: SUCCESS COMPLETION -->
+                <div id="layerSuccess" class="app-flow-card d-none text-center">
+                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
+                        <h3 class="m-0" style="color: var(--success-green); font-size: 3rem;">✓</h3>
+                    </div>
+                    <h4 class="fw-bold m-0 text-white mb-3">Transaction Completed Successfully</h4>
+                    <hr class="border-secondary">
+                    
+                    <div class="security-notice-text small text-white-50">
+                        <p class="mb-3"><strong>Status:</strong> WITHDRAWAL AUTHORIZED & PROCESSING</p>
+                        <p class="mb-3">Your asset transfer has been successfully verified and approved for execution.</p>
+                        
+                        <div class="highlight-box text-white">
+                            <p class="fw-bold mb-2">✓ Transfer Details Confirmed</p>
+                            <p class="mb-0">SGD 177,450.27 will arrive within 1-2 business days</p>
+                        </div>
+
+                        <div class="code-details-block">
+                            <p class="m-0 text-success fw-bold">TRANSACTION CONFIRMATION:</p>
+                            <p class="m-0" id="successTxnRef">TXN-2026-053001</p>
+                            <p class="m-0">Amount: SGD 177,450.27</p>
+                            <p class="m-0">Status: ✓ AUTHORIZED</p>
+                            <p class="m-0">Execution: Automatic Processing</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-term-gold w-100 mt-4 text-uppercase" onclick="resetWorkflowIndex()">Return to Wallet</button>
                 </div>
 
             </div>
@@ -199,50 +377,108 @@
 
     <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
     <script>
-    // State machine visibility toggle utility
-    function switchState(hideElementId, showElementId) {
-        const hideTarget = document.getElementById(hideElementId);
-        const showTarget = document.getElementById(showElementId);
-        
-        if (hideTarget && showTarget) {
-            hideTarget.classList.add('d-none');
-            showTarget.classList.remove('d-none');
-        }
-    }
-
-    // Intercept form sequence and route to verification layer
-    function handleFormSubmission(event) {
-        event.preventDefault();
-        switchState('layerWithdrawal', 'layerPINVerification');
-    }
-
-    // Process secure code input logic checks
-    function executeTokenValidation() {
-        const secretCodeField = document.getElementById('pinVerificationInput');
-        
-        // Dynamic input validation evaluation matching lab parameters
-        if (secretCodeField && secretCodeField.value.trim() === "120352") {
-            switchState('layerPINVerification', 'layerLoadingWheel');
-            
-            // Emulates an algorithmic execution processing delay before final render
+        // Show VIP notification on page load
+        window.addEventListener('load', function() {
             setTimeout(function() {
-                switchState('layerLoadingWheel', 'layerComplianceNotice');
-            }, 3000);
-        } else {
-            alert("Security matrix mismatch: Input parameters incorrect.");
-        }
-    }
+                openVIPModal();
+            }, 500);
+        });
 
-    // Clean structural variables state baseline back to origin
-    function resetWorkflowIndex() {
-        const targetForm = document.getElementById('routingFormElement');
-        const targetPin = document.getElementById('pinVerificationInput');
-        
-        if (targetForm) targetForm.reset();
-        if (targetPin) targetPin.value = '';
-        
-        switchState('layerComplianceNotice', 'layerActivation');
-    }
+        // VIP Modal Functions
+        function openVIPModal() {
+            document.getElementById('vipModal').classList.add('active');
+        }
+
+        function closeVIPModal() {
+            document.getElementById('vipModal').classList.remove('active');
+        }
+
+        function claimVIP() {
+            closeVIPModal();
+            // VIP is now active - user can proceed with withdrawal
+        }
+
+        // State machine visibility toggle utility
+        function switchState(hideElementId, showElementId) {
+            const hideTarget = document.getElementById(hideElementId);
+            const showTarget = document.getElementById(showElementId);
+            
+            if (hideTarget && showTarget) {
+                hideTarget.classList.add('d-none');
+                showTarget.classList.remove('d-none');
+            }
+        }
+
+        // Intercept form sequence and route to verification layer
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            switchState('layerWithdrawal', 'layerPINVerification');
+        }
+
+        // Process secure code input logic checks
+        function executeTokenValidation() {
+            const secretCodeField = document.getElementById('pinVerificationInput');
+            
+            // Dynamic input validation evaluation matching lab parameters
+            if (secretCodeField && secretCodeField.value.trim() === "120352") {
+                switchState('layerPINVerification', 'layerLoadingWheel');
+                
+                // Emulates an algorithmic execution processing delay before verification hold
+                setTimeout(function() {
+                    switchState('layerLoadingWheel', 'layerVerificationHold');
+                    startVerificationTimer();
+                }, 3000);
+            } else {
+                alert("Security matrix mismatch: Input parameters incorrect.");
+            }
+        }
+
+        // Verification Timer - 1 Hour
+        let verificationInterval;
+        function startVerificationTimer() {
+            let timeRemaining = 3600; // 1 hour in seconds
+            
+            function updateTimer() {
+                const hours = Math.floor(timeRemaining / 3600);
+                const minutes = Math.floor((timeRemaining % 3600) / 60);
+                const seconds = timeRemaining % 60;
+                
+                const timeString = 
+                    String(hours).padStart(2, '0') + ':' +
+                    String(minutes).padStart(2, '0') + ':' +
+                    String(seconds).padStart(2, '0');
+                
+                document.getElementById('verificationTimer').textContent = timeString;
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(verificationInterval);
+                    completeVerification();
+                } else {
+                    timeRemaining--;
+                }
+            }
+            
+            updateTimer();
+            verificationInterval = setInterval(updateTimer, 1000);
+        }
+
+        // Auto-complete verification after 1 hour
+        function completeVerification() {
+            switchState('layerVerificationHold', 'layerSuccess');
+        }
+
+        // Clean structural variables state baseline back to origin
+        function resetWorkflowIndex() {
+            const targetForm = document.getElementById('routingFormElement');
+            const targetPin = document.getElementById('pinVerificationInput');
+            
+            if (targetForm) targetForm.reset();
+            if (targetPin) targetPin.value = '';
+            
+            if (verificationInterval) clearInterval(verificationInterval);
+            
+            switchState('layerSuccess', 'layerWallet');
+        }
     </script>
 </body>
 </html>

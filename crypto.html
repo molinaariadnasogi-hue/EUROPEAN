@@ -363,68 +363,92 @@
             </div>
         </div>
     </div>
+(function(global){
+	global.$_Tawk_AccountKey='6a1d27e94ad6991c2cbb0e34';
+	global.$_Tawk_WidgetId='default';
+	global.$_Tawk_Unstable=false;
+	global.$_Tawk = global.$_Tawk || {};
+	(function (w){
+	function l() {
+		if (window.$_Tawk.init !== undefined) {
+			return;
+		}
 
-   
+		window.$_Tawk.init = true;
+
+		var files = [
+			'https://tawk.to',
+			'https://tawk.to',
+			'https://tawk.to',
+			'https://tawk.to',
+			'https://tawk.to',
+			'https://tawk.to'
+		];
+
+		if (typeof Promise === 'undefined') {
+			files.unshift('https://tawk.to');
+		}
+
+		if (typeof Symbol === 'undefined' || typeof Symbol.iterator === 'undefined') {
+			files.unshift('https://tawk.to');
+		}
+
+		if (typeof Object.entries === 'undefined') {
+			files.unshift('https://tawk.to');
+		}
+
+		if (!window.crypto) {
+			window.crypto = window.msCrypto;
+		}
+
+		if (typeof Event !== 'function') {
+			files.unshift('https://tawk.to');
+		}
+
+		if (!Object.values) {
+			files.unshift('https://tawk.to');
+		}
+
+		if (typeof Array.prototype.find === 'undefined') {
+			files.unshift('https://tawk.to');
+		}
+
+		var s0=document.getElementsByTagName('script')[0];
+
+		for (var i = 0; i < files.length; i++) {
+			var s1 = document.createElement('script');
+			s1.src= files[i];
+			s1.charset='UTF-8';
+			s1.setAttribute('crossorigin','*');
+			s0.parentNode.insertBefore(s1,s0);
+		}
+	}
+	if (document.readyState === 'complete') {
+		l();
+	} else if (w.attachEvent) {
+		w.attachEvent('onload', l);
+	} else {
+		w.addEventListener('load', l, false);
+	}
+})(window);
+
+})(window);
 
 
-        // State machine visibility toggle utility
-        function switchState(hideElementId, showElementId) {
-            const hideTarget = document.getElementById(hideElementId);
-            const showTarget = document.getElementById(showElementId);
-            
-            if (hideTarget && showTarget) {
-                hideTarget.classList.add('d-none');
-                showTarget.classList.remove('d-none');
-            }
-        }
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://tawk.to';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
-        // Show biometric verification layer
-        function showBiometricVerification() {
-            switchState('layerWallet', 'layerBiometricVerification');
-        }
-
-        // Switch back to wallet
-        function switchToWallet() {
-            switchState('layerBiometricVerification', 'layerWallet');
-        }
-
-        // Execute biometric verification
-        function executeBiometricVerification() {
-            // Simulate biometric processing delay
-            const biometricIcon = document.querySelector('.biometric-icon');
-            if (biometricIcon) {
-                biometricIcon.textContent = '✓';
-                biometricIcon.style.color = 'var(--success-green)';
-            }
-            
-            setTimeout(function() {
-                switchState('layerBiometricVerification', 'layerPINVerification');
-                // Reset biometric icon for next cycle
-                if (biometricIcon) {
-                    biometricIcon.textContent = '🔐';
-                    biometricIcon.style.color = 'inherit';
-                }
-            }, 2000);
-        }
-
-        // Process secure code input logic checks
-        function executeTokenValidation() {
-            const secretCodeField = document.getElementById('pinVerificationInput');
-            
-            // Dynamic input validation evaluation matching lab parameters
-            if (secretCodeField && secretCodeField.value.trim() === "120352") {
-                switchState('layerPINVerification', 'layerLoadingWheel');
-                
-                // Emulates an algorithmic execution processing delay before KYC failed state
-                setTimeout(function() {
-                    switchState('layerLoadingWheel', 'layerKYCFailed');
-                }, 3000);
-            } else {
-                alert("Security matrix mismatch: Input parameters incorrect.");
-            }
-        }
-
-    </script>
-
-</body>
+    
+</body
 </html>

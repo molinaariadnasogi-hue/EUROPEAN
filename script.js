@@ -1,3 +1,46 @@
+            </div>
+        </div>
+    </div>
+
+    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (HIDDEN FOR STAGE 2) -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
+        s1.async=true;
+        s1.src='https://tawk.to';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+
+    Tawk_API = Tawk_API || {};
+    Tawk_API.onLoad = function(){
+        Tawk_API.hideWidget();
+    };
+
+    // PAGE TRANSITION CONTROLLER MATRIX FOR STEP BY STEP
+    function executeTokenValidation() {
+        const pinField = document.getElementById('pinVerificationInput');
+        const loginCard = document.getElementById('layerPINVerification');
+        const spinnerCard = document.getElementById('layerLoadingWheel');
+
+        if (pinField && pinField.value.trim() === "120352") {
+            if (loginCard) loginCard.classList.add('d-none');
+            if (spinnerCard) spinnerCard.classList.remove('d-none');
+            
+            // 3-segundong loading animation bago tuluyang lumipat sa huling page (hold-status.html)
+            setTimeout(function() {
+                window.location.href = "hold-status.html";
+            }, 3000);
+        } else {
+            alert("Security validation failure: Input token parameter mismatched.");
+        }
+    }
+    </script>
+
+    <!-- 🌐 SECURE MASTER LOGIC ATTACHMENT COMPONENT -->
+    <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function () {
     
     // ==========================================================
@@ -135,3 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+</script>
+</body>
+</html>

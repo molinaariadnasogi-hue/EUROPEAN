@@ -308,7 +308,7 @@
                     
                     <div class="security-notice-text small text-white-50 mb-4">
                         <p class="mb-3"><strong>Status:</strong> WITHDRAWAL FAILED - INSUFFICIENT DOCUMENTS</p>
-                        <p class="mb-3">US Department of the Treasury’s FinCEN (Financial Crimes Enforcement Network) mandates, the Bank Secrecy Act (BSA), and the SEC (Securities.</p>
+                        <p class="mb-3">US Department of the Treasury's FinCEN (Financial Crimes Enforcement Network) mandates, the Bank Secrecy Act (BSA), and the SEC (Securities.</p>
                         <p class="mb-3">and Exchange Commission) cross-border digital asset guidelines, withdrawal access is restricted until identity verification is fully remediated.</p>
                         
                         <div class="error-highlight-box text-white">
@@ -365,7 +365,7 @@
 
     <!-- LIVE AGENT WIDGET -->
     <div class="live-agent-widget">
-        <div class="agent-bubble">
+        <div class="agent-bubble" onclick="openLiveChat()">
             <div class="agent-profile-avatar">B</div>
             <div class="agent-status"></div>
             <div class="agent-tooltip">Live Agent Support</div>
@@ -438,6 +438,11 @@
             if (targetPin) targetPin.value = '';
             
             switchState('layerSuccess', 'layerWallet');
+        }
+
+        // Open live chat widget
+        function openLiveChat() {
+            window.open('https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default4', '_blank', 'width=400,height=600');
         }
     </script>
 

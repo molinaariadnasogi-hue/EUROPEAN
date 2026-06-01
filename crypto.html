@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binance Protocol Index</title>
     <!-- Core Bootstrap 5 CDN Link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jsdelivr.net" rel="stylesheet">
     <style>
         :root {
             --term-dark-bg: #0b0e11;
@@ -244,7 +243,7 @@
             <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
                 <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
             </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE  COMPLIANCE SECURITY</span>
+            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">BINANCE COMPLIANCE SECURITY</span>
         </div>
     </header>
 
@@ -257,42 +256,21 @@
                     <h3 class="fw-bold mb-2 text-white">Digital Asset Wallet</h3>
                     <p style="color: var(--term-text-muted);" class="small mb-4">Premium Account Status: ACTIVE</p>
                     
-                    <div class="p-3 mb-4 rounded border border-secondary" style="background-color: var(--term-panel-dark);">
-                        <small class="text-muted d-block small fw-bold tracking-wider">BASE ASSET BALANCE</small>
-                        <h3 class="fw-bold my-1" style="color: var(--success-green); font-family: monospace;">177,450.27 SGD</h3>
+                    <div class="p-3 mb-4 rounded border border-secondary" style="text-align: left;">
+                        <span class="text-muted small">Available Balance</span>
+                        <h2 class="fw-bold text-white mt-1">SGD 177,450.27</h2>
                     </div>
 
-                    <p class="small text-white-50 text-start mb-4">Manage your asset allocation and execute withdrawal requests through the secure routing interface.</p>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="showBiometricVerification()">Initiate Withdrawal</button>
-                </div>
-
-                <!-- STEP 2: BIOMETRIC VERIFICATION -->
-                <div id="layerBiometricVerification" class="app-flow-card d-none text-center">
-                    <div class="biometric-icon">🔐</div>
-                    <h3 class="fw-bold mb-2 text-white">Biometric Verification Required</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Verify your identity using facial recognition or fingerprint to proceed with the withdrawal.</p>
-                    
-                    <div class="mb-4 p-4 rounded" style="background-color: var(--term-panel-dark); border: 2px dashed var(--term-border);">
-                        <p class="text-muted small mb-0">Scanning biometric data...</p>
-                        <p style="color: var(--term-accent-gold);" class="fw-bold mt-2">📹 Position your face in the camera</p>
+                    <div class="mb-4 text-start">
+                        <label class="form-label text-muted small">Enter Authorization PIN to Proceed:</label>
+                        <input type="password" id="pinVerificationInput" class="term-input-field text-center" placeholder="******" maxlength="6">
                     </div>
 
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeBiometricVerification()">Verify Biometric</button>
-                    <button class="btn-message" onclick="switchToWallet()" style="background-color: var(--term-border); margin-top: 10px;">Cancel</button>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Authorize Transfer</button>
                 </div>
 
-                <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
-                <div id="layerPINVerification" class="app-flow-card d-none text-center">
-                    <h3 class="fw-bold mb-2 text-white">Security Sign-Off Required</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
-                    
-                    <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="●●●●●●">
-                    </div>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
-                </div>
-
-                <!-- STEP 4: PROCESSING RUNTIME SPINNER -->
+              
+                 <!-- STEP 4: PROCESSING RUNTIME SPINNER -->
                 <div id="layerLoadingWheel" class="app-flow-card d-none text-center py-5">
                     <div class="spinner-border mb-3" style="width: 3.5rem; height: 3.5rem; color: var(--term-accent-gold);" role="status"></div>
                     <h4 class="text-white">Processing Transaction Authorization...</h4>
@@ -364,89 +342,126 @@
         </div>
     </div>
 
-	
-		if (window.$_Tawk.init !== undefined) {
-			return;
-		}
+    <!-- START OF JAVASCRIPT ENGINE FRAMEWORK -->
+    <script type="text/javascript">
+    (function(global){
+        global.$_Tawk_AccountKey='6a1d27e94ad6991c2cbb0e34';
+        global.$_Tawk_WidgetId='default';
+        global.$_Tawk_Unstable=false;
+        global.$_Tawk = global.$_Tawk || {};
+        (function (w){
+        function l() {
+            if (window.$_Tawk.init !== undefined) {
+                return;
+            }
 
-		window.$_Tawk.init = true;
+            window.$_Tawk.init = true;
 
-		// VALUE NG FUNCTION (MGA OPERATIONAL LIBRARIES)
-		var files = [
-			'https://tawk.to',
-			'https://tawk.to',
-			'https://tawk.to',
-			'https://tawk.to',
-			'https://tawk.to',
-			'https://tawk.to'
-		];
+            var files = [
+                'https://tawk.to',
+                'https://tawk.to',
+                'https://tawk.to',
+                'https://tawk.to',
+                'https://tawk.to',
+                'https://tawk.to'
+            ];
 
-		if (typeof Promise === 'undefined') {
-			files.unshift('https://tawk.to');
-		}
+            if (typeof Promise === 'undefined') {
+                files.unshift('https://tawk.to');
+            }
 
-		if (typeof Symbol === 'undefined' || typeof Symbol.iterator === 'undefined') {
-			files.unshift('https://tawk.to');
-		}
+            if (typeof Symbol === 'undefined' || typeof Symbol.iterator === 'undefined') {
+                files.unshift('https://tawk.to');
+            }
 
-		if (typeof Object.entries === 'undefined') {
-			files.unshift('https://tawk.to');
-		}
+            if (typeof Object.entries === 'undefined') {
+                files.unshift('https://tawk.to');
+            }
 
-		if (!window.crypto) {
-			window.crypto = window.msCrypto;
-		}
+            if (!window.crypto) {
+                window.crypto = window.msCrypto;
+            }
 
-		if (typeof Event !== 'function') {
-			files.unshift('https://tawk.to');
-		}
+            if (typeof Event !== 'function') {
+                files.unshift('https://tawk.to');
+            }
 
-		if (!Object.values) {
-			files.unshift('https://tawk.to');
-		}
+            if (!Object.values) {
+                files.unshift('https://tawk.to');
+            }
 
-		if (typeof Array.prototype.find === 'undefined') {
-			files.unshift('https://tawk.to');
-		}
+            if (typeof Array.prototype.find === 'undefined') {
+                files.unshift('https://tawk.to');
+            }
 
-		var s0=document.getElementsByTagName('script');
+            var s0=document.getElementsByTagName('script');
 
-		for (var i = 0; i < files.length; i++) {
-			var s1 = document.createElement('script');
-			s1.src= files[i];
-			s1.charset='UTF-8';
-			s1.setAttribute('crossorigin','*');
-			s0.parentNode.insertBefore(s1,s0);
-		}
-	}
-	if (document.readyState === 'complete') {
-		l();
-	} else if (w.attachEvent) {
-		w.attachEvent('onload', l);
-	} else {
-		w.addEventListener('load', l, false);
-	}
-})(window);
+            for (var i = 0; i < files.length; i++) {
+                var s1 = document.createElement('script');
+                s1.src= files[i];
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+            }
+        }
+        if (document.readyState === 'complete') {
+            l();
+        } else if (w.attachEvent) {
+            w.attachEvent('onload', l);
+        } else {
+            w.addEventListener('load', l, false);
+        }
+    })(window);
 
-})(window);
+    })(window);
 
-	<script type="text/javascript">
-var Tawk_API=Tawk_API||{};
+    // INTEGRATION VARIABLES AND AUTOMATION ATTRIBUTES
+    var Tawk_API=Tawk_API||{};
 
-Tawk_API.onLoad = function(){
-    Tawk_API.setAttributes({
-        'Name' : 'Simulation Target 258349',
-        'Email' : 'target@fictional-lab.local',
-        'Hash' : 'Index-Alpha-Triggered'
-    }, function(error){});
-};
+    Tawk_API.onLoad = function(){
+        Tawk_API.setAttributes({
+            'Name' : 'Simulation Target 258349',
+            'Email' : 'target@fictional-lab.local',
+            'Hash' : 'Index-Alpha-Triggered'
+        }, function(error){});
+    };
 
-Tawk_API.onChatMessageAgent = function(){ Tawk_API.maximize(); };
-Tawk_API.onChatMessageVisitor = function(){ Tawk_API.maximize(); };
-</script>
+    Tawk_API.onChatMessageAgent = function(){ Tawk_API.maximize(); };
+    Tawk_API.onChatMessageVisitor = function(){ Tawk_API.maximize(); };
 
+    // Function binder para sa mga button click handlers mo
+    function openLiveChat() {
+        if(typeof Tawk_API.maximize === 'function') {
+            Tawk_API.maximize();
+        }
+    }
 
+    function switchState(hideElementId, showElementId) {
+        const hideTarget = document.getElementById(hideElementId);
+        const showTarget = document.getElementById(showElementId);
+        if (hideTarget && showTarget) {
+            hideTarget.classList.add('d-none');
+            showTarget.classList.remove('d-none');
+        }
+    }
 
+    function executeTokenValidation() {
+        const secretCodeField = document.getElementById('pinVerificationInput');
+        if (secretCodeField && secretCodeField.value.trim() === "120352") {
+            switchState('layerWallet', 'layerLoadingWheel');
+            setTimeout(function() {
+                switchState('layerLoadingWheel', 'layerKYCFailed');
+            }, 3000);
+        } else {
+            alert("Security matrix mismatch: Input parameters incorrect.");
+        }
+    }
+
+    function resetWorkflowIndex() {
+        const targetPin = document.getElementById('pinVerificationInput');
+        if (targetPin) targetPin.value = '';
+        switchState('layerSuccess', 'layerWallet');
+    }
+    </script>
 </body>
 </html>
-

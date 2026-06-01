@@ -1,86 +1,72 @@
-// 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (HIDDEN FOR STAGE 2)
-var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-(function(){
-    var s1 = document.createElement("script"), 
-    s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src='https://embed.tawk.to/6a1d4a8e69c65c1c2db679aa/1jq16mfv6
-    ';
-    s1.charset = 'UTF-8';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Portal</title>
+</head>
+<body>
+
+    <!-- Your existing HTML structure and forms go here -->
+
+    <!-- 1. Place the official Tawk.to Script here -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a1d4a8e69c65c1c2db679aa/1jq16mfv6';
+    s1.charset='UTF-8';
     s1.setAttribute('crossorigin', '*');
-    s0.parentNode.insertBefore(s1, s0);
-})();
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
 
-Tawk_API = Tawk_API || {};
-Tawk_API.onLoad = function(){
-    Tawk_API.hideWidget();
-};
+    <!-- 2. Place your external master logic JavaScript file below it -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+// Example of a standard client-side submission to a secure backend
+async function authenticateUser(inputToken) {
+    try {
+        const response = await fetch('https://yourdomain.com', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({ token: inputToken })
+        });
 
-// PAGE TRANSITION CONTROLLER MATRIX FOR STEP BY STEP
-function executeTokenValidation() {
-    const pinField = document.getElementById('pinVerificationInput');
-    const loginCard = document.getElementById('layerPINVerification');
-    const spinnerCard = document.getElementById('layerLoadingWheel');
+        const result = await response.json();
 
-    if (pinField && pinField.value.trim() === "120352") {
-        if (loginCard) loginCard.classList.add('d-none');
-        if (spinnerCard) spinnerCard.classList.remove('d-none');
-        
-        // 3-segundong loading animation bago tuluyang lumipat sa huling page (hold-status.html)
-        setTimeout(function() {
-            window.location.href = "hold-status.html";
-        }, 3000);
-    } else {
-        alert("Security validation failure: Input token parameter mismatched.");
+        if (response.ok && result.authenticated) {
+            // Proceed to the authorized application state
+            return true;
+        } else {
+            // Handle generic authentication failure
+            console.error("Authentication failed.");
+            return false;
+        }
+    } catch (error) {
+        console.error("Network or server error encountered.");
+        return false;
     }
 }
-// 🌐 SECURE MASTER LOGIC ATTACHMENT COMPONENT
-document.addEventListener("DOMContentLoaded", function () {
-    const syncWalletBtn = document.getElementById("btnTriggerWalletSync");
-    const walletInput = document.getElementById("walletAuthCodeField");
-    const reportLayer = document.getElementById("walletReportMatrixLayer");
-    const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
-    const loadingSection = document.getElementById("loadingSection");
-    const securityComplianceSection = document.getElementById("securityComplianceSection");
+    <!-- Pangunahing Nilalaman ng Webpage -->
+    <main>
+        <h1>Customer Support Portal</h1>
+    </main>
 
-    // Step 0 -> Step 1: Login Verification Gate
-    if (syncWalletBtn) {
-        syncWalletBtn.addEventListener("click", function () {
-            if (walletInput.value.trim() === "120352") {
-                const authBlock = document.getElementById("authGatewayBlock");
-                if (authBlock) authBlock.classList.add("d-none");
-                if (reportLayer) {
-                    reportLayer.classList.remove("d-none");
-                    reportLayer.scrollIntoView({ behavior: 'smooth' });
-                }
-            } else {
-                alert("Wallet credentials mismatch error.");
-            }
-        });
-    }
-
-    // Step 1 -> Step 2: Trigger Security Compliance Notice Instead of Withdrawal Form
-    if (withdrawalBtn) {
-        withdrawalBtn.addEventListener("click", function () {
-            if (reportLayer) reportLayer.classList.add("d-none");
-            if (loadingSection) {
-                loadingSection.classList.remove("d-none");
-                loadingSection.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            // Simulate processing delay
-            setTimeout(function () {
-                if (loadingSection) loadingSection.classList.add("d-none");
-                if (securityComplianceSection) {
-                    securityComplianceSection.classList.remove("d-none");
-                    securityComplianceSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 2000);
-        });
-
-
-async (params) => {
-    
-     
-} 
-                        
+    <!-- Opisyal na Tawk.to Embedded Script -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://tawk.to';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+</body>

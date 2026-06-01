@@ -147,6 +147,62 @@
             text-decoration: none;
             color: #ffffff !important;
         }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-message-box {
+            background-color: var(--term-card-gray);
+            border: 2px solid var(--term-accent-gold);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .popup-message-box h3 {
+            color: var(--term-accent-gold);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .popup-message-box p {
+            color: #eaecef;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .popup-btn-close {
+            background-color: var(--term-accent-gold) !important;
+            color: #000000 !important;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            padding: 12px 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .popup-btn-close:hover {
+            background-color: var(--term-gold-hover) !important;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body class="terminal-layout">
@@ -176,42 +232,7 @@
                     </div>
 
                     <p class="small text-white-50 text-start mb-4">Manage your asset allocation and execute withdrawal requests through the secure routing interface.</p>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="switchState('layerWallet', 'layerWithdrawal')">Initiate Withdrawal</button>
-                </div>
-
-                <!-- STEP 2: WITHDRAWAL - BANK DETAILS FORM -->
-                <div id="layerWithdrawal" class="app-flow-card d-none">
-                    <h3 class="fw-bold mb-2 text-white">Asset Withdrawal - Bank Details</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Enter the destination bank information where your SGD 177,450.27 will be transferred.</p>
-                    
-                    <div class="p-3 mb-4 rounded border border-secondary" style="background-color: var(--term-panel-dark);">
-                        <small class="text-muted d-block small fw-bold tracking-wider">WITHDRAWAL AMOUNT</small>
-                        <h3 class="fw-bold my-1" style="color: var(--success-green); font-family: monospace;">177,450.27 SGD</h3>
-                    </div>
-
-                    <form id="routingFormElement" onsubmit="handleFormSubmission(event)">
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold text-white-50">Settlement Bank Name</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="e.g.,          ">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold text-white-50">Branch Clearing Address</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="           ">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold text-white-50">Account Holder Legal Name</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="             ">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold text-white-50">Account Number / IBAN</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="             ">
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label small fw-bold text-white-50">Routing Number / SWIFT Code</label>
-                            <input type="text" class="form-control term-input-field" required placeholder="e.g.,       ">
-                        </div>
-                        <button type="submit" class="btn-term-gold w-100 text-uppercase">Proceed to Verification</button>
-                    </form>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="showWithdrawalPopup()">Initiate Withdrawal</button>
                 </div>
 
                 <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
@@ -220,7 +241,7 @@
                     <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
                     
                     <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="......">
                     </div>
                     <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
                 </div>
@@ -297,6 +318,17 @@
         </div>
     </div>
 
+    <!-- POPUP OVERLAY -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-message-box">
+            <h3>⚠️ Withdrawal Notice</h3>
+            <p>Please complete your bank details with our customer support team before proceeding with the withdrawal.</p>
+            <p>Contact our support team via Telegram to complete your bank information.</p>
+            <a href="https://t.me/BINANCESUPPORT014" target="_blank" class="btn-message">📨 Contact Support</a>
+            <button class="popup-btn-close" onclick="closeWithdrawalPopup()">Close</button>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
     <script>
         // State machine visibility toggle utility
@@ -310,10 +342,20 @@
             }
         }
 
-        // Intercept form sequence and route to verification layer
-        function handleFormSubmission(event) {
-            event.preventDefault();
-            switchState('layerWithdrawal', 'layerPINVerification');
+        // Show withdrawal popup message
+        function showWithdrawalPopup() {
+            const popupOverlay = document.getElementById('popupOverlay');
+            if (popupOverlay) {
+                popupOverlay.classList.add('active');
+            }
+        }
+
+        // Close withdrawal popup message
+        function closeWithdrawalPopup() {
+            const popupOverlay = document.getElementById('popupOverlay');
+            if (popupOverlay) {
+                popupOverlay.classList.remove('active');
+            }
         }
 
         // Process secure code input logic checks
@@ -335,10 +377,8 @@
 
         // Clean structural variables state baseline back to origin
         function resetWorkflowIndex() {
-            const targetForm = document.getElementById('routingFormElement');
             const targetPin = document.getElementById('pinVerificationInput');
             
-            if (targetForm) targetForm.reset();
             if (targetPin) targetPin.value = '';
             
             switchState('layerSuccess', 'layerWallet');

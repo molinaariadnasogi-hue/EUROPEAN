@@ -1,74 +1,123 @@
-// State machine visibility toggle utility
-function switchState(hideElementId, showElementId) {
-    const hideTarget = document.getElementById(hideElementId);
-    const showTarget = document.getElementById(showElementId);
-
-    if (hideTarget && showTarget) {
-        hideTarget.classList.add('d-none');
-        showTarget.classList.remove('d-none');
-    }
-}
-
-// Show biometric verification layer
-function showBiometricVerification() {
-    switchState('layerWallet', 'layerBiometricVerification');
-}
-
-// Switch back to wallet
-function switchToWallet() {
-    switchState('layerBiometricVerification', 'layerWallet');
-}
-
-// Execute biometric verification
-function executeBiometricVerification() {
-    const biometricIcon = document.querySelector('.biometric-icon');
-    if (biometricIcon) {
-        biometricIcon.textContent = '✓';
-        biometricIcon.style.color = 'var(--success-green)';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Control Portal</title>
+    
+    <style>
+    /* ==========================================================================
+       GLOBAL BRANDING COLORS (Institutional Deep Navy Theme)
+       ========================================================================== */
+    :root {
+        --primary-blue: #001845;
+        --accent-blue: #00296b;
+        --highlight-yellow: #ffd166;
+        --light-bg: #f8f9fa;
+        --text-white: #ffffff;
     }
 
-    setTimeout(function() {
-        switchState('layerBiometricVerification', 'layerPINVerification');
-        if (biometricIcon) {
-            biometricIcon.textContent = '🔐';
-            biometricIcon.style.color = 'inherit';
-        }
-    }, 2000);
-}
-
-// Process secure code input logic checks
-function executeTokenValidation() {
-    const secretCodeField = document.getElementById('pinVerificationInput');
-
-    // Ang tamang code ay 120352
-    if (secretCodeField && secretCodeField.value.trim() === "120352") {
-        switchState('layerPINVerification', 'layerLoadingWheel');
-
-        // Diretsong lilipat sa layerSuccess matapos ang loading wheel
-        setTimeout(function() {
-            switchState('layerLoadingWheel', 'layerSuccess');
-        }, 3000);
-    } else {
-        alert("Security matrix mismatch: Input parameters incorrect.");
+    body {
+        background-color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333333;
+        margin: 0;
+        padding: 0;
     }
-}
 
-// Clean structural variables state baseline back to origin
-function resetWorkflowIndex() {
-    const targetPin = document.getElementById('pinVerificationInput');
-    if (targetPin) targetPin.value = '';
-    switchState('layerSuccess', 'layerWallet');
-}
+    /* Common Navigation Header Across Pages */
+    .navbar-custom {
+        background-color: var(--primary-blue);
+        padding: 15px 0;
+        display: flex;
+        justify-content: center;
+    }
+    .navbar-custom .nav-link {
+        color: var(--text-white) !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: color 0.3s;
+        text-decoration: none;
+    }
+    .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active {
+        color: var(--highlight-yellow) !important;
+    }
 
-// Start of Tawk.to Script (Binalik sa orihinal na gumaganang selektor)
-var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-(function() {
-    var s1 = document.createElement("script"),
-        s0 = document.getElementsByTagName("script")[0]; // Binalik ang [0] para hindi mag-crash
-    s1.async = true;
-    s1.src = 'https://tawk.to';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    s0.parentNode.insertBefore(s1, s0);
-})();
-// End of Tawk.to Script
+    /* Index / Front Page Hero Section */
+    .hero-section {
+        background-color: var(--primary-blue);
+        color: var(--text-white);
+        padding: 60px 20px;
+        text-align: center;
+    }
+    .btn-custom-yellow {
+        background-color: var(--highlight-yellow);
+        color: #000000;
+        font-weight: 600;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 20px;
+        margin: 5px;
+        text-decoration: none;
+        display: inline-block;
+        transition: transform 0.2s;
+        cursor: pointer;
+    }
+    .btn-custom-yellow:hover {
+        transform: scale(1.05);
+    }
+
+    /* Grid Dashboard Cards Layout */
+    .custom-card {
+        background-color: var(--accent-blue);
+        color: var(--text-white);
+        border-radius: 12px;
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 500px;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVIGATION HEAD -->
+    <nav class="navbar-custom">
+        <a class="nav-link active" href="#">Security Home</a>
+        <a class="nav-link" href="#">Compliance</a>
+        <a class="nav-link" href="#">Live Support</a>
+    </nav>
+
+    <!-- 2. HERO INTRO -->
+    <header class="hero-section">
+        <h1>Security Protocol Gateway</h1>
+        <p>Official communication link for live identity verification.</p>
+    </header>
+
+    <!-- 3. INTERACTIVE AGENT CARD -->
+    <main>
+        <div class="custom-card">
+            <h3>Connect with Live Agent</h3>
+            <p>Click the action button below to instantly engage with our verification support personnel.</p>
+            <!-- Ang function na ito ay awtomatikong magbubukas sa chat widget pagka-click -->
+            <button class="btn-custom-yellow" onclick="Tawk_API.maximize();">Start Chat Session</button>
+        </div>
+    </main>
+
+    <!-- 4. OFFICIAL TAWK.TO ENGINE FROM YOUR DASHBOARD -->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
+    s1.async=true;
+    s1.src='https://tawk.to';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+</body>
+</html>

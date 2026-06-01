@@ -364,27 +364,8 @@
         </div>
     </div>
 
-    <!-- LIVE AGENT WIDGET -->
-    <div class="live-agent-widget">
-        <div class="agent-bubble" onclick="openLiveChat()">
-            <div class="agent-profile-avatar">B</div>
-            <div class="agent-status"></div>
-            <div class="agent-tooltip">Live Agent Support</div>
-        </div>
-    </div>
+   
 
-    <!-- JAVASCRIPT STATE CONTROLLER MATRIX -->
-    <script>
-        // Tawk.to embed script
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default4';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
 
         // State machine visibility toggle utility
         function switchState(hideElementId, showElementId) {
@@ -443,21 +424,6 @@
             }
         }
 
-        // Clean structural variables state baseline back to origin
-        function resetWorkflowIndex() {
-            const targetPin = document.getElementById('pinVerificationInput');
-            
-            if (targetPin) targetPin.value = '';
-            
-            switchState('layerSuccess', 'layerWallet');
-        }
-
-        // Open live chat widget - triggers Tawk.to chat
-        function openLiveChat() {
-            if (typeof Tawk_API !== 'undefined') {
-                Tawk_API.toggle();
-            }
-        }
     </script>
 
 </body>

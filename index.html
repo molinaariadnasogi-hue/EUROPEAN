@@ -312,8 +312,26 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 
-  </body>  
+    <!-- 🌐 JAVASCRIPT ACTION CONTROLLER MATRIX -->
+    <script type="text/javascript">
+        document.getElementById('btnSearchCase').addEventListener('click', function() {
+            const inputVal = document.getElementById('caseInputCode').value.trim();
+            const profileSection = document.getElementById('dynamicProfileSection');
+            
+            if (inputVal === "784291" || inputVal === "120352") {
+                profileSection.classList.remove('d-none');
+                profileSection.scrollIntoView({ behavior: 'smooth' });
+            } else if (inputVal === "") {
+                alert("Please enter a valid reference ID or node parameters.");
+            } else {
+                alert("Query Reference Error: Access Denied or Parameter Not Found.");
+                profileSection.classList.add('d-none');
+            }
+        });
+    </script>
+</body>
 </html>
+
 
 
 

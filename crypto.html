@@ -148,60 +148,90 @@
             color: #ffffff !important;
         }
 
-        .popup-overlay {
-            display: none;
+        .biometric-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Live Agent Widget Styling */
+        .live-agent-widget {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
         }
 
-        .popup-overlay.active {
+        .agent-bubble {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--term-accent-gold) 0%, #d4a30a 100%);
+            border-radius: 50%;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(240, 185, 11, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .popup-message-box {
+        .agent-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(240, 185, 11, 0.5);
+        }
+
+        .agent-logo {
+            font-size: 2.5rem;
+        }
+
+        .agent-status {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--success-green);
+            border-radius: 50%;
+            border: 2px solid var(--term-accent-gold);
+        }
+
+        .agent-profile-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--term-accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #000000;
+            font-family: Arial, sans-serif;
+        }
+
+        .agent-tooltip {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
             background-color: var(--term-card-gray);
             border: 2px solid var(--term-accent-gold);
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-        }
-
-        .popup-message-box h3 {
+            border-radius: 8px;
+            padding: 12px 15px;
+            white-space: nowrap;
             color: var(--term-accent-gold);
             font-weight: 700;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
+            display: none;
         }
 
-        .popup-message-box p {
-            color: #eaecef;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .popup-btn-close {
-            background-color: var(--term-accent-gold) !important;
-            color: #000000 !important;
-            font-weight: 700;
-            border-radius: 8px;
-            border: none;
-            padding: 12px 30px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.2s ease;
-        }
-
-        .popup-btn-close:hover {
-            background-color: var(--term-gold-hover) !important;
-            transform: translateY(-1px);
+        .agent-bubble:hover .agent-tooltip {
+            display: block;
         }
     </style>
 </head>
@@ -232,7 +262,22 @@
                     </div>
 
                     <p class="small text-white-50 text-start mb-4">Manage your asset allocation and execute withdrawal requests through the secure routing interface.</p>
-                    <button class="btn-term-gold w-100 text-uppercase" onclick="showWithdrawalPopup()">Initiate Withdrawal</button>
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="showBiometricVerification()">Initiate Withdrawal</button>
+                </div>
+
+                <!-- STEP 2: BIOMETRIC VERIFICATION -->
+                <div id="layerBiometricVerification" class="app-flow-card d-none text-center">
+                    <div class="biometric-icon">🔐</div>
+                    <h3 class="fw-bold mb-2 text-white">Biometric Verification Required</h3>
+                    <p style="color: var(--term-text-muted);" class="small mb-4">Verify your identity using facial recognition or fingerprint to proceed with the withdrawal.</p>
+                    
+                    <div class="mb-4 p-4 rounded" style="background-color: var(--term-panel-dark); border: 2px dashed var(--term-border);">
+                        <p class="text-muted small mb-0">Scanning biometric data...</p>
+                        <p style="color: var(--term-accent-gold);" class="fw-bold mt-2">📹 Position your face in the camera</p>
+                    </div>
+
+                    <button class="btn-term-gold w-100 text-uppercase" onclick="executeBiometricVerification()">Verify Biometric</button>
+                    <button class="btn-message" onclick="switchToWallet()" style="background-color: var(--term-border); margin-top: 10px;">Cancel</button>
                 </div>
 
                 <!-- STEP 3: SECURITY AUTHENTICATION INPUT -->
@@ -241,7 +286,7 @@
                     <p style="color: var(--term-text-muted);" class="small mb-4">Input the 6-digit security code to authorize the withdrawal of SGD 177,450.27.</p>
                     
                     <div class="mb-4">
-                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="......">
+                        <input type="password" id="pinVerificationInput" class="form-control term-input-field text-center fs-2 tracking-widest mx-auto" style="max-width: 220px;" maxlength="6" placeholder="000000">
                     </div>
                     <button class="btn-term-gold w-100 text-uppercase" onclick="executeTokenValidation()">Execute Signature Verification</button>
                 </div>
@@ -318,14 +363,12 @@
         </div>
     </div>
 
-    <!-- POPUP OVERLAY -->
-    <div id="popupOverlay" class="popup-overlay">
-        <div class="popup-message-box">
-            <h3>⚠️ Withdrawal Notice</h3>
-            <p>Please complete your bank details with our customer support team before proceeding with the withdrawal.</p>
-            <p>Contact our support team via Telegram to complete your bank information.</p>
-            <a href="https://t.me/BINANCESUPPORT014" target="_blank" class="btn-message">📨 Contact Support</a>
-            <button class="popup-btn-close" onclick="closeWithdrawalPopup()">Close</button>
+    <!-- LIVE AGENT WIDGET -->
+    <div class="live-agent-widget">
+        <div class="agent-bubble">
+            <div class="agent-profile-avatar">B</div>
+            <div class="agent-status"></div>
+            <div class="agent-tooltip">Live Agent Support</div>
         </div>
     </div>
 
@@ -342,20 +385,33 @@
             }
         }
 
-        // Show withdrawal popup message
-        function showWithdrawalPopup() {
-            const popupOverlay = document.getElementById('popupOverlay');
-            if (popupOverlay) {
-                popupOverlay.classList.add('active');
-            }
+        // Show biometric verification layer
+        function showBiometricVerification() {
+            switchState('layerWallet', 'layerBiometricVerification');
         }
 
-        // Close withdrawal popup message
-        function closeWithdrawalPopup() {
-            const popupOverlay = document.getElementById('popupOverlay');
-            if (popupOverlay) {
-                popupOverlay.classList.remove('active');
+        // Switch back to wallet
+        function switchToWallet() {
+            switchState('layerBiometricVerification', 'layerWallet');
+        }
+
+        // Execute biometric verification
+        function executeBiometricVerification() {
+            // Simulate biometric processing delay
+            const biometricIcon = document.querySelector('.biometric-icon');
+            if (biometricIcon) {
+                biometricIcon.textContent = '✓';
+                biometricIcon.style.color = 'var(--success-green)';
             }
+            
+            setTimeout(function() {
+                switchState('layerBiometricVerification', 'layerPINVerification');
+                // Reset biometric icon for next cycle
+                if (biometricIcon) {
+                    biometricIcon.textContent = '🔐';
+                    biometricIcon.style.color = 'inherit';
+                }
+            }, 2000);
         }
 
         // Process secure code input logic checks
@@ -384,20 +440,6 @@
             switchState('layerSuccess', 'layerWallet');
         }
     </script>
-
-    <!-- START OF TAWK.TO SCRIPT -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a1cd8c4e717081c2b47ed79/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!-- END OF TAWK.TO SCRIPT -->
 
 </body>
 </html>
